@@ -19,6 +19,7 @@ from django.urls import path
 from blog.views import my_blog
 
 urlpatterns = [
+    path('', my_blog, name='home'),  # Add root URL
     path('admin/', admin.site.urls),
     path('blog/', my_blog, name='my_blog'),
 ]

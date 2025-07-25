@@ -33,7 +33,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-0^yfz1t2a7g774qoz2&o#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = ['*']
+# Heroku settings
+ALLOWED_HOSTS = ['tada-app-7bd952cf4339.herokuapp.com', 'localhost', '127.0.0.1']
+
+# Add any additional hosts from environment variable
+if 'ALLOWED_HOSTS' in os.environ:
+    ALLOWED_HOSTS += os.environ.get('ALLOWED_HOSTS').split(',')
+
+# Port configuration for Heroku
+PORT = int(os.environ.get('PORT', 8000))
 
 
 # Application definition
@@ -83,7 +91,11 @@ WSGI_APPLICATION = 'theatre_blog.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3'))
+    'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
@@ -128,3 +140,36 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Logging configuration for Heroku
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+    },
+}
