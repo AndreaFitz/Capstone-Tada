@@ -1,0 +1,1 @@
+web: gunicorn theatre_blog.wsgi --log-file -
