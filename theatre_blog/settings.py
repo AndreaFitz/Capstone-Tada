@@ -14,10 +14,11 @@ from pathlib import Path
 import os
 import dj_database_url
 
-# Import environment variables from env.py
+# Import environment variables from env.py (only for local development)
 import sys
-sys.path.append(str(Path(__file__).resolve().parent.parent))
-import env
+if os.path.exists(os.path.join(os.path.dirname(__file__), '..', 'env.py')):
+    sys.path.append(str(Path(__file__).resolve().parent.parent))
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

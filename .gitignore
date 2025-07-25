@@ -1,2 +1,10 @@
 .venv/
 env.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+db.sqlite3
+.DS_Store
+staticfiles/
