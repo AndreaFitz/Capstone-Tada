@@ -1,4 +1,31 @@
 body {
     background-color: black;
     font-family: Arial, sans-serif;
+    color: white; /* Make all text white for better contrast */
+}
+
+/* Main content styling for better readability */
+.container {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Headings styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add shadow for better readability */
+}
+
+/* Paragraph and text styling */
+p, li {
+    color: #f8f9fa; /* Light gray for better readability */
+    line-height: 1.6; /* Better line spacing */
+}
+
+/* Lead text styling */
+.lead {
+    color: #e9ecef;
+    font-weight: 500;
 }

@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import my_blog
+from blog.views import my_blog, about
 
 urlpatterns = [
     path('', my_blog, name='home'),  # Add root URL
+    path('about/', about, name='about'),  # Add About page URL
     path('admin/', admin.site.urls),
     path('blog/', my_blog, name='my_blog'),
 ]
