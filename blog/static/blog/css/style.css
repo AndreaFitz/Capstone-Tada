@@ -1,8 +1,29 @@
 body {
     background-color: black;
-    font-family: Arial, sans-serif;
+    font-family: "Limelight", sans-serif;
     color: white; /* Make all text white for better contrast */
 }
+
+/* Apply Limelight font to headings and brand */
+.navbar-brand {
+    font-family: "Limelight", sans-serif !important;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Limelight", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*font class for manual application*/
+.limelight-regular {
+  font-family: "Limelight", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 /* Main content styling for better readability */
 .container {
@@ -28,4 +49,37 @@ p, li {
 .lead {
     color: #e9ecef;
     font-weight: 500;
+}
+
+/* Form styling */
+.card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    color: #333;
+}
+
+.form-control {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
