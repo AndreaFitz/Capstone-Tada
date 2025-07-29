@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event - TADA! The Amateur Dramatic Almanack</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+    crossorigin="anonymous">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'blog/images/favicon.png' %}" alt="TADA Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+          TADA! The Amateur Dramatic Almanack
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'directory' %}">Directory</a>
+            </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Welcome, {{ user.username }}!</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5" style="padding-top: 80px;">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h2><i class="fas fa-edit me-2"></i>Edit Event</h2>
+            </div>
+            <div class="card-body">
+              <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="{{ form.title.id_for_label }}" class="form-label">Event Title</label>
+                  {{ form.title }}
+                </div>
+                <div class="mb-3">
+                  <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                  {{ form.description }}
+                </div>
+                <div class="mb-3">
+                  <label for="{{ form.date.id_for_label }}" class="form-label">Date & Time</label>
+                  {{ form.date }}
+                </div>
+                <div class="mb-3">
+                  <label for="{{ form.location.id_for_label }}" class="form-label">Location</label>
+                  {{ form.location }}
+                </div>
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i>Update Event
+                  </button>
+                  <a href="{% url 'riverside_players' %}" class="btn btn-secondary">
+                    <i class="fas fa-times me-1"></i>Cancel
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+  crossorigin="anonymous"
+></script>
+
+</body>
+</html>

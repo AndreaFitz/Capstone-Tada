@@ -16,15 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import my_blog, about, directory, register_view, login_view, logout_view
+from blog.views import (
+    index, about, directory, riverside_players, register_view, login_view, logout_view
+)
 
 urlpatterns = [
-    path('', my_blog, name='home'),  # Add root URL
-    path('about/', about, name='about'),  # Add About page URL
+    path('', index, name='home'),  # Add root URL
+    path('about/', about, name='about'),  # About page
     path('directory/', directory, name='directory'),  # Directory page
+    path('society/riverside-players/', riverside_players, name='riverside_players'),  # Riverside Players page
     path('register/', register_view, name='register'),  # Registration page
     path('login/', login_view, name='login'),  # Login page
     path('logout/', logout_view, name='logout'),  # Logout action
     path('admin/', admin.site.urls),
-    path('blog/', my_blog, name='my_blog'),
+    path('blog/', index, name='my_blog'),
 ]

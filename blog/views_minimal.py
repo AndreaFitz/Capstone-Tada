@@ -25,19 +25,6 @@ def riverside_players(request):
     return render(request, 'blog/riverside_players.html', context)
 
 # Authentication views
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, f'Welcome back, {username}!')
-            return redirect('home')
-        else:
-            messages.error(request, 'Invalid username or password.')
-    return render(request, 'blog/login.html')
-
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
