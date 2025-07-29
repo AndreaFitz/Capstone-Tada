@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import Event, Comment, Question, Answer
+from .forms import EventForm, CommentForm, QuestionForm, AnswerForm
 
-# Minimal views without database dependencies
+# Main views
 
 def index(request):
     return render(request, 'blog/index.html')
@@ -15,14 +18,112 @@ def directory(request):
     return render(request, 'blog/directory.html')
 
 def riverside_players(request):
-    # Minimal context for template rendering without database
+    # Get events and questions from database
+    events = Event.objects.all().order_by('-created_at')
+    questions = Question.objects.all().order_by('-created_at')
+    
+    # Handle form submissions
+    if request.method == 'POST':
+        if 'event_form' in request.POST and request.user.is_authenticated:
+            event_form = EventForm(request.POST)
+            if event_form.is_valid():
+                event = event_form.save(commit=False)
+                event.created_by = request.user
+                event.save()
+                messages.success(request, 'Event created successfully!')
+                return redirect('riverside_players')
+        elif 'question_form' in request.POST and request.user.is_authenticated:
+            question_form = QuestionForm(request.POST)
+            if question_form.is_valid():
+                question = question_form.save(commit=False)
+                question.author = request.user
+                question.save()
+                messages.success(request, 'Question posted successfully!')
+                return redirect('riverside_players')
+    
+    # Create fresh forms for GET requests
+    event_form = EventForm()
+    question_form = QuestionForm()
+    
     context = {
-        'events': [],
-        'questions': [],
-        'event_form': None,
-        'question_form': None,
+        'events': events,
+        'questions': questions,
+        'event_form': event_form,
+        'question_form': question_form,
     }
     return render(request, 'blog/riverside_players.html', context)
+
+# CRUD Functions for Events
+@login_required
+def edit_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == 'POST':
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Event updated successfully!')
+            return redirect('riverside_players')
+    else:
+        form = EventForm(instance=event)
+    return render(request, 'blog/edit_event.html', {'form': form, 'event': event})
+
+@login_required
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == 'POST':
+        event.delete()
+        messages.success(request, 'Event deleted successfully!')
+        return redirect('riverside_players')
+    return render(request, 'blog/confirm_delete.html', {'object': event, 'type': 'event'})
+
+@login_required
+def add_comment(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.event = event
+            comment.author = request.user
+            comment.save()
+            messages.success(request, 'Comment added successfully!')
+    return redirect('riverside_players')
+
+# CRUD Functions for Questions
+@login_required
+def edit_question(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    if request.method == 'POST':
+        form = QuestionForm(request.POST, instance=question)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Question updated successfully!')
+            return redirect('riverside_players')
+    else:
+        form = QuestionForm(instance=question)
+    return render(request, 'blog/edit_question.html', {'form': form, 'question': question})
+
+@login_required
+def delete_question(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    if request.method == 'POST':
+        question.delete()
+        messages.success(request, 'Question deleted successfully!')
+        return redirect('riverside_players')
+    return render(request, 'blog/confirm_delete.html', {'object': question, 'type': 'question'})
+
+@login_required
+def add_answer(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.question = question
+            answer.author = request.user
+            answer.save()
+            messages.success(request, 'Answer added successfully!')
+    return redirect('riverside_players')
 
 # Authentication views
 def login_view(request):
@@ -48,7 +149,7 @@ def register_view(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'blog/register.html', {'form': form})
 
 def logout_view(request):
     logout(request)

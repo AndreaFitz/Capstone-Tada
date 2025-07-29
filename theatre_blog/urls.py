@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog.views import (
-    index, about, directory, riverside_players, register_view, login_view, logout_view
+    index, about, directory, riverside_players, register_view, login_view, logout_view,
+    edit_event, delete_event, add_comment, add_answer, edit_question, delete_question
 )
 
 urlpatterns = [
@@ -25,6 +26,12 @@ urlpatterns = [
     path('about/', about, name='about'),  # About page
     path('directory/', directory, name='directory'),  # Directory page
     path('society/riverside-players/', riverside_players, name='riverside_players'),  # Riverside Players page
+    path('event/edit/<int:event_id>/', edit_event, name='edit_event'),  # Edit event
+    path('event/delete/<int:event_id>/', delete_event, name='delete_event'),  # Delete event
+    path('event/<int:event_id>/comment/', add_comment, name='add_comment'),  # Add comment
+    path('question/<int:question_id>/answer/', add_answer, name='add_answer'),  # Add answer
+    path('question/edit/<int:question_id>/', edit_question, name='edit_question'),  # Edit question
+    path('question/delete/<int:question_id>/', delete_question, name='delete_question'),  # Delete question
     path('register/', register_view, name='register'),  # Registration page
     path('login/', login_view, name='login'),  # Login page
     path('logout/', logout_view, name='logout'),  # Logout action
