@@ -13,6 +13,9 @@ def my_blog(request):
 def about(request):
     return render(request, 'blog/about.html')
 
+def directory(request):
+    return render(request, 'blog/directory.html')
+
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

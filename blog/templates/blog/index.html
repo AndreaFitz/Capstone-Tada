@@ -25,7 +25,10 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">TADA! The Amateur Dramatic Almanack</a>
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'blog/images/favicon.png' %}" alt="TADA Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+          TADA! The Amateur Dramatic Almanack
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,7 +41,7 @@
               <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Directory</a>
+              <a class="nav-link" href="{% url 'directory' %}">Directory</a>
             </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
