@@ -161,7 +161,7 @@
                   <p class="card-text"><i class="fas fa-calendar me-1"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
                   <p class="card-text"><i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}</p>
                   <p class="card-text">{{ event.description }}</p>
-                  <small class="text-muted">Posted by {{ event.created_by.username }} on {{ event.created_at|date:"M j, Y" }}</small>
+                  <small class="text-white">Posted by {{ event.created_by.username }} on {{ event.created_at|date:"M j, Y" }}</small>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="dropdown">
@@ -184,11 +184,11 @@
               {% for comment in event.comments.all %}
               <div class="border-start border-warning ps-3 mb-2">
                 <small class="text-warning fw-bold">{{ comment.author.username }}</small>
-                <small class="text-muted">{{ comment.created_at|date:"M j, Y g:i A" }}</small>
+                <small class="text-white">{{ comment.created_at|date:"M j, Y g:i A" }}</small>
                 <p class="mb-0 small">{{ comment.content }}</p>
               </div>
               {% empty %}
-              <p class="small text-muted">No comments yet.</p>
+              <p class="small text-white">No comments yet.</p>
               {% endfor %}
               
               <!-- Add Comment Form -->
@@ -208,7 +208,7 @@
           {% empty %}
           <div class="card">
             <div class="card-body text-center">
-              <p class="text-muted">No events posted yet.</p>
+              <p class="text-white">No events posted yet.</p>
               {% if user.is_authenticated %}
               <p class="small">Be the first to add an event!</p>
               {% endif %}
@@ -227,7 +227,7 @@
               <div class="card h-100">
                 <div class="card-body">
                   <h5 class="card-title text-warning">The Importance of Being Earnest</h5>
-                  <p class="text-muted">Oscar Wilde • Spring 2024</p>
+                  <p class="text-warning">Oscar Wilde • Spring 2024</p>
                   <p class="card-text">Our acclaimed production of Wilde's witty comedy drew packed houses and rave reviews from local critics.</p>
                 </div>
               </div>
@@ -236,7 +236,7 @@
               <div class="card h-100">
                 <div class="card-body">
                   <h5 class="card-title text-warning">A Christmas Carol</h5>
-                  <p class="text-muted">Charles Dickens • Winter 2023</p>
+                  <p class="text-warning">Charles Dickens • Winter 2023</p>
                   <p class="card-text">Our annual Christmas tradition featuring innovative staging and community participation.</p>
                 </div>
               </div>
@@ -245,7 +245,7 @@
               <div class="card h-100">
                 <div class="card-body">
                   <h5 class="card-title text-warning">The Glass Menagerie</h5>
-                  <p class="text-muted">Tennessee Williams • Autumn 2023</p>
+                  <p class="text-warning">Tennessee Williams • Autumn 2023</p>
                   <p class="card-text">An intimate and moving production that showcased our talent for dramatic works.</p>
                 </div>
               </div>
@@ -326,7 +326,7 @@
                 <div>
                   <h5 class="card-title">{{ question.title }}</h5>
                   <p class="card-text">{{ question.content }}</p>
-                  <small class="text-muted">Asked by {{ question.author.username }} on {{ question.created_at|date:"M j, Y g:i A" }}</small>
+                  <small class="text-white">Asked by {{ question.author.username }} on {{ question.created_at|date:"M j, Y g:i A" }}</small>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="dropdown">
@@ -349,11 +349,11 @@
               {% for answer in question.answers.all %}
               <div class="border-start border-success ps-3 mb-2">
                 <small class="text-success fw-bold">{{ answer.author.username }}</small>
-                <small class="text-muted">{{ answer.created_at|date:"M j, Y g:i A" }}</small>
+                <small class="text-white">{{ answer.created_at|date:"M j, Y g:i A" }}</small>
                 <p class="mb-0">{{ answer.content }}</p>
               </div>
               {% empty %}
-              <p class="small text-muted">No answers yet.</p>
+              <p class="small text-white">No answers yet.</p>
               {% endfor %}
               
               <!-- Add Answer Form -->
@@ -373,7 +373,7 @@
           {% empty %}
           <div class="card">
             <div class="card-body text-center">
-              <p class="text-muted">No questions posted yet.</p>
+              <p class="text-white">No questions posted yet.</p>
               {% if user.is_authenticated %}
               <p class="small">Be the first to ask a question!</p>
               {% endif %}
