@@ -74,7 +74,7 @@ def delete_event(request, event_id):
         event.delete()
         messages.success(request, 'Event deleted successfully!')
         return redirect('riverside_players')
-    return render(request, 'blog/confirm_delete.html', {'object': event, 'type': 'event'})
+    return render(request, 'blog/delete_event.html', {'event': event})
 
 @login_required
 def add_comment(request, event_id):
@@ -88,6 +88,20 @@ def add_comment(request, event_id):
             comment.save()
             messages.success(request, 'Comment added successfully!')
     return redirect('riverside_players')
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    # Check if user owns the comment or is admin
+    if request.user == comment.author or request.user.is_staff:
+        if request.method == 'POST':
+            comment.delete()
+            messages.success(request, 'Comment deleted successfully!')
+            return redirect('riverside_players')
+        return render(request, 'blog/delete_comment.html', {'comment': comment})
+    else:
+        messages.error(request, 'You can only delete your own comments.')
+        return redirect('riverside_players')
 
 # CRUD Functions for Questions
 @login_required
@@ -110,7 +124,7 @@ def delete_question(request, question_id):
         question.delete()
         messages.success(request, 'Question deleted successfully!')
         return redirect('riverside_players')
-    return render(request, 'blog/confirm_delete.html', {'object': question, 'type': 'question'})
+    return render(request, 'blog/delete_question.html', {'question': question})
 
 @login_required
 def add_answer(request, question_id):
