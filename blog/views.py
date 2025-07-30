@@ -25,7 +25,7 @@ def riverside_players(request):
     # Handle form submissions
     if request.method == 'POST':
         if 'event_form' in request.POST and request.user.is_authenticated:
-            event_form = EventForm(request.POST)
+            event_form = EventForm(request.POST, request.FILES)
             if event_form.is_valid():
                 event = event_form.save(commit=False)
                 event.created_by = request.user
@@ -153,5 +153,5 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.info(request, 'You have been logged out successfully.')
+    messages.info(request, "You've left the stage!")
     return redirect('home')

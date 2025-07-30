@@ -12,6 +12,8 @@ class Event(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_events')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
+    photo = models.ImageField(upload_to='event_photos/', blank=True, null=True)
+    poster = models.ImageField(upload_to='event_posters/', blank=True, null=True)
     
     class Meta:
         ordering = ['date']

@@ -16,7 +16,9 @@ class Command(BaseCommand):
                     location VARCHAR(200) NOT NULL,
                     created_by_id INTEGER NOT NULL REFERENCES auth_user(id),
                     created_at DATETIME NOT NULL,
-                    updated_at DATETIME NOT NULL
+                    updated_at DATETIME NOT NULL,
+                    photo VARCHAR(100),
+                    poster VARCHAR(100)
                 )
             ''')
             

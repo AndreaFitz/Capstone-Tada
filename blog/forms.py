@@ -4,7 +4,7 @@ from .models import Event, Comment, Question, Answer
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['title', 'description', 'date', 'location']
+        fields = ['title', 'description', 'date', 'location', 'photo', 'poster']
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -22,6 +22,14 @@ class EventForm(forms.ModelForm):
             'location': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Event location'
+            }),
+            'photo': forms.FileInput(attrs={
+                'class': 'form-control',
+                'accept': 'image/*'
+            }),
+            'poster': forms.FileInput(attrs={
+                'class': 'form-control',
+                'accept': 'image/*'
             }),
         }
 

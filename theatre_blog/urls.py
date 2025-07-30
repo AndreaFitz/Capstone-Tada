@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from blog.views import (
     index, about, directory, riverside_players, register_view, login_view, logout_view,
     edit_event, delete_event, add_comment, add_answer, edit_question, delete_question
@@ -38,3 +40,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', index, name='my_blog'),
 ]
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
