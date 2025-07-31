@@ -60,6 +60,7 @@ class Answer(models.Model):
 class SocietySubmission(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200, blank=True, null=True)
     submitted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     submitted_at = models.DateTimeField(default=timezone.now)
     is_approved = models.BooleanField(default=False)

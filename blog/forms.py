@@ -76,7 +76,7 @@ class AnswerForm(forms.ModelForm):
 class SocietySubmissionForm(forms.ModelForm):
     class Meta:
         model = SocietySubmission
-        fields = ['name', 'location']
+        fields = ['name', 'location', 'email']
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -85,5 +85,9 @@ class SocietySubmissionForm(forms.ModelForm):
             'location': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Location/Address of your society'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Your Contact email'
             }),
         }
