@@ -85,7 +85,23 @@
       <div class="row">
         <div class="col-12">
           <h1 class="text-center mb-4">Theatre Society Directory</h1>
-          <p class="text-center mb-5">Discover amazing amateur dramatic societies in your area</p>
+          <p class="text-center mb-4">Discover amazing amateur dramatic societies in your area</p>
+          
+          <!-- Search Box -->
+          <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text bg-warning">
+                  <i class="fas fa-search"></i>
+                </span>
+                <input type="text" id="societySearch" class="form-control" placeholder="Search for a theatre society by name...">
+                <button class="btn btn-outline-warning" type="button" id="clearSearch">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <small class="text-muted">Start typing to filter societies by name</small>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -384,6 +400,79 @@
   integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
   crossorigin="anonymous"
 ></script>
+
+<script>
+// Society search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('societySearch');
+    const clearButton = document.getElementById('clearSearch');
+    const societyCards = document.querySelectorAll('.col-lg-4.col-md-6.mb-4');
+    
+    // Search function
+    function filterSocieties() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+        
+        societyCards.forEach(card => {
+            const societyName = card.querySelector('.card-title').textContent.toLowerCase();
+            const societyDescription = card.querySelector('.card-text').textContent.toLowerCase();
+            
+            if (societyName.includes(searchTerm) || societyDescription.includes(searchTerm)) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Show/hide "no results" message
+        showNoResultsMessage(visibleCount === 0 && searchTerm !== '');
+    }
+    
+    // Show/hide no results message
+    function showNoResultsMessage(show) {
+        let noResultsDiv = document.getElementById('noResults');
+        
+        if (show && !noResultsDiv) {
+            const societyRow = document.querySelector('.row:has(.col-lg-4)');
+            noResultsDiv = document.createElement('div');
+            noResultsDiv.id = 'noResults';
+            noResultsDiv.className = 'col-12 text-center py-5';
+            noResultsDiv.innerHTML = `
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h4>No societies found</h4>
+                        <p class="text-muted">Try adjusting your search terms or browse all societies below.</p>
+                    </div>
+                </div>
+            `;
+            societyRow.appendChild(noResultsDiv);
+        } else if (!show && noResultsDiv) {
+            noResultsDiv.remove();
+        }
+    }
+    
+    // Clear search function
+    function clearSearch() {
+        searchInput.value = '';
+        filterSocieties();
+        searchInput.focus();
+    }
+    
+    // Event listeners
+    searchInput.addEventListener('input', filterSocieties);
+    clearButton.addEventListener('click', clearSearch);
+    
+    // Handle Enter key
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            filterSocieties();
+        }
+    });
+});
+</script>
 
 </body>
 </html>
