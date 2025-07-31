@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event, Comment, Question, Answer
+from .models import Event, Comment, Question, Answer, SocietySubmission
 
 class EventForm(forms.ModelForm):
     class Meta:
@@ -70,5 +70,20 @@ class AnswerForm(forms.ModelForm):
                 'class': 'form-control',
                 'rows': 2,
                 'placeholder': 'Your answer...'
+            }),
+        }
+
+class SocietySubmissionForm(forms.ModelForm):
+    class Meta:
+        model = SocietySubmission
+        fields = ['name', 'location']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Name of your theatre society'
+            }),
+            'location': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Location/Address of your society'
             }),
         }

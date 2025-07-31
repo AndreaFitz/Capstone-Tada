@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Event, Comment, Question, Answer
-from .forms import EventForm, CommentForm, QuestionForm, AnswerForm
+from .models import Event, Comment, Question, Answer, SocietySubmission
+from .forms import EventForm, CommentForm, QuestionForm, AnswerForm, SocietySubmissionForm
 
 # Main views
 
@@ -15,7 +15,18 @@ def about(request):
     return render(request, 'blog/about.html')
 
 def directory(request):
-    return render(request, 'blog/directory.html')
+    if request.method == 'POST' and request.user.is_authenticated:
+        society_form = SocietySubmissionForm(request.POST)
+        if society_form.is_valid():
+            society = society_form.save(commit=False)
+            society.submitted_by = request.user
+            society.save()
+            messages.success(request, 'Thank you! Your society submission has been received and will be reviewed.')
+            return redirect('directory')
+    else:
+        society_form = SocietySubmissionForm()
+    
+    return render(request, 'blog/directory.html', {'society_form': society_form})
 
 def riverside_players(request):
     # Get events and questions from database

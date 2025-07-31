@@ -56,3 +56,16 @@ class Answer(models.Model):
     
     def __str__(self):
         return f'Answer by {self.author.username}'
+
+class SocietySubmission(models.Model):
+    name = models.CharField(max_length=200)
+    location = models.CharField(max_length=200)
+    submitted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    submitted_at = models.DateTimeField(default=timezone.now)
+    is_approved = models.BooleanField(default=False)
+    
+    class Meta:
+        ordering = ['-submitted_at']
+    
+    def __str__(self):
+        return f'{self.name} - {self.location}'
