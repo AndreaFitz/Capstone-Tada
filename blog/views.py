@@ -160,7 +160,7 @@ def register_view(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
-            return redirect('login')
+            return redirect('directory')
     else:
         form = UserCreationForm()
     return render(request, 'blog/register.html', {'form': form})
