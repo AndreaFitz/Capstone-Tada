@@ -20,13 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from blog.views import (
     index, about, directory, riverside_players, register_view, login_view, logout_view,
-    edit_event, delete_event, add_comment, delete_comment, add_answer, edit_question, delete_question
+    edit_event, delete_event, add_comment, delete_comment, add_answer, edit_question, delete_question, contact
 )
 
 urlpatterns = [
     path('', index, name='home'),  # Add root URL
     path('about/', about, name='about'),  # About page
     path('directory/', directory, name='directory'),  # Directory page
+    path('contact/', contact, name='contact'),  # Contact page
     path('society/riverside-players/', riverside_players, name='riverside_players'),  # Riverside Players page
     path('event/edit/<int:event_id>/', edit_event, name='edit_event'),  # Edit event
     path('event/delete/<int:event_id>/', delete_event, name='delete_event'),  # Delete event

@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - TADA! The Amateur Dramatic Almanack</title>
+    <title>Contact - TADA! The Amateur Dramatic Almanack</title>
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -13,15 +13,12 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
   </head>
   <body>
@@ -29,7 +26,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">
-          <img src="{% static 'blog/images/favicon.png' %}" alt="TADA!" width="30" height="30" class="d-inline-block align-text-top me-2">
+          <img src="{% static 'blog/images/favicon.png' %}" alt="TADA Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
           TADA! The Amateur Dramatic Almanack
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -41,13 +38,13 @@
               <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'about' %}">About</a>
+              <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'directory' %}">Directory</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
             </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
@@ -64,7 +61,6 @@
                 <a class="nav-link" href="{% url 'login' %}">Sign In</a>
               </li>
             {% endif %}
-            </li>
           </ul>
         </div>
       </div>
@@ -73,29 +69,103 @@
     <!-- Main Content -->
     <div class="container mt-5" style="padding-top: 80px;">
       <div class="row">
-        <div class="col-md-8 mx-auto">
-          <h1>About TADA!</h1>
-          <p class="lead">The Amateur Dramatic Almanack - Your Ultimate Theatre Resource</p>
-          
-          <div class="row mt-4">
-            <div class="col-md-6">
-              <h3>Our Mission</h3>
-              <p>TADA! is dedicated to supporting and celebrating amateur theatre throughout the community. We provide resources, connections, and inspiration for theatre enthusiasts at every level.</p>
-              
-              <h3>What We Offer</h3>
-              <ul>
-                <li>Comprehensive directory of local theatre groups</li>
-                <li>Production announcements and reviews</li>
-                <li>Acting and directing resources</li>
-                <li>Community networking opportunities</li>
-                <li>Educational workshops and events</li>
-              </ul>
+        <div class="col-12">
+          <h1 class="text-center mb-4">Contact Us</h1>
+          <p class="text-center mb-5">Get in touch with the TADA! team</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card shadow">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="mb-4">
+                    <i class="fas fa-envelope me-2 text-warning"></i>Send us a Message
+                  </h4>
+                  <form>
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="subject" class="form-label">Subject</label>
+                      <input type="text" class="form-control" id="subject" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="message" class="form-label">Message</label>
+                      <textarea class="form-control" id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning">
+                      <i class="fas fa-paper-plane me-1"></i>Send Message
+                    </button>
+                  </form>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="mb-4">
+                    <i class="fas fa-info-circle me-2 text-warning"></i>Contact Information
+                  </h4>
+                  <div class="mb-4">
+                    <h6 class="text-warning"><i class="fas fa-envelope me-2"></i>Email</h6>
+                    <p class="text-white">info@tada-almanack.com</p>
+                  </div>
+                  <div class="mb-4">
+                    <h6 class="text-warning"><i class="fas fa-phone me-2"></i>Phone</h6>
+                    <p class="text-white">+44 (0) 123 456 7890</p>
+                  </div>
+                  <div class="mb-4">
+                    <h6 class="text-warning"><i class="fas fa-map-marker-alt me-2"></i>Address</h6>
+                    <p class="text-white">
+                      TADA! Headquarters<br>
+                      123 Theatre Street<br>
+                      Clitheroe<br>
+                      Lancashire, UK<br>
+                      BB7 1BQ
+                    </p>
+                  </div>
+                  <div class="mb-4">
+                    <h6 class="text-warning"><i class="fas fa-clock me-2"></i>Office Hours</h6>
+                    <p class="text-white">
+                      Monday - Friday: 9:00 AM - 5:00 PM<br>
+                      Saturday: 10:00 AM - 2:00 PM<br>
+                      Sunday: Closed
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-md-6">
-              <img src="{% static 'blog/images/theatre.png' %}" alt="Theatre community" class="img-fluid rounded">
-              
-              <h3 class="mt-3">Join Our Community</h3>
-              <p>Whether you're a seasoned performer or just starting your theatre journey, TADA! welcomes you. Connect with like-minded individuals, discover new opportunities, and be part of the vibrant amateur theatre scene.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Media Section -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="card bg-dark text-white">
+            <div class="card-body text-center">
+              <h4 class="mb-3">
+                <i class="fas fa-share-alt me-2 text-warning"></i>Follow Us
+              </h4>
+              <p class="mb-4">Stay connected with the amateur theatre community</p>
+              <div class="d-flex justify-content-center gap-3">
+                <a href="https://www.facebook.com/" class="btn btn-outline-light btn-lg" title="Follow us on Facebook">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.twitter.com/" class="btn btn-outline-light btn-lg" title="Follow us on Twitter">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/" class="btn btn-outline-light btn-lg" title="Follow us on Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/" class="btn btn-outline-light btn-lg" title="Watch our videos on YouTube">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>

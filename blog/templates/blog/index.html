@@ -43,6 +43,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'directory' %}">Directory</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="#">Welcome, {{ user.username }}!</a>
@@ -96,13 +99,13 @@
             <ul class="list-unstyled">
               <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
               <li><a href="{% url 'about' %}" class="text-light">About</a></li>
-              <li><a href="#" class="text-light">Directory</a></li>
-              <li><a href="#" class="text-light">Contact</a></li>
+              <li><a href="{% url 'directory' %}" class="text-light">Directory</a></li>
+              <li><a href="{% url 'contact' %}" class="text-light">Contact</a></li>
             </ul>
           </div>
           <div class="col-md-3">
             <h6>Follow Us</h6>
-            <ul class="list-unstyled"
+            <ul class="list-unstyled">
               <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fa-brands fa-facebook"></i></a></li>
               <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fa-brands fa-twitter"></i></a></li>
               <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a></li>

@@ -14,6 +14,9 @@ def index(request):
 def about(request):
     return render(request, 'blog/about.html')
 
+def contact(request):
+    return render(request, 'blog/contact.html')
+
 def directory(request):
     if request.method == 'POST' and request.user.is_authenticated:
         society_form = SocietySubmissionForm(request.POST)
