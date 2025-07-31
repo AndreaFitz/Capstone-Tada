@@ -3,19 +3,26 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Event, Comment, Question, Answer, SocietySubmission
-from .forms import EventForm, CommentForm, QuestionForm, AnswerForm, SocietySubmissionForm
+from .models import Event, Comment, Question
+from .forms import (
+    EventForm, CommentForm, QuestionForm, AnswerForm, SocietySubmissionForm
+)
+
 
 # Main views
+
 
 def index(request):
     return render(request, 'blog/index.html')
 
+
 def about(request):
     return render(request, 'blog/about.html')
 
+
 def contact(request):
     return render(request, 'blog/contact.html')
+
 
 def directory(request):
     if request.method == 'POST' and request.user.is_authenticated:
@@ -24,18 +31,23 @@ def directory(request):
             society = society_form.save(commit=False)
             society.submitted_by = request.user
             society.save()
-            messages.success(request, 'Thank you! Your society submission has been received and will be reviewed.')
+            messages.success(
+                request,
+                'Thank you! Your society submission has been received '
+                'and will be reviewed.'
+            )
             return redirect('directory')
     else:
         society_form = SocietySubmissionForm()
-    
+
     return render(request, 'blog/directory.html', {'society_form': society_form})
+
 
 def riverside_players(request):
     # Get events and questions from database
     events = Event.objects.all().order_by('-created_at')
     questions = Question.objects.all().order_by('-created_at')
-    
+
     # Handle form submissions
     if request.method == 'POST':
         if 'event_form' in request.POST and request.user.is_authenticated:
@@ -54,11 +66,11 @@ def riverside_players(request):
                 question.save()
                 messages.success(request, 'Question posted successfully!')
                 return redirect('riverside_players')
-    
+
     # Create fresh forms for GET requests
     event_form = EventForm()
     question_form = QuestionForm()
-    
+
     context = {
         'events': events,
         'questions': questions,
@@ -67,7 +79,10 @@ def riverside_players(request):
     }
     return render(request, 'blog/riverside_players.html', context)
 
+
 # CRUD Functions for Events
+
+
 @login_required
 def edit_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
@@ -81,6 +96,7 @@ def edit_event(request, event_id):
         form = EventForm(instance=event)
     return render(request, 'blog/edit_event.html', {'form': form, 'event': event})
 
+
 @login_required
 def delete_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
@@ -89,6 +105,7 @@ def delete_event(request, event_id):
         messages.success(request, 'Event deleted successfully!')
         return redirect('riverside_players')
     return render(request, 'blog/delete_event.html', {'event': event})
+
 
 @login_required
 def add_comment(request, event_id):
@@ -102,6 +119,7 @@ def add_comment(request, event_id):
             comment.save()
             messages.success(request, 'Comment added successfully!')
     return redirect('riverside_players')
+
 
 @login_required
 def delete_comment(request, comment_id):
@@ -117,7 +135,10 @@ def delete_comment(request, comment_id):
         messages.error(request, 'You can only delete your own comments.')
         return redirect('riverside_players')
 
+
 # CRUD Functions for Questions
+
+
 @login_required
 def edit_question(request, question_id):
     question = get_object_or_404(Question, id=question_id)
@@ -129,7 +150,10 @@ def edit_question(request, question_id):
             return redirect('riverside_players')
     else:
         form = QuestionForm(instance=question)
-    return render(request, 'blog/edit_question.html', {'form': form, 'question': question})
+    return render(request, 'blog/edit_question.html', {
+        'form': form, 'question': question
+    })
+
 
 @login_required
 def delete_question(request, question_id):
@@ -139,6 +163,7 @@ def delete_question(request, question_id):
         messages.success(request, 'Question deleted successfully!')
         return redirect('riverside_players')
     return render(request, 'blog/delete_question.html', {'question': question})
+
 
 @login_required
 def add_answer(request, question_id):
@@ -153,7 +178,10 @@ def add_answer(request, question_id):
             messages.success(request, 'Answer added successfully!')
     return redirect('riverside_players')
 
+
 # Authentication views
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -167,17 +195,19 @@ def login_view(request):
             messages.error(request, 'Invalid username or password.')
     return render(request, 'blog/login.html')
 
+
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
             return redirect('directory')
     else:
         form = UserCreationForm()
     return render(request, 'blog/register.html', {'form': form})
+
 
 def logout_view(request):
     if request.method == 'POST':

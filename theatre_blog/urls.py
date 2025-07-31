@@ -19,8 +19,9 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from blog.views import (
-    index, about, directory, riverside_players, register_view, login_view, logout_view,
-    edit_event, delete_event, add_comment, delete_comment, add_answer, edit_question, delete_question, contact
+    index, about, directory, riverside_players, register_view, login_view,
+    logout_view, edit_event, delete_event, add_comment, delete_comment,
+    add_answer, edit_question, delete_question, contact
 )
 
 urlpatterns = [
@@ -28,14 +29,22 @@ urlpatterns = [
     path('about/', about, name='about'),  # About page
     path('directory/', directory, name='directory'),  # Directory page
     path('contact/', contact, name='contact'),  # Contact page
-    path('society/riverside-players/', riverside_players, name='riverside_players'),  # Riverside Players page
-    path('event/edit/<int:event_id>/', edit_event, name='edit_event'),  # Edit event
-    path('event/delete/<int:event_id>/', delete_event, name='delete_event'),  # Delete event
-    path('event/<int:event_id>/comment/', add_comment, name='add_comment'),  # Add comment
-    path('comment/delete/<int:comment_id>/', delete_comment, name='delete_comment'),  # Delete comment
-    path('question/<int:question_id>/answer/', add_answer, name='add_answer'),  # Add answer
-    path('question/edit/<int:question_id>/', edit_question, name='edit_question'),  # Edit question
-    path('question/delete/<int:question_id>/', delete_question, name='delete_question'),  # Delete question
+    path('society/riverside-players/', riverside_players,
+         name='riverside_players'),  # Riverside Players page
+    path('event/edit/<int:event_id>/', edit_event,
+         name='edit_event'),  # Edit event
+    path('event/delete/<int:event_id>/', delete_event,
+         name='delete_event'),  # Delete event
+    path('event/<int:event_id>/comment/', add_comment,
+         name='add_comment'),  # Add comment
+    path('comment/delete/<int:comment_id>/', delete_comment,
+         name='delete_comment'),  # Delete comment
+    path('question/<int:question_id>/answer/', add_answer,
+         name='add_answer'),  # Add answer
+    path('question/edit/<int:question_id>/', edit_question,
+         name='edit_question'),  # Edit question
+    path('question/delete/<int:question_id>/', delete_question,
+         name='delete_question'),  # Delete question
     path('register/', register_view, name='register'),  # Registration page
     path('login/', login_view, name='login'),  # Login page
     path('logout/', logout_view, name='logout'),  # Logout action
@@ -45,4 +54,5 @@ urlpatterns = [
 
 # Serve media files during development
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

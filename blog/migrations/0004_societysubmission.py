@@ -17,12 +17,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SocietySubmission',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True, primary_key=True, serialize=False,
+                    verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('location', models.CharField(max_length=200)),
-                ('submitted_at', models.DateTimeField(default=django.utils.timezone.now)),
+                ('submitted_at', models.DateTimeField(
+                    default=django.utils.timezone.now)),
                 ('is_approved', models.BooleanField(default=False)),
-                ('submitted_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('submitted_by', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['-submitted_at'],

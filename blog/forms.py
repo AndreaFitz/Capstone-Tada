@@ -1,6 +1,7 @@
 from django import forms
 from .models import Event, Comment, Question, Answer, SocietySubmission
 
+
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
@@ -33,6 +34,7 @@ class EventForm(forms.ModelForm):
             }),
         }
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -44,6 +46,7 @@ class CommentForm(forms.ModelForm):
                 'placeholder': 'Add a comment...'
             }),
         }
+
 
 class QuestionForm(forms.ModelForm):
     class Meta:
@@ -61,6 +64,7 @@ class QuestionForm(forms.ModelForm):
             }),
         }
 
+
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
@@ -72,6 +76,7 @@ class AnswerForm(forms.ModelForm):
                 'placeholder': 'Your answer...'
             }),
         }
+
 
 class SocietySubmissionForm(forms.ModelForm):
     class Meta:

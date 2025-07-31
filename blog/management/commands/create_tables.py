@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.db import connection
 
+
 class Command(BaseCommand):
     help = 'Create database tables manually'
 
@@ -21,7 +22,7 @@ class Command(BaseCommand):
                     poster VARCHAR(100)
                 )
             ''')
-            
+
             # Create Comment table
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS blog_comment (
@@ -32,7 +33,7 @@ class Command(BaseCommand):
                     created_at DATETIME NOT NULL
                 )
             ''')
-            
+
             # Create Question table
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS blog_question (
@@ -44,7 +45,7 @@ class Command(BaseCommand):
                     updated_at DATETIME NOT NULL
                 )
             ''')
-            
+
             # Create Answer table
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS blog_answer (
@@ -55,5 +56,5 @@ class Command(BaseCommand):
                     created_at DATETIME NOT NULL
                 )
             ''')
-            
+
         self.stdout.write(self.style.SUCCESS('Successfully created database tables'))
