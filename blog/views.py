@@ -148,7 +148,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, f'Welcome back, {username}!')
-            return redirect('home')
+            return redirect('directory')
         else:
             messages.error(request, 'Invalid username or password.')
     return render(request, 'blog/login.html')
@@ -166,6 +166,12 @@ def register_view(request):
     return render(request, 'blog/register.html', {'form': form})
 
 def logout_view(request):
-    logout(request)
-    messages.info(request, "You've left the stage!")
-    return redirect('home')
+    if request.method == 'POST':
+        logout(request)
+        messages.info(request, "You've left the stage!")
+        return redirect('home')
+    else:
+        # Handle GET requests (direct access to logout URL)
+        logout(request)
+        messages.info(request, "You've left the stage!")
+        return redirect('home')
