@@ -110,13 +110,13 @@
         <!-- Card 1 - Classical Theatre Company -->
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100 shadow-sm">
-            <img src="{% static 'blog/images/cats.png' %}" class="card-img-top" alt="Clitheroe Amateur Theatrical Society" style="height: 200px; object-fit: cover;">
+            <img src="{% static 'blog/images/cats.png' %}" class="card-img-top" alt="Clitheroe Amateur Theatrical Society" style="height: 200px; object-fit: cover; object-position: top;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
                 <i class="fas fa-theater-masks me-2 text-warning"></i>
                 C.A.T.S. - Clitheroe Amateur Theatrical Society
               </h5>
-              <p class="card-text">Dedicated to preserving and performing classical works including Shakespeare, Chekhov, and other theatrical masterpieces.</p>
+              <p class="card-text">Dedicated to preserving and performing classical works including Shakespeare, Chekhov, and other theatrical masterpieces....and the odd panto.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
                   <i class="fas fa-map-marker-alt me-1"></i>
@@ -126,7 +126,7 @@
                   <i class="fas fa-users me-1"></i>
                   35 Active Members
                 </p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <a href="{% url 'cats_theatre' %}" class="btn btn-primary">Learn More</a>
               </div>
             </div>
           </div>

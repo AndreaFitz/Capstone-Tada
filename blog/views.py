@@ -169,6 +169,43 @@ def experimental_theatre_lab(request):
     return render(request, 'blog/experimental_theatre_lab.html', context)
 
 
+def cats_theatre(request):
+    # Get events and questions from database
+    events = Event.objects.all().order_by('-created_at')
+    questions = Question.objects.all().order_by('-created_at')
+
+    # Handle form submissions
+    if request.method == 'POST':
+        if 'event_form' in request.POST and request.user.is_authenticated:
+            event_form = EventForm(request.POST, request.FILES)
+            if event_form.is_valid():
+                event = event_form.save(commit=False)
+                event.created_by = request.user
+                event.save()
+                messages.success(request, 'Event created successfully!')
+                return redirect('cats_theatre')
+        elif 'question_form' in request.POST and request.user.is_authenticated:
+            question_form = QuestionForm(request.POST)
+            if question_form.is_valid():
+                question = question_form.save(commit=False)
+                question.author = request.user
+                question.save()
+                messages.success(request, 'Question posted successfully!')
+                return redirect('cats_theatre')
+
+    # Create fresh forms for GET requests
+    event_form = EventForm()
+    question_form = QuestionForm()
+
+    context = {
+        'events': events,
+        'questions': questions,
+        'event_form': event_form,
+        'question_form': question_form,
+    }
+    return render(request, 'blog/cats_theatre.html', context)
+
+
 # CRUD Functions for Events
 
 
