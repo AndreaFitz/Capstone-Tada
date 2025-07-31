@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Event, Comment, Question
 from .forms import (
-    EventForm, CommentForm, QuestionForm, AnswerForm, SocietySubmissionForm
+    EventForm, CommentForm, QuestionForm, AnswerForm, SocietySubmissionForm,
+    ContactForm
 )
 
 
@@ -21,7 +22,21 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'blog/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Here you could save to database or send email
+            # For now, we'll just show a success message
+            messages.success(
+                request,
+                'Thanks! Your message has been sent successfully. '
+                'We\'ll get back to you soon!'
+            )
+            return redirect('contact')
+    else:
+        form = ContactForm()
+    
+    return render(request, 'blog/contact.html', {'contact_form': form})
 
 
 def directory(request):
@@ -78,6 +93,43 @@ def riverside_players(request):
         'question_form': question_form,
     }
     return render(request, 'blog/riverside_players.html', context)
+
+
+def metropolitan_drama(request):
+    # Get events and questions from database
+    events = Event.objects.all().order_by('-created_at')
+    questions = Question.objects.all().order_by('-created_at')
+
+    # Handle form submissions
+    if request.method == 'POST':
+        if 'event_form' in request.POST and request.user.is_authenticated:
+            event_form = EventForm(request.POST, request.FILES)
+            if event_form.is_valid():
+                event = event_form.save(commit=False)
+                event.created_by = request.user
+                event.save()
+                messages.success(request, 'Event created successfully!')
+                return redirect('metropolitan_drama')
+        elif 'question_form' in request.POST and request.user.is_authenticated:
+            question_form = QuestionForm(request.POST)
+            if question_form.is_valid():
+                question = question_form.save(commit=False)
+                question.author = request.user
+                question.save()
+                messages.success(request, 'Question posted successfully!')
+                return redirect('metropolitan_drama')
+
+    # Create fresh forms for GET requests
+    event_form = EventForm()
+    question_form = QuestionForm()
+
+    context = {
+        'events': events,
+        'questions': questions,
+        'event_form': event_form,
+        'question_form': question_form,
+    }
+    return render(request, 'blog/metropolitan_drama.html', context)
 
 
 # CRUD Functions for Events

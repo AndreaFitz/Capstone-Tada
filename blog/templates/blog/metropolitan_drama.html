@@ -1,0 +1,548 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metropolitan Drama Society - TADA! The Amateur Dramatic Almanack</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+    crossorigin="anonymous">
+    
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'blog/images/favicon.png' %}" alt="TADA Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+          TADA! The Amateur Dramatic Almanack
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'directory' %}">Directory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Welcome, {{ user.username }}!</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5" style="padding-top: 80px;">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-warning">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'directory' %}" class="text-warning">Directory</a></li>
+          <li class="breadcrumb-item active text-light" aria-current="page">Metropolitan Drama Society</li>
+        </ol>
+      </nav>
+
+      <!-- Society Header -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header text-center">
+              <h1 class="mb-0">
+                <i class="fas fa-theater-masks me-3 text-warning"></i>
+                Metropolitan Drama Society
+              </h1>
+              <p class="mb-0 mt-2">Est. 1978 • City Centre Arts Complex</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="lead">A prestigious urban theatre collective known for ambitious productions and cutting-edge contemporary works since 1978. Dedicated to pushing theatrical boundaries while maintaining classical excellence.</p>
+                  
+                  <h3><i class="fas fa-star me-2 text-warning"></i>About Our Society</h3>
+                  <p>The Metropolitan Drama Society has been at the forefront of innovative amateur theatre for over four decades. Founded in the heart of the city by visionary artists seeking to create thought-provoking and commercially successful productions, we've established ourselves as one of the region's premier dramatic societies.</p>
+                  
+                  <p>We pride ourselves on our commitment to artistic excellence and professional-quality productions. Whether you're drawn to classical Shakespeare, modern drama, or experimental theatre, you'll find opportunities to challenge yourself and grow as a performer or creative professional.</p>
+                </div>
+                <div class="col-md-4">
+                  <img src="{% static 'blog/images/society2.jpg' %}" class="img-fluid rounded shadow" alt="Metropolitan Drama Society Theatre">
+                  
+                  <!-- Quick Info Card -->
+                  <div class="card mt-3 bg-dark border-warning">
+                    <div class="card-body">
+                      <h5 class="card-title text-warning">Quick Info</h5>
+                      <p class="mb-2"><i class="fas fa-users me-2"></i>78 Active Members</p>
+                      <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>City Centre Arts Complex</p>
+                      <p class="mb-2"><i class="fas fa-calendar me-2"></i>Founded 1978</p>
+                      <p class="mb-2"><i class="fas fa-drama me-2"></i>4-5 Productions/Year</p>
+                      <p class="mb-0"><i class="fas fa-clock me-2"></i>Rehearsals: Mon, Wed & Fri 7:00pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Events Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2><i class="fas fa-calendar-alt me-2 text-warning"></i>Upcoming Events</h2>
+          <h3>Share your theatrical journey with fellow members - Drama belongs on stage, kindness belongs everywhere!</h3>
+          <!-- Add New Event Form (Only for logged in users) -->
+          {% if user.is_authenticated %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <h6 class="card-title"><i class="fas fa-plus me-1"></i>Add New Event</h6>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="event_form" value="1">
+                <div class="mb-2">
+                  {{ event_form.title }}
+                </div>
+                <div class="mb-2">
+                  {{ event_form.description }}
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    {{ event_form.date }}
+                  </div>
+                  <div class="col-6">
+                    {{ event_form.location }}
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    <label for="{{ event_form.photo.id_for_label }}" class="form-label">
+                      <i class="fas fa-camera me-1"></i>Event Photo
+                    </label>
+                    {{ event_form.photo }}
+                  </div>
+                  <div class="col-6">
+                    <label for="{{ event_form.poster.id_for_label }}" class="form-label">
+                      <i class="fas fa-image me-1"></i>Event Poster
+                    </label>
+                    {{ event_form.poster }}
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-warning btn-sm">
+                  <i class="fas fa-plus me-1"></i>Add Event
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+          
+          <!-- Display Events -->
+          {% for event in events %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h5 class="card-title text-warning">{{ event.title }}</h5>
+                  <p class="card-text"><i class="fas fa-calendar me-1"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
+                  <p class="card-text"><i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}</p>
+                  <p class="card-text">{{ event.description }}</p>
+                  
+                  <!-- Display uploaded images -->
+                  {% if event.photo or event.poster %}
+                  <div class="row mt-3">
+                    {% if event.photo %}
+                    <div class="col-md-6 mb-2">
+                      <p class="small text-warning mb-1"><i class="fas fa-camera me-1"></i>Event Photo:</p>
+                      <img src="{{ event.photo.url }}" class="img-fluid rounded shadow-sm" alt="Event Photo" style="max-height: 200px;">
+                    </div>
+                    {% endif %}
+                    {% if event.poster %}
+                    <div class="col-md-6 mb-2">
+                      <p class="small text-warning mb-1"><i class="fas fa-image me-1"></i>Event Poster:</p>
+                      <img src="{{ event.poster.url }}" class="img-fluid rounded shadow-sm" alt="Event Poster" style="max-height: 200px;">
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                  
+                  <small class="text-white">Posted by {{ event.created_by.username }} on {{ event.created_at|date:"M j, Y" }}</small>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'edit_event' event.id %}"><i class="fas fa-edit me-1"></i>Edit</a></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'delete_event' event.id %}"><i class="fas fa-trash me-1"></i>Delete</a></li>
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
+              
+              <!-- Comments Section -->
+              <hr>
+              <h6><i class="fas fa-comments me-1"></i>Comments ({{ event.comments.count }})</h6>
+              
+              <!-- Display Comments -->
+              {% for comment in event.comments.all %}
+              <div class="border-start border-warning ps-3 mb-2">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <small class="text-warning fw-bold">{{ comment.author.username }}</small>
+                    <small class="text-white">{{ comment.created_at|date:"M j, Y g:i A" }}</small>
+                    <p class="mb-0 small">{{ comment.content }}</p>
+                  </div>
+                  {% if user.is_authenticated and comment.author == user %}
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="dropdown">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item text-danger" href="{% url 'delete_comment' comment.id %}"><i class="fas fa-trash me-1"></i>Delete</a></li>
+                    </ul>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% empty %}
+              <p class="small text-white">No comments yet.</p>
+              {% endfor %}
+              
+              <!-- Add Comment Form -->
+              {% if user.is_authenticated %}
+              <form method="post" action="{% url 'add_comment' event.id %}" class="mt-2">
+                {% csrf_token %}
+                <div class="input-group input-group-sm">
+                  <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
+                  <button type="submit" class="btn btn-outline-warning">
+                    <i class="fas fa-paper-plane"></i>
+                  </button>
+                </div>
+              </form>
+              {% endif %}
+            </div>
+          </div>
+          {% empty %}
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="text-white">No events posted yet.</p>
+              {% if user.is_authenticated %}
+              <p class="small">Be the first to add an event!</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Productions Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2><i class="fas fa-theatre me-2 text-warning"></i>Recent Productions</h2>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title text-warning">Hamlet</h5>
+                  <p class="text-warning">William Shakespeare • Spring 2024</p>
+                  <p class="card-text">Our ambitious full-length production of Shakespeare's masterpiece featuring innovative staging and powerful performances.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title text-warning">Angels in America</h5>
+                  <p class="text-warning">Tony Kushner • Winter 2024</p>
+                  <p class="card-text">A challenging and critically acclaimed production that showcased our commitment to contemporary dramatic works.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title text-warning">Who's Afraid of Virginia Woolf?</h5>
+                  <p class="text-warning">Edward Albee • Autumn 2023</p>
+                  <p class="card-text">An intense psychological drama that demonstrated our society's range and artistic maturity.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What We Offer Section -->
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <h2><i class="fas fa-heart me-2 text-warning"></i>What We Offer</h2>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Professional-standard production values</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Masterclasses with industry professionals</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Challenging and diverse repertoire</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Networking opportunities with theatre professionals</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>State-of-the-art theatre facilities</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Opportunities for creative leadership roles</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h2><i class="fas fa-users me-2 text-warning"></i>Join Our Company</h2>
+          <div class="card bg-dark border-warning">
+            <div class="card-body">
+              <h5 class="card-title text-warning">Ready for the Spotlight?</h5>
+              <p class="card-text">Whether you're a seasoned performer looking for your next challenge or an ambitious newcomer ready to commit to excellence, we'd love to welcome you to our company!</p>
+              
+              <h6 class="text-warning mt-3">Getting Started:</h6>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Attend our monthly audition workshops</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Join our production team as a volunteer</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Contact our artistic director directly</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Follow us for upcoming opportunity announcements</li>
+              </ul>
+              
+              <h6 class="text-warning mt-3">Contact Info:</h6>
+              <p class="mb-1"><i class="fas fa-envelope me-2"></i>info@metropolitandrama.org</p>
+              <p class="mb-1"><i class="fas fa-phone me-2"></i>020 7946 0123</p>
+              <p class="mb-0"><i class="fas fa-globe me-2"></i>www.metropolitandrama.org</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions & Answers Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2><i class="fas fa-question-circle me-2 text-warning"></i>Questions & Answers</h2>
+          
+          <!-- Add New Question Form (Only for logged in users) -->
+          {% if user.is_authenticated %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h6 class="card-title"><i class="fas fa-plus me-1"></i>Ask a Question</h6>
+              <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="question_form" value="1">
+                <div class="mb-2">
+                  {{ question_form.title }}
+                </div>
+                <div class="mb-2">
+                  {{ question_form.content }}
+                </div>
+                <button type="submit" class="btn btn-warning">
+                  <i class="fas fa-question me-1"></i>Post Question
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+          
+          <!-- Display Questions -->
+          {% for question in questions %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h5 class="card-title">{{ question.title }}</h5>
+                  <p class="card-text">{{ question.content }}</p>
+                  <small class="text-white">Asked by {{ question.author.username }} on {{ question.created_at|date:"M j, Y g:i A" }}</small>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'edit_question' question.id %}"><i class="fas fa-edit me-1"></i>Edit</a></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'delete_question' question.id %}"><i class="fas fa-trash me-1"></i>Delete</a></li>
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
+              
+              <!-- Answers Section -->
+              <hr>
+              <h6><i class="fas fa-reply me-1"></i>Answers ({{ question.answers.count }})</h6>
+              
+              <!-- Display Answers -->
+              {% for answer in question.answers.all %}
+              <div class="border-start border-success ps-3 mb-2">
+                <small class="text-success fw-bold">{{ answer.author.username }}</small>
+                <small class="text-white">{{ answer.created_at|date:"M j, Y g:i A" }}</small>
+                <p class="mb-0">{{ answer.content }}</p>
+              </div>
+              {% empty %}
+              <p class="small text-white">No answers yet.</p>
+              {% endfor %}
+              
+              <!-- Add Answer Form -->
+              {% if user.is_authenticated %}
+              <form method="post" action="{% url 'add_answer' question.id %}" class="mt-2">
+                {% csrf_token %}
+                <div class="input-group">
+                  <textarea name="content" class="form-control" rows="2" placeholder="Your answer..." required></textarea>
+                  <button type="submit" class="btn btn-outline-success">
+                    <i class="fas fa-reply me-1"></i>Answer
+                  </button>
+                </div>
+              </form>
+              {% endif %}
+            </div>
+          </div>
+          {% empty %}
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="text-white">No questions posted yet.</p>
+              {% if user.is_authenticated %}
+              <p class="small">Be the first to ask a question!</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Contact & Join Section -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card bg-gradient" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(26, 15, 10, 0.2));">
+            <div class="card-body text-center">
+              <h2><i class="fas fa-handshake me-2 text-warning"></i>Join the Metropolitan Drama Society</h2>
+              <p class="lead">Ready to take your theatrical passion to the next level? We're looking for dedicated artists!</p>
+              
+              <div class="row mt-4">
+                <div class="col-md-4">
+                  <h5><i class="fas fa-envelope me-2 text-warning"></i>Email</h5>
+                  <p>casting@metropolitandrama.org</p>
+                </div>
+                <div class="col-md-4">
+                  <h5><i class="fas fa-phone me-2 text-warning"></i>Phone</h5>
+                  <p>(555) 987-6543</p>
+                </div>
+                <div class="col-md-4">
+                  <h5><i class="fas fa-map-marker-alt me-2 text-warning"></i>Address</h5>
+                  <p>456 Metropolitan Ave<br>City Centre Arts Complex<br>Downtown, DC 67890</p>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <a href="#" class="btn btn-warning btn-lg me-3">
+                  <i class="fas fa-user-plus me-2"></i>Audition Info
+                </a>
+                <a href="#" class="btn btn-outline-light btn-lg">
+                  <i class="fas fa-info-circle me-2"></i>Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>TADA! The Amateur Dramatic Almanack</h5>
+            <p>Your ultimate resource for amateur theatre and dramatic arts.</p>
+          </div>
+          <div class="col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+              <li><a href="{% url 'about' %}" class="text-light">About</a></li>
+              <li><a href="{% url 'directory' %}" class="text-light">Directory</a></li>
+              <li><a href="{% url 'contact' %}" class="text-light">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6>Follow Us</h6>
+            <ul class="list-unstyled">
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>&copy; 2025 TADA! The Amateur Dramatic Almanack. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-warning">
+          <div class="modal-header border-warning">
+            <h5 class="modal-title text-warning" id="logoutModalLabel">
+              <i class="fas fa-sign-out-alt me-2"></i>Confirm Logout
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-white">
+            <div class="text-center">
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3"></i>
+              <p class="lead">Are you sure you want to log out?</p>
+              <p class="small text-muted">You'll need to sign in again to access member features.</p>
+            </div>
+          </div>
+          <div class="modal-footer border-warning">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <i class="fas fa-times me-1"></i>Cancel
+            </button>
+            <form method="post" action="{% url 'logout' %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-warning">
+                <i class="fas fa-sign-out-alt me-1"></i>Yes, Logout
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLlhNGRem5+R9g2FzA8ZGN954O5Q"
+  crossorigin="anonymous"
+></script>
+
+</body>
+</html>
