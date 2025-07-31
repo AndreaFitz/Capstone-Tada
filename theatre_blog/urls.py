@@ -20,9 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from blog.views import (
     index, about, directory, riverside_players, metropolitan_drama,
-    register_view, login_view, logout_view, edit_event, delete_event,
-    add_comment, delete_comment, add_answer, edit_question,
-    delete_question, contact
+    experimental_theatre_lab, register_view, login_view, logout_view,
+    edit_event, delete_event, add_comment, delete_comment, add_answer,
+    edit_question, delete_question, contact
 )
 
 urlpatterns = [
@@ -34,6 +34,8 @@ urlpatterns = [
          name='riverside_players'),  # Riverside Players page
     path('society/metropolitan-drama/', metropolitan_drama,
          name='metropolitan_drama'),  # Metropolitan Drama Society page
+    path('society/experimental-theatre-lab/', experimental_theatre_lab,
+         name='experimental_theatre_lab'),  # Experimental Theatre Lab page
     path('event/edit/<int:event_id>/', edit_event,
          name='edit_event'),  # Edit event
     path('event/delete/<int:event_id>/', delete_event,

@@ -1,0 +1,499 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental Theatre Lab - TADA! The Amateur Dramatic Almanack</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+    crossorigin="anonymous">
+    
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'blog/images/favicon.png' %}" alt="TADA Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+          TADA! The Amateur Dramatic Almanack
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'directory' %}">Directory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Welcome, {{ user.username }}!</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5" style="padding-top: 80px;">
+      <!-- Messages -->
+      {% if messages %}
+        <div class="row">
+          <div class="col-12">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+      
+      <!-- Header Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+              <h1 class="mb-0">
+                <i class="fas fa-theater-masks me-2"></i>
+                Experimental Theatre Lab
+              </h1>
+            </div>
+            <div class="card-body bg-dark text-white">
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="lead">Pushing boundaries with avant-garde performances, immersive theatre, and innovative storytelling techniques.</p>
+                  <p>Welcome to the Experimental Theatre Lab, where creativity knows no bounds and artistic expression takes center stage. Founded in 2018, our collective is dedicated to exploring new frontiers in theatrical performance through experimental works, site-specific installations, and cutting-edge multimedia productions.</p>
+                  <p>We believe that theatre should challenge, inspire, and transform both performers and audiences. Our laboratory approach allows artists to take risks, push boundaries, and discover new ways of storytelling that break traditional conventions.</p>
+                </div>
+                <div class="col-md-4">
+                  <div class="card bg-secondary">
+                    <div class="card-body">
+                      <h5 class="card-title text-warning"><i class="fas fa-flask me-2"></i>Lab Stats</h5>
+                      <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Underground Studio</p>
+                      <p class="mb-2"><i class="fas fa-users me-2"></i>25 Active Members</p>
+                      <p class="mb-2"><i class="fas fa-lightbulb me-2"></i>12+ Experimental Shows/Year</p>
+                      <p class="mb-0"><i class="fas fa-clock me-2"></i>Sessions: Wed & Sat 7:00pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Events Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2><i class="fas fa-calendar-alt me-2 text-warning"></i>Upcoming Experiments</h2>
+          <h3>Join our creative laboratory - share your innovative ideas and artistic visions!</h3>
+          <!-- Add New Event Form (Only for logged in users) -->
+          {% if user.is_authenticated %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <h6 class="card-title"><i class="fas fa-plus me-1"></i>Add New Experiment</h6>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="event_form" value="1">
+                <div class="mb-2">
+                  {{ event_form.title }}
+                </div>
+                <div class="mb-2">
+                  {{ event_form.description }}
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    {{ event_form.date }}
+                  </div>
+                  <div class="col-6">
+                    {{ event_form.location }}
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    <label for="{{ event_form.photo.id_for_label }}" class="form-label">
+                      <i class="fas fa-camera me-1"></i>Event Photo
+                    </label>
+                    {{ event_form.photo }}
+                  </div>
+                  <div class="col-6">
+                    <label for="{{ event_form.poster.id_for_label }}" class="form-label">
+                      <i class="fas fa-image me-1"></i>Event Poster
+                    </label>
+                    {{ event_form.poster }}
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-warning">
+                  <i class="fas fa-plus me-1"></i>Create Experiment
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- Display Events -->
+          {% for event in events %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h5 class="card-title">{{ event.title }}</h5>
+                  <p class="card-text">{{ event.description }}</p>
+                  <p class="text-muted mb-2">
+                    <i class="fas fa-calendar me-1"></i>{{ event.date|date:"F j, Y g:i A" }} | 
+                    <i class="fas fa-map-marker-alt me-1"></i>{{ event.location }}
+                  </p>
+                  <p class="text-muted small">
+                    <i class="fas fa-user me-1"></i>Posted by {{ event.created_by.username }} on {{ event.created_at|date:"F j, Y g:i A" }}
+                  </p>
+                </div>
+                {% if event.photo or event.poster %}
+                <div class="ms-3">
+                  {% if event.photo %}
+                    <img src="{{ event.photo.url }}" alt="Event Photo" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+                  {% elif event.poster %}
+                    <img src="{{ event.poster.url }}" alt="Event Poster" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+                  {% endif %}
+                </div>
+                {% endif %}
+              </div>
+              
+              <!-- Edit/Delete buttons for event creator -->
+              {% if user.is_authenticated and user == event.created_by %}
+              <div class="mt-2">
+                <a href="{% url 'edit_event' event.id %}" class="btn btn-sm btn-outline-warning">
+                  <i class="fas fa-edit"></i> Edit
+                </a>
+                <a href="{% url 'delete_event' event.id %}" class="btn btn-sm btn-outline-danger">
+                  <i class="fas fa-trash"></i> Delete
+                </a>
+              </div>
+              {% endif %}
+
+              <!-- Comments Section -->
+              <div class="mt-3">
+                <h6><i class="fas fa-comments me-1"></i>Comments ({{ event.comments.count }})</h6>
+                {% for comment in event.comments.all %}
+                  <div class="card mt-2">
+                    <div class="card-body py-2">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                          <strong>{{ comment.author.username }}</strong>
+                          <small class="text-muted">{{ comment.created_at|date:"F j, Y g:i A" }}</small>
+                          <p class="mb-0 mt-1">{{ comment.content }}</p>
+                        </div>
+                        {% if user.is_authenticated and user == comment.author %}
+                        <a href="{% url 'delete_comment' comment.id %}" class="btn btn-sm btn-outline-danger">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                {% empty %}
+                  <p class="text-muted small">No comments yet.</p>
+                {% endfor %}
+                
+                {% if user.is_authenticated %}
+                <form method="post" action="{% url 'add_comment' event.id %}" class="mt-2">
+                  {% csrf_token %}
+                  <div class="input-group input-group-sm">
+                    <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
+                    <button type="submit" class="btn btn-outline-warning">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="text-white">No experiments posted yet.</p>
+              {% if user.is_authenticated %}
+              <p class="small">Be the first to share an experimental idea!</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Experimental Works Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2><i class="fas fa-flask me-2 text-warning"></i>Recent Experimental Works</h2>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="card bg-dark border-warning">
+                <div class="card-body">
+                  <h5 class="card-title text-warning">Virtual Reality Dreams</h5>
+                  <p class="card-text text-white">An immersive VR experience exploring the subconscious mind through interactive storytelling.</p>
+                  <p class="small text-muted">January 2025</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card bg-dark border-warning">
+                <div class="card-body">
+                  <h5 class="card-title text-warning">Silent Conversations</h5>
+                  <p class="card-text text-white">A wordless performance piece using movement, light, and sound to explore human connection.</p>
+                  <p class="small text-muted">November 2024</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card bg-dark border-warning">
+                <div class="card-body">
+                  <h5 class="card-title text-warning">Algorithmic Emotions</h5>
+                  <p class="card-text text-white">AI-generated script performed by human actors, blending technology with traditional theatre.</p>
+                  <p class="small text-muted">September 2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About & Contact Section -->
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <div class="card bg-dark border-warning">
+            <div class="card-body">
+              <h4 class="text-warning mb-3">
+                <i class="fas fa-lightbulb me-2"></i>Our Laboratory
+              </h4>
+              <p class="text-white">Located in the heart of the arts district, our Underground Studio provides a flexible space for creative experimentation. Equipped with state-of-the-art lighting, sound, and projection systems.</p>
+              <p class="text-white"><strong>Facilities:</strong></p>
+              <ul class="text-white">
+                <li>Black box theater space</li>
+                <li>Professional lighting rig</li>
+                <li>Surround sound system</li>
+                <li>Video projection equipment</li>
+                <li>Motion capture technology</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card bg-dark border-warning">
+            <div class="card-body">
+              <h4 class="text-warning mb-3">
+                <i class="fas fa-envelope me-2"></i>Connect With Us
+              </h4>
+              <p class="mb-1"><i class="fas fa-envelope me-2"></i>experiments@etl-theatre.org</p>
+              <p class="mb-1"><i class="fas fa-phone me-2"></i>01234 567891</p>
+              <p class="mb-0"><i class="fas fa-globe me-2"></i>www.experimental-theatre-lab.org</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions & Answers Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2><i class="fas fa-question-circle me-2 text-warning"></i>Questions & Creative Discussions</h2>
+          
+          <!-- Add New Question Form (Only for logged in users) -->
+          {% if user.is_authenticated %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h6 class="card-title"><i class="fas fa-plus me-1"></i>Start a Discussion</h6>
+              <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="question_form" value="1">
+                <div class="mb-2">
+                  {{ question_form.title }}
+                </div>
+                <div class="mb-2">
+                  {{ question_form.content }}
+                </div>
+                <button type="submit" class="btn btn-warning">
+                  <i class="fas fa-plus me-1"></i>Post Discussion
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- Display Questions -->
+          {% for question in questions %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h5 class="card-title">{{ question.title }}</h5>
+                  <p class="card-text">{{ question.content }}</p>
+                  <p class="text-muted small">
+                    <i class="fas fa-user me-1"></i>Asked by {{ question.author.username }} on {{ question.created_at|date:"F j, Y g:i A" }}
+                  </p>
+                </div>
+                
+                <!-- Edit/Delete buttons for question author -->
+                {% if user.is_authenticated and user == question.author %}
+                <div class="ms-3">
+                  <a href="{% url 'edit_question' question.id %}" class="btn btn-sm btn-outline-warning">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+
+              <!-- Answers Section -->
+              <div class="mt-3">
+                <h6><i class="fas fa-comments me-1"></i>Responses ({{ question.answers.count }})</h6>
+                {% for answer in question.answers.all %}
+                  <div class="card mt-2 border-light">
+                    <div class="card-body py-2">
+                      <strong>{{ answer.author.username }}</strong>
+                      <small class="text-muted">{{ answer.created_at|date:"F j, Y g:i A" }}</small>
+                      <p class="mb-0 mt-1">{{ answer.content }}</p>
+                    </div>
+                  </div>
+                {% empty %}
+                  <p class="text-muted small">No responses yet.</p>
+                {% endfor %}
+                
+                {% if user.is_authenticated %}
+                <form method="post" action="{% url 'add_answer' question.id %}" class="mt-2">
+                  {% csrf_token %}
+                  <div class="input-group input-group-sm">
+                    <input type="text" name="content" class="form-control" placeholder="Add your response..." required>
+                    <button type="submit" class="btn btn-outline-warning">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="text-white">No discussions yet.</p>
+              {% if user.is_authenticated %}
+              <p class="small">Be the first to start a creative discussion!</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>TADA! The Amateur Dramatic Almanack</h5>
+            <p>Your ultimate resource for amateur theatre and dramatic arts.</p>
+          </div>
+          <div class="col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+              <li><a href="{% url 'about' %}" class="text-light">About</a></li>
+              <li><a href="{% url 'directory' %}" class="text-light">Directory</a></li>
+              <li><a href="{% url 'contact' %}" class="text-light">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6>Follow Us</h6>
+            <ul class="list-unstyled">
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>&copy; 2025 TADA! The Amateur Dramatic Almanack. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-warning">
+          <div class="modal-header border-warning">
+            <h5 class="modal-title text-warning" id="logoutModalLabel">
+              <i class="fas fa-sign-out-alt me-2"></i>Confirm Logout
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-white">
+            <div class="text-center">
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3"></i>
+              <p class="lead">Are you sure you want to log out?</p>
+              <p class="small text-muted">You'll need to sign in again to access member features.</p>
+            </div>
+          </div>
+          <div class="modal-footer border-warning">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <i class="fas fa-times me-1"></i>Cancel
+            </button>
+            <form method="post" action="{% url 'logout' %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-warning">
+                <i class="fas fa-sign-out-alt me-1"></i>Yes, Logout
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+  crossorigin="anonymous"
+></script>
+
+</body>
+</html>

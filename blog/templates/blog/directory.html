@@ -94,11 +94,11 @@
         <!-- Card 1 - Classical Theatre Company -->
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100 shadow-sm">
-            <img src="{% static 'blog/images/society4.jpg' %}" class="card-img-top" alt="Classical Theatre Company" style="height: 200px; object-fit: cover;">
+            <img src="{% static 'blog/images/cats.png' %}" class="card-img-top" alt="Clitheroe Amateur Theatrical Society" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
                 <i class="fas fa-theater-masks me-2 text-warning"></i>
-                Classical Theatre Company
+                C.A.T.S. - Clitheroe Amateur Theatrical Society
               </h5>
               <p class="card-text">Dedicated to preserving and performing classical works including Shakespeare, Chekhov, and other theatrical masterpieces.</p>
               <div class="mt-auto">
@@ -116,32 +116,7 @@
           </div>
         </div>
 
-        <!-- Card 2 - Community Outreach Theatre -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100 shadow-sm">
-            <img src="{% static 'blog/images/comingsoon.png' %}" class="card-img-top" alt="Community Outreach Theatre" style="height: 200px; object-fit: cover;">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">
-                <i class="fas fa-theater-masks me-2 text-warning"></i>
-                Community Outreach Theatre
-              </h5>
-              <p class="card-text">Bringing theatre to schools, care homes, and community events. Focuses on educational and socially conscious productions.</p>
-              <div class="mt-auto">
-                <p class="text-white mb-2">
-                  <i class="fas fa-map-marker-alt me-1"></i>
-                  Various Locations
-                </p>
-                <p class="text-white mb-3">
-                  <i class="fas fa-users me-1"></i>
-                  30 Active Members
-                </p>
-                <a href="#" class="btn btn-primary">Learn More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 - Experimental Theatre Lab -->
+        <!-- Card 2 - Experimental Theatre Lab -->
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100 shadow-sm">
             <img src="{% static 'blog/images/etl.png' %}" class="card-img-top" alt="Experimental Theatre Lab" style="height: 200px; object-fit: cover;">
@@ -160,13 +135,13 @@
                   <i class="fas fa-users me-1"></i>
                   25 Active Members
                 </p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <a href="{% url 'experimental_theatre_lab' %}" class="btn btn-primary">Learn More</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 4 - Metropolitan Drama Society -->
+        <!-- Card 3 - Metropolitan Drama Society -->
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100 shadow-sm">
             <img src="{% static 'blog/images/metropolitan.png' %}" class="card-img-top" alt="Metropolitan Drama Society" style="height: 200px; object-fit: cover;">
@@ -186,6 +161,31 @@
                   78 Active Members
                 </p>
                 <a href="{% url 'metropolitan_drama' %}" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 - Outreach Theatre Group -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 shadow-sm">
+            <img src="{% static 'blog/images/comingsoon.png' %}" class="card-img-top" alt="Outreach Theatre Group" style="height: 200px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">
+                <i class="fas fa-theater-masks me-2 text-warning"></i>
+                Outreach Theatre Group
+              </h5>
+              <p class="card-text">Bringing theatre to schools, care homes, and community events. Focuses on educational and socially conscious productions.</p>
+              <div class="mt-auto">
+                <p class="text-white mb-2">
+                  <i class="fas fa-map-marker-alt me-1"></i>
+                  Various Locations
+                </p>
+                <p class="text-white mb-3">
+                  <i class="fas fa-users me-1"></i>
+                  30 Active Members
+                </p>
+                <a href="#" class="btn btn-primary">Learn More</a>
               </div>
             </div>
           </div>
