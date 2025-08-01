@@ -20,6 +20,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <style>
+      .cats-hero {
+        background-color: #000000;
+        background-image: url('{% static "blog/images/cats.png" %}');
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 500px;
+        margin-top: 56px;
+        padding-top: 120px;
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -67,10 +79,14 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static "blog/images/cats.png" %}') center/cover; height: 400px;">
-      <div class="container h-100 d-flex align-items-center">
-        <div class="row w-100">
-          <div class="col-12 text-center text-white">
+    <section class="hero-section cats-hero">
+    </section>
+
+    <!-- Title Section -->
+    <section class="bg-dark text-white py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
             <h1 class="display-3 mb-3">
               <i class="fas fa-theater-masks me-3" style="color: #dc3545;"></i>
               C.A.T.S.
@@ -399,9 +415,7 @@
               </div>
               
               <div class="mt-4">
-                <a href="{% url 'contact' %}" class="btn btn-light btn-lg me-3">
-                  <i class="fas fa-envelope me-2"></i>Get In Touch
-                </a>
+                
                 <a href="{% url 'directory' %}" class="btn btn-outline-light btn-lg">
                   <i class="fas fa-arrow-left me-2"></i>Back to Directory
                 </a>
