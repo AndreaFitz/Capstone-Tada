@@ -4,6 +4,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About TADA! - The Amateur Dramatic Almanack. Your comprehensive guide to amateur theatre, connecting passionate performers and theatre enthusiasts across the region.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>About - TADA! The Amateur Dramatic Almanack</title>
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
@@ -12,17 +15,29 @@
     crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
     
-    <!-- Google Fonts -->
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
 
+    <!-- Local stylesheet -->
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    
+    <!-- Fix for Font Awesome validation -->
+    <style>
+      /* Override Font Awesome rotation custom properties for validation */
+      .fa-rotate-by {
+        transform: rotate(0deg) !important;
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -170,11 +185,13 @@
       </div>
     </div>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-  crossorigin="anonymous"
-></script>
+    <!-- Bootstrap JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLlhNGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+      defer>
+    </script>
 
 </body>
 </html>
