@@ -11,11 +11,12 @@
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
     rel="stylesheet"
+    type="text/css"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
     crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
@@ -26,10 +27,10 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" type="text/css">  
     
     <!-- Local stylesheet -->
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" type="text/css">
     <style>
       .cats-hero {
         background-color: #000000;
@@ -100,17 +101,17 @@
         <div class="row">
           <div class="col-12 text-center">
             <h1 class="display-3 mb-3">
-              <i class="fas fa-theater-masks me-3" style="color: #dc3545;"></i>
+              <i class="fatheater-masks me-3" aria-hidden="true" style="color: #dc3545;"></i>
               C.A.T.S.
             </h1>
             <h2 class="h3 mb-4">Clitheroe Amateur Theatrical Society</h2>
             <p class="lead">Preserving the Classical Arts Through Timeless Performances</p>
             <div class="mt-4">
               <span class="badge bg-danger fs-6 me-3">
-                <i class="fas fa-map-marker-alt me-1"></i>Heritage Theatre
+                <i class="famap-marker-alt me-1" aria-hidden="true"></i>Heritage Theatre
               </span>
               <span class="badge bg-danger fs-6">
-                <i class="fas fa-users me-1"></i>35 Active Members
+                <i class="fausers me-1" aria-hidden="true"></i>35 Active Members
               </span>
             </div>
           </div>
@@ -126,7 +127,7 @@
           <div class="col-12">
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                <i class="fas fa-check-circle me-2"></i>{{ message }}
+                <i class="facheck-circle me-2" aria-hidden="true"></i>{{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             {% endfor %}
@@ -140,7 +141,7 @@
           <div class="card bg-dark text-white border-danger">
             <div class="card-header bg-danger">
               <h3 class="card-title mb-0">
-                <i class="fas fa-info-circle me-2"></i>About C.A.T.S.
+                <i class="fainfo-circle me-2" aria-hidden="true"></i>About C.A.T.S.
               </h3>
             </div>
             <div class="card-body">
@@ -149,21 +150,21 @@
 
               <div class="row mt-4">
                 <div class="col-md-6">
-                  <h5><i class="fas fa-crown me-2 text-danger"></i>Our Heritage</h5>
+                  <h5><i class="facrown me-2 text-danger" aria-hidden="true"></i>Our Heritage</h5>
                   <ul class="list-unstyled">
-                    <li><i class="fas fa-check text-danger me-2"></i>60+ years of classical theatre</li>
-                    <li><i class="fas fa-check text-danger me-2"></i>Award-winning Shakespeare productions</li>
-                    <li><i class="fas fa-check text-danger me-2"></i>Traditional staging techniques</li>
-                    <li><i class="fas fa-check text-danger me-2"></i>Professional-standard performances</li>
+                    <li><i class="facheck text-danger me-2" aria-hidden="true"></i>60+ years of classical theatre</li>
+                    <li><i class="facheck text-danger me-2" aria-hidden="true"></i>Award-winning Shakespeare productions</li>
+                    <li><i class="facheck text-danger me-2" aria-hidden="true"></i>Traditional staging techniques</li>
+                    <li><i class="facheck text-danger me-2" aria-hidden="true"></i>Professional-standard performances</li>
                   </ul>
                 </div>
                 <div class="col-md-6">
-                  <h5><i class="fas fa-theater-masks me-2 text-danger"></i>What We Do</h5>
+                  <h5><i class="fatheater-masks me-2 text-danger" aria-hidden="true"></i>What We Do</h5>
                   <ul class="list-unstyled">
-                    <li><i class="fas fa-drama-masks text-danger me-2"></i>Classical drama productions</li>
-                    <li><i class="fas fa-book text-danger me-2"></i>Script reading sessions</li>
-                    <li><i class="fas fa-graduation-cap text-danger me-2"></i>Acting masterclasses</li>
-                    <li><i class="fas fa-microphone text-danger me-2"></i>Voice and diction training</li>
+                    <li><i class="fadrama-masks text-danger me-2" aria-hidden="true"></i>Classical drama productions</li>
+                    <li><i class="fabook text-danger me-2" aria-hidden="true"></i>Script reading sessions</li>
+                    <li><i class="fagraduation-cap text-danger me-2" aria-hidden="true"></i>Acting masterclasses</li>
+                    <li><i class="famicrophone text-danger me-2" aria-hidden="true"></i>Voice and diction training</li>
                   </ul>
                 </div>
               </div>
@@ -178,11 +179,11 @@
           <div class="card bg-dark text-white border-danger">
             <div class="card-header bg-danger d-flex justify-content-between align-items-center">
               <h3 class="card-title mb-0">
-                <i class="fas fa-calendar-alt me-2"></i>Upcoming Events & Productions
+                <i class="facalendar-alt me-2" aria-hidden="true"></i>Upcoming Events & Productions
               </h3>
               {% if user.is_authenticated %}
                 <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#eventModal">
-                  <i class="fas fa-plus me-1"></i>Add Event
+                  <i class="faplus me-1" aria-hidden="true"></i>Add Event
                 </button>
               {% endif %}
             </div>
@@ -199,13 +200,13 @@
                           <h5 class="card-title text-danger">{{ event.title }}</h5>
                           <p class="card-text">{{ event.description }}</p>
                           <p class="text-muted small">
-                            <i class="fas fa-calendar me-1"></i>{{ event.date|date:"F d, Y" }}
-                            <i class="fas fa-clock ms-2 me-1"></i>{{ event.time }}
-                            <i class="fas fa-map-marker-alt ms-2 me-1"></i>{{ event.location }}
+                            <i class="facalendar me-1" aria-hidden="true"></i>{{ event.date|date:"F d, Y" }}
+                            <i class="faclock ms-2 me-1" aria-hidden="true"></i>{{ event.time }}
+                            <i class="famap-marker-alt ms-2 me-1" aria-hidden="true"></i>{{ event.location }}
                           </p>
                           {% if event.ticket_price %}
                             <p class="text-warning">
-                              <i class="fas fa-ticket-alt me-1"></i>£{{ event.ticket_price }}
+                              <i class="faticket-alt me-1" aria-hidden="true"></i>£{{ event.ticket_price }}
                             </p>
                           {% endif %}
                         </div>
@@ -214,10 +215,10 @@
                             <small class="text-muted">Posted by {{ event.created_by.username }} on {{ event.created_at|date:"M d, Y" }}</small>
                             <div class="float-end">
                               <a href="{% url 'edit_event' event.id %}" class="btn btn-sm btn-outline-warning me-1">
-                                <i class="fas fa-edit"></i>
+                                <i class="faedit" aria-hidden="true"></i>
                               </a>
                               <a href="{% url 'delete_event' event.id %}" class="btn btn-sm btn-outline-danger">
-                                <i class="fas fa-trash"></i>
+                                <i class="fatrash" aria-hidden="true"></i>
                               </a>
                             </div>
                           </div>
@@ -228,12 +229,12 @@
                 </div>
               {% else %}
                 <div class="text-center py-5">
-                  <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+                  <i class="facalendar-times fa-3x text-muted mb-3" aria-hidden="true"></i>
                   <h5>No upcoming events</h5>
                   <p class="text-muted">Check back soon for our next classical production!</p>
                   {% if user.is_authenticated %}
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eventModal">
-                      <i class="fas fa-plus me-2"></i>Add the First Event
+                      <i class="faplus me-2" aria-hidden="true"></i>Add the First Event
                     </button>
                   {% endif %}
                 </div>
@@ -249,7 +250,7 @@
           <div class="card bg-dark text-white border-danger">
             <div class="card-header bg-danger">
               <h3 class="card-title mb-0">
-                <i class="fas fa-building me-2"></i>Our Home - Heritage Theatre
+                <i class="fabuilding me-2" aria-hidden="true"></i>Our Home - Heritage Theatre
               </h3>
             </div>
             <div class="card-body">
@@ -259,7 +260,7 @@
                   
                   <div class="row mt-4">
                     <div class="col-sm-6">
-                      <h6><i class="fas fa-chair me-2 text-danger"></i>Theatre Specifications</h6>
+                      <h6><i class="fachair me-2 text-danger" aria-hidden="true"></i>Theatre Specifications</h6>
                       <ul class="list-unstyled small">
                         <li>• 280-seat auditorium</li>
                         <li>• Traditional proscenium arch stage</li>
@@ -269,7 +270,7 @@
                       </ul>
                     </div>
                     <div class="col-sm-6">
-                      <h6><i class="fas fa-tools me-2 text-danger"></i>Technical Facilities</h6>
+                      <h6><i class="fatools me-2 text-danger" aria-hidden="true"></i>Technical Facilities</h6>
                       <ul class="list-unstyled small">
                         <li>• Professional lighting rig</li>
                         <li>• Digital sound system</li>
@@ -282,7 +283,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="bg-secondary p-3 rounded">
-                    <h6><i class="fas fa-map-marker-alt me-2 text-danger"></i>Find Us</h6>
+                    <h6><i class="famap-marker-alt me-2 text-danger" aria-hidden="true"></i>Find Us</h6>
                     <address class="small mb-0">
                       Heritage Theatre<br>
                       15 Castle Street<br>
@@ -291,8 +292,8 @@
                     </address>
                     <hr class="my-2">
                     <p class="small mb-0">
-                      <i class="fas fa-phone me-1 text-danger"></i>(01200) 425-678<br>
-                      <i class="fas fa-envelope me-1 text-danger"></i>info@catstheatre.co.uk
+                      <i class="faphone me-1 text-danger" aria-hidden="true"></i>(01200) 425-678<br>
+                      <i class="faenvelope me-1 text-danger" aria-hidden="true"></i>info@catstheatre.co.uk
                     </p>
                   </div>
                 </div>
@@ -308,11 +309,11 @@
           <div class="card bg-dark text-white border-danger">
             <div class="card-header bg-danger d-flex justify-content-between align-items-center">
               <h3 class="card-title mb-0">
-                <i class="fas fa-comments me-2"></i>Community Q&A
+                <i class="facomments me-2" aria-hidden="true"></i>Community Q&A
               </h3>
               {% if user.is_authenticated %}
                 <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#questionModal">
-                  <i class="fas fa-question me-1"></i>Ask Question
+                  <i class="faquestion me-1" aria-hidden="true"></i>Ask Question
                 </button>
               {% endif %}
             </div>
@@ -325,10 +326,10 @@
                       {% if user.is_authenticated %}
                         <div>
                           <a href="{% url 'edit_question' question.id %}" class="btn btn-sm btn-outline-warning me-1">
-                            <i class="fas fa-edit"></i>
+                            <i class="faedit" aria-hidden="true"></i>
                           </a>
                           <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-outline-danger">
-                            <i class="fas fa-trash"></i>
+                            <i class="fatrash" aria-hidden="true"></i>
                           </a>
                         </div>
                       {% endif %}
@@ -340,7 +341,7 @@
                     
                     {% if question.answers.all %}
                       <div class="mt-3">
-                        <h6 class="text-warning"><i class="fas fa-reply me-1"></i>Answers:</h6>
+                        <h6 class="text-warning"><i class="fareply me-1" aria-hidden="true"></i>Answers:</h6>
                         {% for answer in question.answers.all %}
                           <div class="ms-3 mt-2 p-2 bg-dark rounded">
                             <p class="mb-1">{{ answer.content }}</p>
@@ -355,7 +356,7 @@
                     {% if user.is_authenticated %}
                       <div class="mt-3">
                         <button class="btn btn-sm btn-outline-danger" data-bs-toggle="collapse" data-bs-target="#answer-{{ question.id }}">
-                          <i class="fas fa-reply me-1"></i>Answer
+                          <i class="fareply me-1" aria-hidden="true"></i>Answer
                         </button>
                         <div class="collapse mt-2" id="answer-{{ question.id }}">
                           <form method="post" action="{% url 'add_answer' question.id %}">
@@ -372,12 +373,12 @@
                 {% endfor %}
               {% else %}
                 <div class="text-center py-5">
-                  <i class="fas fa-question-circle fa-3x text-muted mb-3"></i>
+                  <i class="faquestion-circle fa-3x text-muted mb-3" aria-hidden="true"></i>
                   <h5>No questions yet</h5>
                   <p class="text-muted">Be the first to ask about our classical productions!</p>
                   {% if user.is_authenticated %}
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#questionModal">
-                      <i class="fas fa-question me-2"></i>Ask the First Question
+                      <i class="faquestion me-2" aria-hidden="true"></i>Ask the First Question
                     </button>
                   {% endif %}
                 </div>
@@ -392,7 +393,7 @@
         <div class="col-12">
           <div class="card bg-gradient" style="background: linear-gradient(135deg, #dc3545, #6f1926);">
             <div class="card-body text-white text-center py-5">
-              <h3><i class="fas fa-users me-2"></i>Join Our Classical Theatre Family</h3>
+              <h3><i class="fausers me-2" aria-hidden="true"></i>Join Our Classical Theatre Family</h3>
               <p class="lead mb-4">Whether you're an experienced performer or new to classical theatre, we welcome all who share our passion for the dramatic arts.</p>
               
               <div class="row justify-content-center">
@@ -400,25 +401,25 @@
                   <div class="row">
                     <div class="col-sm-6 mb-3">
                       <div class="bg-dark bg-opacity-25 p-3 rounded">
-                        <h5><i class="fas fa-drama-masks me-2"></i>Performers</h5>
+                        <h5><i class="fadrama-masks me-2" aria-hidden="true"></i>Performers</h5>
                         <p class="small mb-0">Join our cast and bring classical characters to life</p>
                       </div>
                     </div>
                     <div class="col-sm-6 mb-3">
                       <div class="bg-dark bg-opacity-25 p-3 rounded">
-                        <h5><i class="fas fa-hammer me-2"></i>Technical Crew</h5>
+                        <h5><i class="fahammer me-2" aria-hidden="true"></i>Technical Crew</h5>
                         <p class="small mb-0">Help create the magic behind the scenes</p>
                       </div>
                     </div>
                     <div class="col-sm-6 mb-3">
                       <div class="bg-dark bg-opacity-25 p-3 rounded">
-                        <h5><i class="fas fa-paint-brush me-2"></i>Creative Team</h5>
+                        <h5><i class="fapaint-brush me-2" aria-hidden="true"></i>Creative Team</h5>
                         <p class="small mb-0">Design sets, costumes, and visual elements</p>
                       </div>
                     </div>
                     <div class="col-sm-6 mb-3">
                       <div class="bg-dark bg-opacity-25 p-3 rounded">
-                        <h5><i class="fas fa-hands-helping me-2"></i>Volunteers</h5>
+                        <h5><i class="fahands-helping me-2" aria-hidden="true"></i>Volunteers</h5>
                         <p class="small mb-0">Support our productions in various ways</p>
                       </div>
                     </div>
@@ -429,7 +430,7 @@
               <div class="mt-4">
                 
                 <a href="{% url 'directory' %}" class="btn btn-outline-light btn-lg">
-                  <i class="fas fa-arrow-left me-2"></i>Back to Directory
+                  <i class="faarrow-left me-2" aria-hidden="true"></i>Back to Directory
                 </a>
               </div>
             </div>
@@ -458,10 +459,10 @@
           <div class="col-md-3">
             <h6>Follow Us</h6>
             <ul class="list-unstyled">
-              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fa-brands fa-facebook"></i></a></li>
-              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fa-brands fa-twitter"></i></a></li>
-              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fafacebook" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fatwitter" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fainstagram" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fayoutube" aria-hidden="true"></i></a></li>
             </ul>
           </div>
         </div>
@@ -481,7 +482,7 @@
         <div class="modal-content bg-dark border-danger">
           <div class="modal-header border-danger">
             <h5 class="modal-title text-danger" id="eventModalLabel">
-              <i class="fas fa-calendar-plus me-2"></i>Add New Event
+              <i class="facalendar-plus me-2" aria-hidden="true"></i>Add New Event
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -492,13 +493,13 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="{{ event_form.title.id_for_label }}" class="form-label">
-                    <i class="fas fa-heading me-1"></i>Event Title
+                    <i class="faheading me-1" aria-hidden="true"></i>Event Title
                   </label>
                   {{ event_form.title }}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="{{ event_form.date.id_for_label }}" class="form-label">
-                    <i class="fas fa-calendar me-1"></i>Date
+                    <i class="facalendar me-1" aria-hidden="true"></i>Date
                   </label>
                   {{ event_form.date }}
                 </div>
@@ -506,47 +507,47 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="{{ event_form.time.id_for_label }}" class="form-label">
-                    <i class="fas fa-clock me-1"></i>Time
+                    <i class="faclock me-1" aria-hidden="true"></i>Time
                   </label>
                   {{ event_form.time }}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="{{ event_form.location.id_for_label }}" class="form-label">
-                    <i class="fas fa-map-marker-alt me-1"></i>Location
+                    <i class="famap-marker-alt me-1" aria-hidden="true"></i>Location
                   </label>
                   {{ event_form.location }}
                 </div>
               </div>
               <div class="mb-3">
                 <label for="{{ event_form.description.id_for_label }}" class="form-label">
-                  <i class="fas fa-align-left me-1"></i>Description
+                  <i class="faalign-left me-1" aria-hidden="true"></i>Description
                 </label>
                 {{ event_form.description }}
               </div>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="{{ event_form.ticket_price.id_for_label }}" class="form-label">
-                    <i class="fas fa-ticket-alt me-1"></i>Ticket Price (£)
+                    <i class="faticket-alt me-1" aria-hidden="true"></i>Ticket Price (£)
                   </label>
                   {{ event_form.ticket_price }}
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="{{ event_form.image.id_for_label }}" class="form-label">
-                    <i class="fas fa-image me-1"></i>Event Image
+                    <i class="faimage me-1" aria-hidden="true"></i>Event Image
                   </label>
                   {{ event_form.image }}
                 </div>
               </div>
               <div class="text-muted small mb-3">
-                <i class="fas fa-info-circle me-1"></i>
+                <i class="fainfo-circle me-1" aria-hidden="true"></i>
                 Share upcoming classical productions, workshops, and society events with our community.
               </div>
               <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
-                  <i class="fas fa-times me-1"></i>Cancel
+                  <i class="fatimes me-1" aria-hidden="true"></i>Cancel
                 </button>
                 <button type="submit" class="btn btn-danger">
-                  <i class="fas fa-plus me-1"></i>Create Event
+                  <i class="faplus me-1" aria-hidden="true"></i>Create Event
                 </button>
               </div>
             </form>
@@ -561,7 +562,7 @@
         <div class="modal-content bg-dark border-danger">
           <div class="modal-header border-danger">
             <h5 class="modal-title text-danger" id="questionModalLabel">
-              <i class="fas fa-question-circle me-2"></i>Ask a Question
+              <i class="faquestion-circle me-2" aria-hidden="true"></i>Ask a Question
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -571,26 +572,26 @@
               <input type="hidden" name="question_form" value="1">
               <div class="mb-3">
                 <label for="{{ question_form.title.id_for_label }}" class="form-label">
-                  <i class="fas fa-heading me-1"></i>Question Title
+                  <i class="faheading me-1" aria-hidden="true"></i>Question Title
                 </label>
                 {{ question_form.title }}
               </div>
               <div class="mb-3">
                 <label for="{{ question_form.content.id_for_label }}" class="form-label">
-                  <i class="fas fa-comment me-1"></i>Your Question
+                  <i class="facomment me-1" aria-hidden="true"></i>Your Question
                 </label>
                 {{ question_form.content }}
               </div>
               <div class="text-muted small mb-3">
-                <i class="fas fa-info-circle me-1"></i>
+                <i class="fainfo-circle me-1" aria-hidden="true"></i>
                 Ask about our classical productions, rehearsal process, or how to get involved with C.A.T.S.
               </div>
               <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
-                  <i class="fas fa-times me-1"></i>Cancel
+                  <i class="fatimes me-1" aria-hidden="true"></i>Cancel
                 </button>
                 <button type="submit" class="btn btn-danger">
-                  <i class="fas fa-question me-1"></i>Post Question
+                  <i class="faquestion me-1" aria-hidden="true"></i>Post Question
                 </button>
               </div>
             </form>
@@ -606,25 +607,25 @@
         <div class="modal-content bg-dark border-danger">
           <div class="modal-header border-danger">
             <h5 class="modal-title text-danger" id="logoutModalLabel">
-              <i class="fas fa-sign-out-alt me-2"></i>Confirm Logout
+              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-white">
             <div class="text-center">
-              <i class="fas fa-theater-masks fa-3x text-danger mb-3"></i>
+              <i class="fatheater-masks fa-3x text-danger mb-3" aria-hidden="true"></i>
               <p class="lead">Are you sure you want to log out?</p>
               <p class="small text-muted">You'll need to sign in again to access member features.</p>
             </div>
           </div>
           <div class="modal-footer border-danger">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fas fa-times me-1"></i>Cancel
+              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
             </button>
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-danger">
-                <i class="fas fa-sign-out-alt me-1"></i>Yes, Logout
+                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
               </button>
             </form>
           </div>
@@ -635,7 +636,8 @@
     <!-- Bootstrap JavaScript -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      type="text/javascript"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
       defer>
     </script>

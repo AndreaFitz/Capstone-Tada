@@ -7,25 +7,16 @@
     <meta name="description" content="Riverside Players - Community theatre group bringing diverse stories to life through passionate performances and creative collaboration since 1985.">
     <meta name="robots" content="index, follow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Riverside Players - TADA! The Amateur Dramatic Almanack</title>    </footer>
-
-    <!-- Bootstrap JavaScript -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-      crossorigin="anonymous"
-      defer>
-    </script>
-
-</body>
-</html>k
+    <title>Riverside Players - TADA! The Amateur Dramatic Almanack</title>
+    <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
     rel="stylesheet"
+    type="text/css"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
     crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
@@ -36,10 +27,10 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" type="text/css">  
     
     <!-- Local stylesheet -->
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" type="text/css">
     <style>
       .riverside-hero {
         background-color: #000000;
@@ -52,12 +43,6 @@
         padding-top: 120px;
         will-change: transform;
         backface-visibility: hidden;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       }
     </style>
   </head>
@@ -127,7 +112,7 @@
           <div class="card mb-4">
             <div class="card-header text-center">
               <h1 class="mb-0">
-                <i class="fas fa-theater-masks me-3 text-warning"></i>
+                <i class="fatheater-masks me-3 text-warning" aria-hidden="true"></i>
                 Riverside Players
               </h1>
               <p class="mb-0 mt-2">Est. 1985 • Riverside Community Centre</p>
@@ -137,7 +122,7 @@
                 <div class="col-md-8">
                   <p class="lead">A vibrant community theatre group performing classic and contemporary works since 1985. Known for their intimate productions and welcoming atmosphere.</p>
                   
-                  <h3><i class="fas fa-star me-2 text-warning"></i>About Our Society</h3>
+                  <h3><i class="fastar me-2 text-warning" aria-hidden="true"></i>About Our Society</h3>
                   <p>The Riverside Players have been a cornerstone of local amateur theatre for nearly four decades. Our society was founded by a group of passionate theatre enthusiasts who wanted to bring quality dramatic productions to the community while providing a supportive environment for performers of all experience levels.</p>
                   
                   <p>We pride ourselves on our inclusive approach to theatre, welcoming members from all walks of life. Whether you're interested in acting, directing, stage management, set design, or any other aspect of theatre production, you'll find a home with us.</p>
@@ -149,11 +134,11 @@
                   <div class="card mt-3 bg-dark border-warning">
                     <div class="card-body">
                       <h5 class="card-title text-warning">Quick Info</h5>
-                      <p class="mb-2"><i class="fas fa-users me-2"></i>45 Active Members</p>
-                      <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Riverside Community Centre</p>
-                      <p class="mb-2"><i class="fas fa-calendar me-2"></i>Founded 1985</p>
-                      <p class="mb-2"><i class="fas fa-drama me-2"></i>3-4 Productions/Year</p>
-                      <p class="mb-0"><i class="fas fa-clock me-2"></i>Rehearsals: Tue & Thu 7:30pm</p>
+                      <p class="mb-2"><i class="fausers me-2" aria-hidden="true"></i>45 Active Members</p>
+                      <p class="mb-2"><i class="famap-marker-alt me-2" aria-hidden="true"></i>Riverside Community Centre</p>
+                      <p class="mb-2"><i class="facalendar me-2" aria-hidden="true"></i>Founded 1985</p>
+                      <p class="mb-2"><i class="fadrama me-2" aria-hidden="true"></i>3-4 Productions/Year</p>
+                      <p class="mb-0"><i class="faclock me-2" aria-hidden="true"></i>Rehearsals: Tue & Thu 7:30pm</p>
                     </div>
                   </div>
                 </div>
@@ -166,13 +151,13 @@
       <!-- Interactive Events Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <h2><i class="fas fa-calendar-alt me-2 text-warning"></i>Upcoming Events</h2>
+          <h2><i class="facalendar-alt me-2 text-warning" aria-hidden="true"></i>Upcoming Events</h2>
           <h3>Anyone can post here, but remember - Drama belongs on stage, not in the Comments section - please be kind!</h3>
           <!-- Add New Event Form (Only for logged in users) -->
           {% if user.is_authenticated %}
           <div class="card mb-3">
             <div class="card-body">
-              <h6 class="card-title"><i class="fas fa-plus me-1"></i>Add New Event</h6>
+              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Add New Event</h6>
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="event_form" value="1">
@@ -193,19 +178,19 @@
                 <div class="row mb-2">
                   <div class="col-6">
                     <label for="{{ event_form.photo.id_for_label }}" class="form-label">
-                      <i class="fas fa-camera me-1"></i>Event Photo
+                      <i class="facamera me-1" aria-hidden="true"></i>Event Photo
                     </label>
                     {{ event_form.photo }}
                   </div>
                   <div class="col-6">
                     <label for="{{ event_form.poster.id_for_label }}" class="form-label">
-                      <i class="fas fa-image me-1"></i>Event Poster
+                      <i class="faimage me-1" aria-hidden="true"></i>Event Poster
                     </label>
                     {{ event_form.poster }}
                   </div>
                 </div>
                 <button type="submit" class="btn btn-warning btn-sm">
-                  <i class="fas fa-plus me-1"></i>Add Event
+                  <i class="faplus me-1" aria-hidden="true"></i>Add Event
                 </button>
               </form>
             </div>
@@ -219,8 +204,8 @@
               <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
                   <h5 class="card-title text-warning">{{ event.title }}</h5>
-                  <p class="card-text"><i class="fas fa-calendar me-1"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
-                  <p class="card-text"><i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}</p>
+                  <p class="card-text"><i class="facalendar me-1" aria-hidden="true"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
+                  <p class="card-text"><i class="famap-marker-alt me-1" aria-hidden="true"></i> {{ event.location }}</p>
                   <p class="card-text">{{ event.description }}</p>
                   
                   <!-- Display uploaded images -->
@@ -228,13 +213,13 @@
                   <div class="row mt-3">
                     {% if event.photo %}
                     <div class="col-md-6 mb-2">
-                      <p class="small text-warning mb-1"><i class="fas fa-camera me-1"></i>Event Photo:</p>
+                      <p class="small text-warning mb-1"><i class="facamera me-1" aria-hidden="true"></i>Event Photo:</p>
                       <img src="{{ event.photo.url }}" class="img-fluid rounded shadow-sm" alt="Event Photo" style="max-height: 200px;">
                     </div>
                     {% endif %}
                     {% if event.poster %}
                     <div class="col-md-6 mb-2">
-                      <p class="small text-warning mb-1"><i class="fas fa-image me-1"></i>Event Poster:</p>
+                      <p class="small text-warning mb-1"><i class="faimage me-1" aria-hidden="true"></i>Event Poster:</p>
                       <img src="{{ event.poster.url }}" class="img-fluid rounded shadow-sm" alt="Event Poster" style="max-height: 200px;">
                     </div>
                     {% endif %}
@@ -246,11 +231,11 @@
                 {% if user.is_authenticated %}
                 <div class="dropdown">
                   <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
+                    <i class="faellipsis-v" aria-hidden="true"></i>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'edit_event' event.id %}"><i class="fas fa-edit me-1"></i>Edit</a></li>
-                    <li><a class="dropdown-item text-danger" href="{% url 'delete_event' event.id %}"><i class="fas fa-trash me-1"></i>Delete</a></li>
+                    <li><a class="dropdown-item" href="{% url 'edit_event' event.id %}"><i class="faedit me-1" aria-hidden="true"></i>Edit</a></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'delete_event' event.id %}"><i class="fatrash me-1" aria-hidden="true"></i>Delete</a></li>
                   </ul>
                 </div>
                 {% endif %}
@@ -258,7 +243,7 @@
               
               <!-- Comments Section -->
               <hr>
-              <h6><i class="fas fa-comments me-1"></i>Comments ({{ event.comments.count }})</h6>
+              <h6><i class="facomments me-1" aria-hidden="true"></i>Comments ({{ event.comments.count }})</h6>
               
               <!-- Display Comments -->
               {% for comment in event.comments.all %}
@@ -272,10 +257,10 @@
                   {% if user.is_authenticated and comment.author == user %}
                   <div class="dropdown">
                     <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="dropdown">
-                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="faellipsis-v" aria-hidden="true"></i>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item text-danger" href="{% url 'delete_comment' comment.id %}"><i class="fas fa-trash me-1"></i>Delete</a></li>
+                      <li><a class="dropdown-item text-danger" href="{% url 'delete_comment' comment.id %}"><i class="fatrash me-1" aria-hidden="true"></i>Delete</a></li>
                     </ul>
                   </div>
                   {% endif %}
@@ -292,7 +277,7 @@
                 <div class="input-group input-group-sm">
                   <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
                   <button type="submit" class="btn btn-outline-warning">
-                    <i class="fas fa-paper-plane"></i>
+                    <i class="fapaper-plane" aria-hidden="true"></i>
                   </button>
                 </div>
               </form>
@@ -315,7 +300,7 @@
       <!-- Productions Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <h2><i class="fas fa-theatre me-2 text-warning"></i>Recent Productions</h2>
+          <h2><i class="fatheatre me-2 text-warning" aria-hidden="true"></i>Recent Productions</h2>
           <div class="row">
             <div class="col-md-4 mb-3">
               <div class="card h-100">
@@ -351,18 +336,18 @@
       <!-- What We Offer Section -->
       <div class="row mb-5">
         <div class="col-md-6">
-          <h2><i class="fas fa-heart me-2 text-warning"></i>What We Offer</h2>
+          <h2><i class="faheart me-2 text-warning" aria-hidden="true"></i>What We Offer</h2>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Welcoming environment for all skill levels</li>
-            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Regular workshops and training sessions</li>
-            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Opportunities in acting, directing, and technical roles</li>
-            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Social events and cast parties</li>
-            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Mentorship from experienced members</li>
-            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Access to costume and prop resources</li>
+            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Welcoming environment for all skill levels</li>
+            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Regular workshops and training sessions</li>
+            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Opportunities in acting, directing, and technical roles</li>
+            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Social events and cast parties</li>
+            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Mentorship from experienced members</li>
+            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Access to costume and prop resources</li>
           </ul>
         </div>
         <div class="col-md-6">
-          <h2><i class="fas fa-users me-2 text-warning"></i>Join Our Community</h2>
+          <h2><i class="fausers me-2 text-warning" aria-hidden="true"></i>Join Our Community</h2>
           <div class="card bg-dark border-warning">
             <div class="card-body">
               <h5 class="card-title text-warning">Ready to Take the Stage?</h5>
@@ -370,16 +355,16 @@
               
               <h6 class="text-warning mt-3">Getting Started:</h6>
               <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Attend one of our monthly open meetings</li>
-                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Come to a rehearsal and see us in action</li>
-                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Get in touch via our contact form</li>
-                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2"></i>Follow us on social media</li>
+                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Attend one of our monthly open meetings</li>
+                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Come to a rehearsal and see us in action</li>
+                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Get in touch via our contact form</li>
+                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Follow us on social media</li>
               </ul>
               
               <h6 class="text-warning mt-3">Contact Info:</h6>
-              <p class="mb-1"><i class="fas fa-envelope me-2"></i>contact@riversideplayers.co.uk</p>
-              <p class="mb-1"><i class="fas fa-phone me-2"></i>01234 567890</p>
-              <p class="mb-0"><i class="fas fa-globe me-2"></i>www.riversideplayers.co.uk</p>
+              <p class="mb-1"><i class="faenvelope me-2" aria-hidden="true"></i>contact@riversideplayers.co.uk</p>
+              <p class="mb-1"><i class="faphone me-2" aria-hidden="true"></i>01234 567890</p>
+              <p class="mb-0"><i class="faglobe me-2" aria-hidden="true"></i>www.riversideplayers.co.uk</p>
             </div>
           </div>
         </div>
@@ -388,13 +373,13 @@
       <!-- Questions & Answers Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <h2><i class="fas fa-question-circle me-2 text-warning"></i>Questions & Answers</h2>
+          <h2><i class="faquestion-circle me-2 text-warning" aria-hidden="true"></i>Questions & Answers</h2>
           
           <!-- Add New Question Form (Only for logged in users) -->
           {% if user.is_authenticated %}
           <div class="card mb-4">
             <div class="card-body">
-              <h6 class="card-title"><i class="fas fa-plus me-1"></i>Ask a Question</h6>
+              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Ask a Question</h6>
               <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="question_form" value="1">
@@ -405,7 +390,7 @@
                   {{ question_form.content }}
                 </div>
                 <button type="submit" class="btn btn-warning">
-                  <i class="fas fa-question me-1"></i>Post Question
+                  <i class="faquestion me-1" aria-hidden="true"></i>Post Question
                 </button>
               </form>
             </div>
@@ -425,11 +410,11 @@
                 {% if user.is_authenticated %}
                 <div class="dropdown">
                   <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
+                    <i class="faellipsis-v" aria-hidden="true"></i>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'edit_question' question.id %}"><i class="fas fa-edit me-1"></i>Edit</a></li>
-                    <li><a class="dropdown-item text-danger" href="{% url 'delete_question' question.id %}"><i class="fas fa-trash me-1"></i>Delete</a></li>
+                    <li><a class="dropdown-item" href="{% url 'edit_question' question.id %}"><i class="faedit me-1" aria-hidden="true"></i>Edit</a></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'delete_question' question.id %}"><i class="fatrash me-1" aria-hidden="true"></i>Delete</a></li>
                   </ul>
                 </div>
                 {% endif %}
@@ -437,7 +422,7 @@
               
               <!-- Answers Section -->
               <hr>
-              <h6><i class="fas fa-reply me-1"></i>Answers ({{ question.answers.count }})</h6>
+              <h6><i class="fareply me-1" aria-hidden="true"></i>Answers ({{ question.answers.count }})</h6>
               
               <!-- Display Answers -->
               {% for answer in question.answers.all %}
@@ -457,7 +442,7 @@
                 <div class="input-group">
                   <textarea name="content" class="form-control" rows="2" placeholder="Your answer..." required></textarea>
                   <button type="submit" class="btn btn-outline-success">
-                    <i class="fas fa-reply me-1"></i>Answer
+                    <i class="fareply me-1" aria-hidden="true"></i>Answer
                   </button>
                 </div>
               </form>
@@ -482,30 +467,30 @@
         <div class="col-12">
           <div class="card bg-gradient" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(26, 15, 10, 0.2));">
             <div class="card-body text-center">
-              <h2><i class="fas fa-handshake me-2 text-warning"></i>Join the Riverside Players</h2>
+              <h2><i class="fahandshake me-2 text-warning" aria-hidden="true"></i>Join the Riverside Players</h2>
               <p class="lead">Ready to take the stage or work behind the scenes? We'd love to have you!</p>
               
               <div class="row mt-4">
                 <div class="col-md-4">
-                  <h5><i class="fas fa-envelope me-2 text-warning"></i>Email</h5>
+                  <h5><i class="faenvelope me-2 text-warning" aria-hidden="true"></i>Email</h5>
                   <p>info@riversideplayers.org</p>
                 </div>
                 <div class="col-md-4">
-                  <h5><i class="fas fa-phone me-2 text-warning"></i>Phone</h5>
+                  <h5><i class="faphone me-2 text-warning" aria-hidden="true"></i>Phone</h5>
                   <p>(555) 123-4567</p>
                 </div>
                 <div class="col-md-4">
-                  <h5><i class="fas fa-map-marker-alt me-2 text-warning"></i>Address</h5>
+                  <h5><i class="famap-marker-alt me-2 text-warning" aria-hidden="true"></i>Address</h5>
                   <p>123 Riverside Drive<br>Community Centre<br>Riverside, RC 12345</p>
                 </div>
               </div>
               
               <div class="mt-4">
                 <a href="#" class="btn btn-warning btn-lg me-3">
-                  <i class="fas fa-user-plus me-2"></i>Join Now
+                  <i class="fauser-plus me-2" aria-hidden="true"></i>Join Now
                 </a>
                 <a href="#" class="btn btn-outline-light btn-lg">
-                  <i class="fas fa-info-circle me-2"></i>More Info
+                  <i class="fainfo-circle me-2" aria-hidden="true"></i>More Info
                 </a>
               </div>
             </div>
@@ -534,10 +519,10 @@
           <div class="col-md-3">
             <h6>Follow Us</h6>
             <ul class="list-unstyled">
-              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fa-brands fa-facebook"></i></a></li>
-              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fa-brands fa-twitter"></i></a></li>
-              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fafacebook" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fatwitter" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fainstagram" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fayoutube" aria-hidden="true"></i></a></li>
             </ul>
           </div>
         </div>
@@ -550,11 +535,46 @@
       </div>
     </footer>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-  crossorigin="anonymous"
-></script>
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-warning">
+          <div class="modal-header border-warning">
+            <h5 class="modal-title text-warning" id="logoutModalLabel">
+              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-white">
+            <div class="text-center">
+              <i class="fatheater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
+              <p class="lead">Are you sure you want to log out?</p>
+              <p class="small text-muted">You'll need to sign in again to access member features.</p>
+            </div>
+          </div>
+          <div class="modal-footer border-warning">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+            </button>
+            <form method="post" action="{% url 'logout' %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-warning">
+                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      type="text/javascript"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+      defer>
+    </script>
 
 </body>
 </html>

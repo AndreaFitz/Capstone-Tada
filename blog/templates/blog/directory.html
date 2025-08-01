@@ -8,18 +8,19 @@
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
     rel="stylesheet"
+    type="text/css"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
     crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">  
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" type="text/css">  
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" type="text/css">
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -74,7 +75,7 @@
           <div class="col-12">
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                <i class="fas fa-check-circle me-2"></i>{{ message }}
+                <i class="fas fa-check-circle me-2" aria-hidden="true"></i>{{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             {% endfor %}
@@ -92,11 +93,11 @@
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text bg-warning">
-                  <i class="fas fa-search"></i>
+                  <i class="fasearch" aria-hidden="true"></i>
                 </span>
                 <input type="text" id="societySearch" class="form-control" placeholder="Search for a theatre society by name...">
                 <button class="btn btn-outline-warning" type="button" id="clearSearch">
-                  <i class="fas fa-times"></i>
+                  <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
               </div>
               <small class="text-muted">Start typing to filter societies by name</small>
@@ -113,17 +114,17 @@
             <img src="{% static 'blog/images/cats.png' %}" class="card-img-top" alt="Clitheroe Amateur Theatrical Society" style="height: 200px; object-fit: cover; object-position: top;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
-                <i class="fas fa-theater-masks me-2 text-warning"></i>
+                <i class="fas fa-theater-masks me-2 text-warning" aria-hidden="true"></i>
                 C.A.T.S. - Clitheroe Amateur Theatrical Society
               </h5>
               <p class="card-text">Dedicated to preserving and performing classical works including Shakespeare, Chekhov, and other theatrical masterpieces....and the odd panto.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="fas fa-map-marker-alt me-1"></i>
+                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
                   Heritage Theatre
                 </p>
                 <p class="text-white mb-3">
-                  <i class="fas fa-users me-1"></i>
+                  <i class="fas fa-users me-1" aria-hidden="true"></i>
                   35 Active Members
                 </p>
                 <a href="{% url 'cats_theatre' %}" class="btn btn-primary">Learn More</a>
@@ -138,17 +139,17 @@
             <img src="{% static 'blog/images/etl.png' %}" class="card-img-top" alt="Experimental Theatre Lab" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
-                <i class="fas fa-theater-masks me-2 text-warning"></i>
+                <i class="fas fa-theater-masks me-2 text-warning" aria-hidden="true"></i>
                 Experimental Theatre Lab
               </h5>
               <p class="card-text">Pushing boundaries with avant-garde performances, immersive theatre, and innovative storytelling techniques.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="fas fa-map-marker-alt me-1"></i>
+                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
                   Underground Studio
                 </p>
                 <p class="text-white mb-3">
-                  <i class="fas fa-users me-1"></i>
+                  <i class="fas fa-users me-1" aria-hidden="true"></i>
                   25 Active Members
                 </p>
                 <a href="{% url 'experimental_theatre_lab' %}" class="btn btn-primary">Learn More</a>
@@ -163,17 +164,17 @@
             <img src="{% static 'blog/images/metropolitan.png' %}" class="card-img-top" alt="Metropolitan Drama Society" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
-                <i class="fas fa-theater-masks me-2 text-warning"></i>
+                <i class="fas fa-theater-masks me-2 text-warning" aria-hidden="true"></i>
                 Metropolitan Drama Society
               </h5>
               <p class="card-text">Established theatre company specializing in musicals and large-scale productions. Winner of multiple regional theatre awards.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="fas fa-map-marker-alt me-1"></i>
+                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
                   City Centre Arts Complex
                 </p>
                 <p class="text-white mb-3">
-                  <i class="fas fa-users me-1"></i>
+                  <i class="fas fa-users me-1" aria-hidden="true"></i>
                   78 Active Members
                 </p>
                 <a href="{% url 'metropolitan_drama' %}" class="btn btn-primary">Learn More</a>
@@ -188,17 +189,17 @@
             <img src="{% static 'blog/images/comingsoon.png' %}" class="card-img-top" alt="Outreach Theatre Group" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
-                <i class="fas fa-theater-masks me-2 text-warning"></i>
+                <i class="fas fa-theater-masks me-2 text-warning" aria-hidden="true"></i>
                 Outreach Theatre Group
               </h5>
               <p class="card-text">Bringing theatre to schools, care homes, and community events. Focuses on educational and socially conscious productions.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="fas fa-map-marker-alt me-1"></i>
+                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
                   Various Locations
                 </p>
                 <p class="text-white mb-3">
-                  <i class="fas fa-users me-1"></i>
+                  <i class="fas fa-users me-1" aria-hidden="true"></i>
                   30 Active Members
                 </p>
                 <a href="#" class="btn btn-primary">Learn More</a>
@@ -213,17 +214,17 @@
             <img src="{% static 'blog/images/riverside.png' %}" class="card-img-top" alt="Riverside Players" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
-                <i class="fas fa-theater-masks me-2 text-warning"></i>
+                <i class="fas fa-theater-masks me-2 text-warning" aria-hidden="true"></i>
                 Riverside Players
               </h5>
               <p class="card-text">A vibrant community theatre group performing classic and contemporary works since 1985. Known for their intimate productions and welcoming atmosphere.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="fas fa-map-marker-alt me-1"></i>
+                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
                   Riverside Community Centre
                 </p>
                 <p class="text-white mb-3">
-                  <i class="fas fa-users me-1"></i>
+                  <i class="fas fa-users me-1" aria-hidden="true"></i>
                   45 Active Members
                 </p>
                 <a href="{% url 'riverside_players' %}" class="btn btn-primary">Learn More</a>
@@ -238,17 +239,17 @@
             <img src="{% static 'blog/images/comingsoon.png' %}" class="card-img-top" alt="Youth Theatre Collective" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
-                <i class="fas fa-theater-masks me-2 text-warning"></i>
+                <i class="fas fa-theater-masks me-2 text-warning" aria-hidden="true"></i>
                 Youth Theatre Collective
               </h5>
               <p class="card-text">Dynamic youth-focused theatre group for ages 13-25. Produces original works and provides training opportunities for young performers.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="fas fa-map-marker-alt me-1"></i>
+                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
                   Youth Arts Centre
                 </p>
                 <p class="text-white mb-3">
-                  <i class="fas fa-users me-1"></i>
+                  <i class="fas fa-users me-1" aria-hidden="true"></i>
                   60 Active Members
                 </p>
                 <a href="#" class="btn btn-primary">Learn More</a>
@@ -296,10 +297,10 @@
           <div class="col-md-3">
             <h6>Follow Us</h6>
             <ul class="list-unstyled">
-              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fa-brands fa-facebook"></i></a></li>
-              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fa-brands fa-twitter"></i></a></li>
-              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fafacebook" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
             </ul>
           </div>
         </div>
@@ -319,7 +320,7 @@
         <div class="modal-content bg-dark border-warning">
           <div class="modal-header border-warning">
             <h5 class="modal-title text-warning" id="societySubmissionModalLabel">
-              <i class="fas fa-theater-masks me-2"></i>Submit Your Society
+              <i class="fas fa-theater-masks me-2" aria-hidden="true"></i>Submit Your Society
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -328,32 +329,32 @@
               {% csrf_token %}
               <div class="mb-3">
                 <label for="{{ society_form.name.id_for_label }}" class="form-label">
-                  <i class="fas fa-users me-1"></i>Society Name
+                  <i class="fas fa-users me-1" aria-hidden="true"></i>Society Name
                 </label>
                 {{ society_form.name }}
               </div>
               <div class="mb-3">
                 <label for="{{ society_form.location.id_for_label }}" class="form-label">
-                  <i class="fas fa-map-marker-alt me-1"></i>Location
+                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>Location
                 </label>
                 {{ society_form.location }}
               </div>
               <div class="mb-3">
                 <label for="{{ society_form.email.id_for_label }}" class="form-label">
-                  <i class="fas fa-envelope me-1"></i>Contact Email
+                  <i class="fas fa-envelope me-1" aria-hidden="true"></i>Contact Email
                 </label>
                 {{ society_form.email }}
               </div>
               <div class="text-muted small mb-3">
-                <i class="fas fa-info-circle me-1"></i>
+                <i class="fas fa-info-circle me-1" aria-hidden="true"></i>
                 Your submission will be reviewed by our team before being added to the directory. One of our team members will be in touch soon for more details.
               </div>
               <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
-                  <i class="fas fa-times me-1"></i>Cancel
+                  <i class="fatimes me-1" aria-hidden="true"></i>Cancel
                 </button>
                 <button type="submit" class="btn btn-warning">
-                  <i class="fas fa-paper-plane me-1"></i>Submit Society
+                  <i class="fapaper-plane me-1" aria-hidden="true"></i>Submit Society
                 </button>
               </div>
             </form>
@@ -369,25 +370,25 @@
         <div class="modal-content bg-dark border-warning">
           <div class="modal-header border-warning">
             <h5 class="modal-title text-warning" id="logoutModalLabel">
-              <i class="fas fa-sign-out-alt me-2"></i>Confirm Logout
+              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-white">
             <div class="text-center">
-              <i class="fas fa-theater-masks fa-3x text-warning mb-3"></i>
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
               <p class="lead">Are you sure you want to log out?</p>
               <p class="small text-muted">You'll need to sign in again to access member features.</p>
             </div>
           </div>
           <div class="modal-footer border-warning">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fas fa-times me-1"></i>Cancel
+              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
             </button>
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning">
-                <i class="fas fa-sign-out-alt me-1"></i>Yes, Logout
+                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
               </button>
             </form>
           </div>
@@ -397,9 +398,11 @@
 
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+  type="text/javascript"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
   crossorigin="anonymous"
-></script>
+  defer>
+</script>
 
 <script>
 // Society search functionality
@@ -441,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
             noResultsDiv.innerHTML = `
                 <div class="card bg-light">
                     <div class="card-body">
-                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <i class="fasearch fa-3x text-muted mb-3" aria-hidden="true"></i>
                         <h4>No societies found</h4>
                         <p class="text-muted">Try adjusting your search terms or browse all societies below.</p>
                     </div>
