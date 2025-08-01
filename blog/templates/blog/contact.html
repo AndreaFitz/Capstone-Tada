@@ -75,7 +75,7 @@
           <div class="col-12">
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                <i class="facheck-circle me-2" aria-hidden="true"></i>{{ message }}
+                <i class="fas fa-check-circle me-2" aria-hidden="true"></i>{{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             {% endfor %}
@@ -97,7 +97,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <h4 class="mb-4">
-                    <i class="faenvelope me-2 text-warning" aria-hidden="true"></i>Send us a Message
+                    <i class="fas fa-envelope me-2 text-warning" aria-hidden="true"></i>Send us a Message
                   </h4>
                   <form method="post">
                     {% csrf_token %}
@@ -118,34 +118,33 @@
                       {{ contact_form.message }}
                     </div>
                     <button type="submit" class="btn btn-warning">
-                      <i class="fapaper-plane me-1" aria-hidden="true"></i>Send Message
+                      <i class="fas fa-paper-plane me-1" aria-hidden="true"></i>Send Message
                     </button>
                   </form>
                 </div>
                 <div class="col-md-6">
                   <h4 class="mb-4">
-                    <i class="fainfo-circle me-2 text-warning" aria-hidden="true"></i>Contact Information
+                    <i class="fas fa-info-circle me-2 text-warning" aria-hidden="true"></i>Contact Information
                   </h4>
                   <div class="mb-4">
-                    <h6 class="text-warning"><i class="faenvelope me-2" aria-hidden="true"></i>Email</h6>
+                    <h6 class="text-warning"><i class="fas fa-envelope me-2" aria-hidden="true"></i>Email</h6>
                     <p class="text-white">info@tada-almanack.com</p>
                   </div>
                   <div class="mb-4">
-                    <h6 class="text-warning"><i class="faphone me-2" aria-hidden="true"></i>Phone</h6>
+                    <h6 class="text-warning"><i class="fas fa-phone me-2" aria-hidden="true"></i>Phone</h6>
                     <p class="text-white">+44 (0) 123 456 7890</p>
                   </div>
                   <div class="mb-4">
-                    <h6 class="text-warning"><i class="famap-marker-alt me-2" aria-hidden="true"></i>Address</h6>
+                    <h6 class="text-warning"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Address</h6>
                     <p class="text-white">
                       TADA! Headquarters<br>
-                      123 Theatre Street<br>
-                      Clitheroe<br>
-                      Lancashire, UK<br>
-                      BB7 1BQ
+                      6, 42nd Street<br>
+                      Elsinore<br>
+                      Chicago<br>
                     </p>
                   </div>
                   <div class="mb-4">
-                    <h6 class="text-warning"><i class="faclock me-2" aria-hidden="true"></i>Office Hours</h6>
+                    <h6 class="text-warning"><i class="fas fa-clock me-2" aria-hidden="true"></i>Office Hours</h6>
                     <p class="text-white">
                       Monday - Friday: 9:00 AM - 5:00 PM<br>
                       Saturday: 10:00 AM - 2:00 PM<br>
@@ -165,21 +164,21 @@
           <div class="card bg-dark text-white">
             <div class="card-body text-center">
               <h4 class="mb-3">
-                <i class="fashare-alt me-2 text-warning" aria-hidden="true"></i>Follow Us
+                <i class="fas fa-share-alt me-2 text-warning" aria-hidden="true"></i>Follow Us
               </h4>
               <p class="mb-4">Stay connected with the amateur theatre community</p>
-              <div class="d-flex justify-content-center gap-3">
-                <a href="https://www.facebook.com/" class="btn btn-outline-light btn-lg" title="Follow us on Facebook">
-                  <i class="fafacebook-f" aria-hidden="true"></i>
+              <div class="d-flex justify-content-center gap-4">
+                <a href="https://www.facebook.com/" class="text-light fs-2" title="Follow us on Facebook">
+                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.twitter.com/" class="btn btn-outline-light btn-lg" title="Follow us on Twitter">
-                  <i class="fatwitter" aria-hidden="true"></i>
+                <a href="https://www.twitter.com/" class="text-light fs-2" title="Follow us on Twitter">
+                  <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.instagram.com/" class="btn btn-outline-light btn-lg" title="Follow us on Instagram">
-                  <i class="fainstagram" aria-hidden="true"></i>
+                <a href="https://www.instagram.com/" class="text-light fs-2" title="Follow us on Instagram">
+                  <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.youtube.com/" class="btn btn-outline-light btn-lg" title="Watch our videos on YouTube">
-                  <i class="fayoutube" aria-hidden="true"></i>
+                <a href="https://www.youtube.com/" class="text-light fs-2" title="Watch our videos on YouTube">
+                  <i class="fab fa-youtube" aria-hidden="true"></i>
                 </a>
               </div>
             </div>
@@ -208,10 +207,10 @@
           <div class="col-md-3">
             <h6>Follow Us</h6>
             <ul class="list-unstyled">
-              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fafacebook" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fatwitter" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fainstagram" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fayoutube" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
             </ul>
           </div>
         </div>
@@ -230,25 +229,25 @@
         <div class="modal-content bg-dark border-warning">
           <div class="modal-header border-warning">
             <h5 class="modal-title text-warning" id="logoutModalLabel">
-              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
+              <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-white">
             <div class="text-center">
-              <i class="fatheater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
               <p class="lead">Are you sure you want to log out?</p>
               <p class="small text-muted">You'll need to sign in again to access member features.</p>
             </div>
           </div>
           <div class="modal-footer border-warning">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+              <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
             </button>
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning">
-                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
+                <i class="fas fa-sign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
               </button>
             </form>
           </div>

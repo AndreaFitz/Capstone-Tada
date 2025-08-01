@@ -103,7 +103,7 @@
           <div class="col-12">
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                <i class="facheck-circle me-2" aria-hidden="true"></i>{{ message }}
+                <i class="fas fa-check-circle me-2" aria-hidden="true"></i>{{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             {% endfor %}
@@ -117,7 +117,7 @@
           <div class="card border-warning">
             <div class="card-header bg-warning text-dark">
               <h1 class="mb-0">
-                <i class="fatheater-masks me-2" aria-hidden="true"></i>
+                <i class="fas fa-theater-masks me-2" aria-hidden="true"></i>
                 Experimental Theatre Lab
               </h1>
             </div>
@@ -131,11 +131,11 @@
                 <div class="col-md-4">
                   <div class="card bg-secondary">
                     <div class="card-body">
-                      <h5 class="card-title text-warning"><i class="faflask me-2" aria-hidden="true"></i>Lab Stats</h5>
-                      <p class="mb-2"><i class="famap-marker-alt me-2" aria-hidden="true"></i>Underground Studio</p>
-                      <p class="mb-2"><i class="fausers me-2" aria-hidden="true"></i>25 Active Members</p>
-                      <p class="mb-2"><i class="falightbulb me-2" aria-hidden="true"></i>12+ Experimental Shows/Year</p>
-                      <p class="mb-0"><i class="faclock me-2" aria-hidden="true"></i>Sessions: Wed & Sat 7:00pm</p>
+                      <h5 class="card-title text-warning"><i class="fas fa-flask me-2" aria-hidden="true"></i>Lab Stats</h5>
+                      <p class="mb-2"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Underground Studio</p>
+                      <p class="mb-2"><i class="fas fa-users me-2" aria-hidden="true"></i>25 Active Members</p>
+                      <p class="mb-2"><i class="fas fa-lightbulb me-2" aria-hidden="true"></i>12+ Experimental Shows/Year</p>
+                      <p class="mb-0"><i class="fas fa-clock me-2" aria-hidden="true"></i>Sessions: Wed & Sat 7:00pm</p>
                     </div>
                   </div>
                 </div>
@@ -148,13 +148,13 @@
       <!-- Interactive Events Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <h2><i class="facalendar-alt me-2 text-warning" aria-hidden="true"></i>Upcoming Experiments</h2>
+          <h2><i class="fas fa-calendar-alt me-2 text-warning" aria-hidden="true"></i>Upcoming Experiments</h2>
           <h3>Join our creative laboratory - share your innovative ideas and artistic visions!</h3>
           <!-- Add New Event Form (Only for logged in users) -->
           {% if user.is_authenticated %}
           <div class="card mb-3">
             <div class="card-body">
-              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Add New Experiment</h6>
+              <h6 class="card-title"><i class="fas fa-plus me-1" aria-hidden="true"></i>Add New Experiment</h6>
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="event_form" value="1">
@@ -175,19 +175,19 @@
                 <div class="row mb-2">
                   <div class="col-6">
                     <label for="{{ event_form.photo.id_for_label }}" class="form-label">
-                      <i class="facamera me-1" aria-hidden="true"></i>Event Photo
+                      <i class="fas fa-camera me-1" aria-hidden="true"></i>Event Photo
                     </label>
                     {{ event_form.photo }}
                   </div>
                   <div class="col-6">
                     <label for="{{ event_form.poster.id_for_label }}" class="form-label">
-                      <i class="faimage me-1" aria-hidden="true"></i>Event Poster
+                      <i class="fas fa-image me-1" aria-hidden="true"></i>Event Poster
                     </label>
                     {{ event_form.poster }}
                   </div>
                 </div>
                 <button type="submit" class="btn btn-warning">
-                  <i class="faplus me-1" aria-hidden="true"></i>Create Experiment
+                  <i class="fas fa-plus me-1" aria-hidden="true"></i>Create Experiment
                 </button>
               </form>
             </div>
@@ -203,11 +203,11 @@
                   <h5 class="card-title">{{ event.title }}</h5>
                   <p class="card-text">{{ event.description }}</p>
                   <p class="text-muted mb-2">
-                    <i class="facalendar me-1" aria-hidden="true"></i>{{ event.date|date:"F j, Y g:i A" }} | 
-                    <i class="famap-marker-alt me-1" aria-hidden="true"></i>{{ event.location }}
+                    <i class="fas fa-calendar me-1" aria-hidden="true"></i>{{ event.date|date:"F j, Y g:i A" }} | 
+                    <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>{{ event.location }}
                   </p>
                   <p class="text-muted small">
-                    <i class="fauser me-1" aria-hidden="true"></i>Posted by {{ event.created_by.username }} on {{ event.created_at|date:"F j, Y g:i A" }}
+                    <i class="fas fa-user me-1" aria-hidden="true"></i>Posted by {{ event.created_by.username }} on {{ event.created_at|date:"F j, Y g:i A" }}
                   </p>
                 </div>
                 {% if event.photo or event.poster %}
@@ -225,17 +225,17 @@
               {% if user.is_authenticated and user == event.created_by %}
               <div class="mt-2">
                 <a href="{% url 'edit_event' event.id %}" class="btn btn-sm btn-outline-warning">
-                  <i class="faedit" aria-hidden="true"></i> Edit
+                  <i class="fas fa-edit" aria-hidden="true"></i> Edit
                 </a>
                 <a href="{% url 'delete_event' event.id %}" class="btn btn-sm btn-outline-danger">
-                  <i class="fatrash" aria-hidden="true"></i> Delete
+                  <i class="fas fa-trash" aria-hidden="true"></i> Delete
                 </a>
               </div>
               {% endif %}
 
               <!-- Comments Section -->
               <div class="mt-3">
-                <h6><i class="facomments me-1" aria-hidden="true"></i>Comments ({{ event.comments.count }})</h6>
+                <h6><i class="fas fa-comments me-1" aria-hidden="true"></i>Comments ({{ event.comments.count }})</h6>
                 {% for comment in event.comments.all %}
                   <div class="card mt-2">
                     <div class="card-body py-2">
@@ -247,7 +247,7 @@
                         </div>
                         {% if user.is_authenticated and user == comment.author %}
                         <a href="{% url 'delete_comment' comment.id %}" class="btn btn-sm btn-outline-danger">
-                          <i class="fatrash" aria-hidden="true"></i>
+                          <i class="fas fa-trash" aria-hidden="true"></i>
                         </a>
                         {% endif %}
                       </div>
@@ -263,7 +263,7 @@
                   <div class="input-group input-group-sm">
                     <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
                     <button type="submit" class="btn btn-outline-warning">
-                      <i class="fapaper-plane" aria-hidden="true"></i>
+                      <i class="fas fa-paper-plane" aria-hidden="true"></i>
                     </button>
                   </div>
                 </form>
@@ -287,7 +287,7 @@
       <!-- Experimental Works Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <h2><i class="faflask me-2 text-warning" aria-hidden="true"></i>Recent Experimental Works</h2>
+          <h2><i class="fas fa-flask me-2 text-warning" aria-hidden="true"></i>Recent Experimental Works</h2>
           <div class="row">
             <div class="col-md-4 mb-3">
               <div class="card bg-dark border-warning">
