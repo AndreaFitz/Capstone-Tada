@@ -173,72 +173,186 @@
         </div>
       </div>
 
-      <!-- Events Section -->
+      <!-- Interactive Events Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <div class="card bg-dark text-white border-danger">
-            <div class="card-header bg-danger d-flex justify-content-between align-items-center">
-              <h3 class="card-title mb-0">
-                <i class="facalendar-alt me-2" aria-hidden="true"></i>Upcoming Events & Productions
-              </h3>
-              {% if user.is_authenticated %}
-                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#eventModal">
-                  <i class="faplus me-1" aria-hidden="true"></i>Add Event
-                </button>
-              {% endif %}
-            </div>
+          <h2><i class="fas fa-calendar-alt me-2 text-danger" aria-hidden="true"></i>Upcoming Events</h2>
+          <h3>Anyone can post here, but remember - Drama belongs on stage, not in the Comments section - please be kind!</h3>
+          <!-- Add New Event Form (Only for logged in users) -->
+          {% if user.is_authenticated %}
+          <div class="card mb-3">
             <div class="card-body">
-              {% if events %}
-                <div class="row">
-                  {% for event in events %}
-                    <div class="col-lg-6 mb-4">
-                      <div class="card h-100 bg-secondary border-danger">
-                        {% if event.image %}
-                          <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}" style="height: 200px; object-fit: cover;">
-                        {% endif %}
-                        <div class="card-body">
-                          <h5 class="card-title text-danger">{{ event.title }}</h5>
-                          <p class="card-text">{{ event.description }}</p>
-                          <p class="text-muted small">
-                            <i class="facalendar me-1" aria-hidden="true"></i>{{ event.date|date:"F d, Y" }}
-                            <i class="faclock ms-2 me-1" aria-hidden="true"></i>{{ event.time }}
-                            <i class="famap-marker-alt ms-2 me-1" aria-hidden="true"></i>{{ event.location }}
-                          </p>
-                          {% if event.ticket_price %}
-                            <p class="text-warning">
-                              <i class="faticket-alt me-1" aria-hidden="true"></i>£{{ event.ticket_price }}
-                            </p>
-                          {% endif %}
-                        </div>
-                        {% if user.is_authenticated %}
-                          <div class="card-footer bg-dark border-danger">
-                            <small class="text-muted">Posted by {{ event.created_by.username }} on {{ event.created_at|date:"M d, Y" }}</small>
-                            <div class="float-end">
-                              <a href="{% url 'edit_event' event.id %}" class="btn btn-sm btn-outline-warning me-1">
-                                <i class="faedit" aria-hidden="true"></i>
-                              </a>
-                              <a href="{% url 'delete_event' event.id %}" class="btn btn-sm btn-outline-danger">
-                                <i class="fatrash" aria-hidden="true"></i>
-                              </a>
-                            </div>
-                          </div>
-                        {% endif %}
-                      </div>
-                    </div>
-                  {% endfor %}
+              <h6 class="card-title"><i class="fas fa-plus me-1" aria-hidden="true"></i>Add New Event</h6>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="event_form" value="1">
+                <div class="mb-2">
+                  {{ event_form.title }}
                 </div>
-              {% else %}
-                <div class="text-center py-5">
-                  <i class="facalendar-times fa-3x text-muted mb-3" aria-hidden="true"></i>
-                  <h5>No upcoming events</h5>
-                  <p class="text-muted">Check back soon for our next classical production!</p>
-                  {% if user.is_authenticated %}
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eventModal">
-                      <i class="faplus me-2" aria-hidden="true"></i>Add the First Event
+                <div class="mb-2">
+                  {{ event_form.description }}
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    {{ event_form.date }}
+                  </div>
+                  <div class="col-6">
+                    {{ event_form.location }}
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    <label for="{{ event_form.photo.id_for_label }}" class="form-label">
+                      Event Photo
+                    </label>
+                    {{ event_form.photo }}
+                  </div>
+                  <div class="col-6">
+                    <label for="{{ event_form.poster.id_for_label }}" class="form-label">
+                      Event Poster
+                    </label>
+                    {{ event_form.poster }}
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-danger btn-sm">
+                  <i class="fas fa-plus me-1" aria-hidden="true"></i>Add Event
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+          
+          <!-- Display Events -->
+          {% for event in events %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h5 class="card-title text-danger">{{ event.title }}</h5>
+                  <p class="card-text"><i class="fas fa-calendar me-1" aria-hidden="true"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
+                  <p class="card-text"><i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i> {{ event.location }}</p>
+                  <p class="card-text">{{ event.description }}</p>
+                  
+                  <!-- Display uploaded images -->
+                  {% if event.photo or event.poster %}
+                  <div class="row mt-3">
+                    {% if event.photo %}
+                    <div class="col-md-6 mb-2">
+                      <p class="small text-danger mb-1"><i class="fas fa-camera me-1" aria-hidden="true"></i>Event Photo:</p>
+                      <img src="{{ event.photo.url }}" class="img-fluid rounded shadow-sm" alt="Event Photo" style="max-height: 200px;">
+                    </div>
+                    {% endif %}
+                    {% if event.poster %}
+                    <div class="col-md-6 mb-2">
+                      <p class="small text-danger mb-1"><i class="fas fa-image me-1" aria-hidden="true"></i>Event Poster:</p>
+                      <img src="{{ event.poster.url }}" class="img-fluid rounded shadow-sm" alt="Event Poster" style="max-height: 200px;">
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                  
+                  <small class="text-white">Posted by {{ event.created_by.username }} on {{ event.created_at|date:"M j, Y" }}</small>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'edit_event' event.id %}"><i class="fas fa-edit me-1" aria-hidden="true"></i>Edit</a></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'delete_event' event.id %}"><i class="fas fa-trash me-1" aria-hidden="true"></i>Delete</a></li>
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
+              
+              <!-- Comments Section -->
+              <hr>
+              <h6><i class="fas fa-comments me-1" aria-hidden="true"></i>Comments ({{ event.comments.count }})</h6>
+              
+              <!-- Display Comments -->
+              {% for comment in event.comments.all %}
+              <div class="border-start border-danger ps-3 mb-2">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <small class="text-danger fw-bold">{{ comment.author.username }}</small>
+                    <small class="text-white">{{ comment.created_at|date:"M j, Y g:i A" }}</small>
+                    <p class="mb-0 small">{{ comment.content }}</p>
+                  </div>
+                  {% if user.is_authenticated and comment.author == user %}
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="dropdown">
+                      <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
                     </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item text-danger" href="{% url 'delete_comment' comment.id %}"><i class="fas fa-trash me-1" aria-hidden="true"></i>Delete</a></li>
+                    </ul>
+                  </div>
                   {% endif %}
                 </div>
+              </div>
+              {% empty %}
+              <p class="small text-white">No comments yet.</p>
+              {% endfor %}
+              
+              <!-- Add Comment Form -->
+              {% if user.is_authenticated %}
+              <form method="post" action="{% url 'add_comment' event.id %}" class="mt-2">
+                {% csrf_token %}
+                <div class="input-group input-group-sm">
+                  <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
+                  <button type="submit" class="btn btn-outline-danger">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </form>
               {% endif %}
+            </div>
+          </div>
+          {% empty %}
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="text-white">No events posted yet.</p>
+              {% if user.is_authenticated %}
+              <p class="small">Be the first to add an event!</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Productions Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2><i class="fas fa-theater-masks me-2 text-danger" aria-hidden="true"></i>Recent Productions</h2>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="card h-100 bg-dark text-white border-danger">
+                <div class="card-body">
+                  <h5 class="card-title text-danger">King Lear</h5>
+                  <p class="text-danger">William Shakespeare • Spring 2024</p>
+                  <p class="card-text">Our acclaimed production of Shakespeare's tragic masterpiece, featuring traditional staging and powerful performances at Heritage Theatre.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100 bg-dark text-white border-danger">
+                <div class="card-body">
+                  <h5 class="card-title text-danger">The Importance of Being Earnest</h5>
+                  <p class="text-danger">Oscar Wilde • Winter 2024</p>
+                  <p class="card-text">A delightful Victorian comedy that showcased our society's talent for witty dialogue and period authenticity.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100 bg-dark text-white border-danger">
+                <div class="card-body">
+                  <h5 class="card-title text-danger">The Three Sisters</h5>
+                  <p class="text-danger">Anton Chekhov • Autumn 2023</p>
+                  <p class="card-text">An emotionally rich production that demonstrated our commitment to classical European drama and ensemble acting.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -303,88 +417,95 @@
         </div>
       </div>
 
-      <!-- Q&A Section -->
+      <!-- Questions & Answers Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <div class="card bg-dark text-white border-danger">
-            <div class="card-header bg-danger d-flex justify-content-between align-items-center">
-              <h3 class="card-title mb-0">
-                <i class="facomments me-2" aria-hidden="true"></i>Community Q&A
-              </h3>
-              {% if user.is_authenticated %}
-                <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#questionModal">
-                  <i class="faquestion me-1" aria-hidden="true"></i>Ask Question
-                </button>
-              {% endif %}
-            </div>
+          <h2><i class="fas fa-question-circle me-2 text-danger" aria-hidden="true"></i>Questions & Answers</h2>
+          
+          <!-- Add New Question Form (Only for logged in users) -->
+          {% if user.is_authenticated %}
+          <div class="card mb-4 bg-dark border-danger">
             <div class="card-body">
-              {% if questions %}
-                {% for question in questions %}
-                  <div class="mb-4 p-3 bg-secondary rounded border-start border-danger border-3">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                      <h6 class="mb-0 text-danger">{{ question.title }}</h6>
-                      {% if user.is_authenticated %}
-                        <div>
-                          <a href="{% url 'edit_question' question.id %}" class="btn btn-sm btn-outline-warning me-1">
-                            <i class="faedit" aria-hidden="true"></i>
-                          </a>
-                          <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-outline-danger">
-                            <i class="fatrash" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                      {% endif %}
-                    </div>
-                    <p class="mb-2">{{ question.content }}</p>
-                    <small class="text-muted">
-                      Asked by {{ question.author.username }} on {{ question.created_at|date:"M d, Y" }}
-                    </small>
-                    
-                    {% if question.answers.all %}
-                      <div class="mt-3">
-                        <h6 class="text-warning"><i class="fareply me-1" aria-hidden="true"></i>Answers:</h6>
-                        {% for answer in question.answers.all %}
-                          <div class="ms-3 mt-2 p-2 bg-dark rounded">
-                            <p class="mb-1">{{ answer.content }}</p>
-                            <small class="text-muted">
-                              Answered by {{ answer.author.username }} on {{ answer.created_at|date:"M d, Y" }}
-                            </small>
-                          </div>
-                        {% endfor %}
-                      </div>
-                    {% endif %}
-                    
-                    {% if user.is_authenticated %}
-                      <div class="mt-3">
-                        <button class="btn btn-sm btn-outline-danger" data-bs-toggle="collapse" data-bs-target="#answer-{{ question.id }}">
-                          <i class="fareply me-1" aria-hidden="true"></i>Answer
-                        </button>
-                        <div class="collapse mt-2" id="answer-{{ question.id }}">
-                          <form method="post" action="{% url 'add_answer' question.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                              <textarea class="form-control" name="content" rows="2" placeholder="Your answer..." required></textarea>
-                              <button class="btn btn-danger" type="submit">Post</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endfor %}
-              {% else %}
-                <div class="text-center py-5">
-                  <i class="faquestion-circle fa-3x text-muted mb-3" aria-hidden="true"></i>
-                  <h5>No questions yet</h5>
-                  <p class="text-muted">Be the first to ask about our classical productions!</p>
-                  {% if user.is_authenticated %}
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#questionModal">
-                      <i class="faquestion me-2" aria-hidden="true"></i>Ask the First Question
-                    </button>
-                  {% endif %}
+              <h6 class="card-title text-danger"><i class="fas fa-plus me-1" aria-hidden="true"></i>Ask a Question</h6>
+              <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="question_form" value="1">
+                <div class="mb-2">
+                  {{ question_form.title }}
                 </div>
+                <div class="mb-2">
+                  {{ question_form.content }}
+                </div>
+                <button type="submit" class="btn btn-danger">
+                  <i class="fas fa-question me-1" aria-hidden="true"></i>Post Question
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+          
+          <!-- Display Questions -->
+          {% for question in questions %}
+          <div class="card mb-3 bg-dark text-white border-danger">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h5 class="card-title text-danger">{{ question.title }}</h5>
+                  <p class="card-text">{{ question.content }}</p>
+                  <small class="text-white">Asked by {{ question.author.username }} on {{ question.created_at|date:"M j, Y g:i A" }}</small>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'edit_question' question.id %}"><i class="fas fa-edit me-1" aria-hidden="true"></i>Edit</a></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'delete_question' question.id %}"><i class="fas fa-trash me-1" aria-hidden="true"></i>Delete</a></li>
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
+              
+              <!-- Answers Section -->
+              <hr>
+              <h6><i class="fas fa-reply me-1" aria-hidden="true"></i>Answers ({{ question.answers.count }})</h6>
+              
+              <!-- Display Answers -->
+              {% for answer in question.answers.all %}
+              <div class="border-start border-danger ps-3 mb-2">
+                <small class="text-danger fw-bold">{{ answer.author.username }}</small>
+                <small class="text-white">{{ answer.created_at|date:"M j, Y g:i A" }}</small>
+                <p class="mb-0">{{ answer.content }}</p>
+              </div>
+              {% empty %}
+              <p class="small text-white">No answers yet.</p>
+              {% endfor %}
+              
+              <!-- Add Answer Form -->
+              {% if user.is_authenticated %}
+              <form method="post" action="{% url 'add_answer' question.id %}" class="mt-2">
+                {% csrf_token %}
+                <div class="input-group">
+                  <textarea name="content" class="form-control" rows="2" placeholder="Your answer..." required></textarea>
+                  <button type="submit" class="btn btn-outline-danger">
+                    <i class="fas fa-reply me-1" aria-hidden="true"></i>Answer
+                  </button>
+                </div>
+              </form>
               {% endif %}
             </div>
           </div>
+          {% empty %}
+          <div class="card bg-dark border-danger">
+            <div class="card-body text-center text-white">
+              <p class="text-white">No questions posted yet.</p>
+              {% if user.is_authenticated %}
+              <p class="small">Be the first to ask a question!</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
 
