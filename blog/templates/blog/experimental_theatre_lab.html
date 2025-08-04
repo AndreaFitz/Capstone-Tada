@@ -16,7 +16,7 @@
     crossorigin="anonymous">
     
     <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
@@ -326,7 +326,7 @@
           <div class="card bg-dark border-warning">
             <div class="card-body">
               <h4 class="text-warning mb-3">
-                <i class="falightbulb me-2" aria-hidden="true"></i>Our Laboratory
+                Our Laboratory
               </h4>
               <p class="text-white">Located in the heart of the arts district, our Underground Studio provides a flexible space for creative experimentation. Equipped with state-of-the-art lighting, sound, and projection systems.</p>
               <p class="text-white"><strong>Facilities:</strong></p>
@@ -344,11 +344,11 @@
           <div class="card bg-dark border-warning">
             <div class="card-body">
               <h4 class="text-warning mb-3">
-                <i class="faenvelope me-2" aria-hidden="true"></i>Connect With Us
+                Connect With Us
               </h4>
-              <p class="mb-1"><i class="faenvelope me-2" aria-hidden="true"></i>experiments@etl-theatre.org</p>
-              <p class="mb-1"><i class="faphone me-2" aria-hidden="true"></i>01234 567891</p>
-              <p class="mb-0"><i class="faglobe me-2" aria-hidden="true"></i>www.experimental-theatre-lab.org</p>
+              <p class="mb-1">experiments@etl-theatre.org</p>
+              <p class="mb-1">01234 567891</p>
+              <p class="mb-0">www.experimental-theatre-lab.org</p>
             </div>
           </div>
         </div>
@@ -357,13 +357,13 @@
       <!-- Questions & Answers Section -->
       <div class="row mb-5">
         <div class="col-12">
-          <h2><i class="faquestion-circle me-2 text-warning" aria-hidden="true"></i>Questions & Creative Discussions</h2>
+          <h2>Questions & Creative Discussions</h2>
           
           <!-- Add New Question Form (Only for logged in users) -->
           {% if user.is_authenticated %}
           <div class="card mb-4">
             <div class="card-body">
-              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Start a Discussion</h6>
+              <h6 class="card-title"><i class="fas fa-plus me-1" aria-hidden="true"></i>Start a Discussion</h6>
               <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="question_form" value="1">
@@ -374,7 +374,7 @@
                   {{ question_form.content }}
                 </div>
                 <button type="submit" class="btn btn-warning">
-                  <i class="faplus me-1" aria-hidden="true"></i>Post Discussion
+                  <i class="fas fa-plus me-1" aria-hidden="true"></i>Post Discussion
                 </button>
               </form>
             </div>
@@ -390,7 +390,7 @@
                   <h5 class="card-title">{{ question.title }}</h5>
                   <p class="card-text">{{ question.content }}</p>
                   <p class="text-muted small">
-                    <i class="fauser me-1" aria-hidden="true"></i>Asked by {{ question.author.username }} on {{ question.created_at|date:"F j, Y g:i A" }}
+                    <i class="fas fa-user me-1" aria-hidden="true"></i>Asked by {{ question.author.username }} on {{ question.created_at|date:"F j, Y g:i A" }}
                   </p>
                 </div>
                 
@@ -398,10 +398,10 @@
                 {% if user.is_authenticated and user == question.author %}
                 <div class="ms-3">
                   <a href="{% url 'edit_question' question.id %}" class="btn btn-sm btn-outline-warning">
-                    <i class="faedit" aria-hidden="true"></i>
+                    <i class="fas fa-edit" aria-hidden="true"></i>
                   </a>
                   <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-outline-danger">
-                    <i class="fatrash" aria-hidden="true"></i>
+                    <i class="fas fa-trash" aria-hidden="true"></i>
                   </a>
                 </div>
                 {% endif %}
@@ -409,7 +409,7 @@
 
               <!-- Answers Section -->
               <div class="mt-3">
-                <h6><i class="facomments me-1" aria-hidden="true"></i>Responses ({{ question.answers.count }})</h6>
+                <h6><i class="fas fa-comments me-1" aria-hidden="true"></i>Responses ({{ question.answers.count }})</h6>
                 {% for answer in question.answers.all %}
                   <div class="card mt-2 border-light">
                     <div class="card-body py-2">
@@ -428,7 +428,7 @@
                   <div class="input-group input-group-sm">
                     <input type="text" name="content" class="form-control" placeholder="Add your response..." required>
                     <button type="submit" class="btn btn-outline-warning">
-                      <i class="fapaper-plane" aria-hidden="true"></i>
+                      <i class="fas fa-paper-plane" aria-hidden="true"></i>
                     </button>
                   </div>
                 </form>
@@ -470,10 +470,10 @@
           <div class="col-md-3">
             <h6>Follow Us</h6>
             <ul class="list-unstyled">
-              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fafacebook" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fatwitter" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fainstagram" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fayoutube" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fab fa-facebook-f me-2" aria-hidden="true"></i>Facebook</a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on X (Twitter)"><i class="fab fa-x-twitter me-2" aria-hidden="true"></i>Twitter</a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fab fa-instagram me-2" aria-hidden="true"></i>Instagram</a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fab fa-youtube me-2" aria-hidden="true"></i>YouTube</a></li>
             </ul>
           </div>
         </div>
@@ -492,25 +492,25 @@
         <div class="modal-content bg-dark border-warning">
           <div class="modal-header border-warning">
             <h5 class="modal-title text-warning" id="logoutModalLabel">
-              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
+              <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-white">
             <div class="text-center">
-              <i class="fatheater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
               <p class="lead">Are you sure you want to log out?</p>
               <p class="small text-muted">You'll need to sign in again to access member features.</p>
             </div>
           </div>
           <div class="modal-footer border-warning">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+              <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
             </button>
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning">
-                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
+                <i class="fas fa-sign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
               </button>
             </form>
           </div>
