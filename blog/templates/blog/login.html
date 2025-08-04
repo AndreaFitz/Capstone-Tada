@@ -13,7 +13,7 @@
     crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
@@ -21,7 +21,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" type="text/css">
+        <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Oregano:wght@400&display=swap" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" type="text/css">
   </head>
@@ -33,7 +34,7 @@
           <img src="{% static 'blog/images/favicon.png' %}" alt="TADA!" width="30" height="30" class="d-inline-block align-text-top me-2">
           TADA! The Amateur Dramatic Almanack
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -72,9 +73,9 @@
               <div class="card-body">
               {% if messages %}
                 {% for message in messages %}
-                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2" aria-hidden="true"></i>{{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 {% endfor %}
               {% endif %}
@@ -124,11 +125,11 @@
           </div>
           <div class="col-md-3">
             <h6>Follow Us</h6>
-            <ul class="list-unstyled text-center">
-              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+            <ul class="list-unstyled">
+              <li><a href="https://www.facebook.com/" class="text-light" title="Follow us on Facebook"><i class="fab fa-facebook-f me-2" aria-hidden="true"></i>Facebook</a></li>
+              <li><a href="https://www.twitter.com/" class="text-light" title="Follow us on X (Twitter)"><i class="fab fa-x-twitter me-2" aria-hidden="true"></i>Twitter</a></li>
+              <li><a href="https://www.instagram.com/" class="text-light" title="Follow us on Instagram"><i class="fab fa-instagram me-2" aria-hidden="true"></i>Instagram</a></li>
+              <li><a href="https://www.youtube.com/" class="text-light" title="Watch our videos on YouTube"><i class="fab fa-youtube me-2" aria-hidden="true"></i>YouTube</a></li>
             </ul>
           </div>
         </div>
@@ -144,9 +145,47 @@
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
   type="text/javascript"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-  crossorigin="anonymous"
-  defer>
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+  crossorigin="anonymous">
+</script>
+
+<!-- Alert dismissal and navbar toggle script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle alert dismissal manually if Bootstrap fails
+    const alertCloseButtons = document.querySelectorAll('[data-bs-dismiss="alert"]');
+    alertCloseButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const alert = this.closest('.alert');
+            if (alert) {
+                // Try Bootstrap first
+                if (typeof bootstrap !== 'undefined' && bootstrap.Alert) {
+                    const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                    bsAlert.close();
+                } else {
+                    // Manual fallback
+                    alert.classList.remove('show');
+                    alert.classList.add('fade');
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 150);
+                }
+            }
+        });
+    });
+    
+    // Manual navbar toggle fallback
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('#navbarNav');
+    
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', function() {
+            if (typeof bootstrap === 'undefined' || !bootstrap.Collapse) {
+                navbarCollapse.classList.toggle('show');
+            }
+        });
+    }
+});
 </script>
 
 </body>

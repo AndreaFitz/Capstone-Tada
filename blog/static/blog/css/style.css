@@ -1,12 +1,48 @@
+/* TADA! Theatre Blog Styles - Updated with Oregano font for body text */
+/* Updated: January 2025 - Font changes applied */
+
+/* Apply Oregano font to body, but let specific elements override */
 body {
     background-color: black;
-    font-family: "Limelight", sans-serif;
+    font-family: "Oregano", cursive, serif !important;
+    font-size: 2.5rem !important;
     color: white; /* Make all text white for better contrast */
+}
+
+/* Apply Oregano font to most elements, but exclude Font Awesome icons and headings */
+p, li, .text-body, .card-body p, 
+.alert, .form-control, .btn,
+footer p, footer li, footer a {
+    font-family: "Oregano", cursive, serif !important;
+    font-size: 1.5rem !important;
+}
+
+/* Apply Limelight font to headers, navbar brand, and footer headings */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.navbar-nav .nav-link,
+footer h5, footer h6,
+.limelight-regular,
+nav .navbar-brand,
+footer .h5, footer .h6 {
+    font-family: "Limelight", sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Make navbar links smaller */
+.navbar-nav .nav-link {
+    font-size: 1.2rem !important;
+}
+
+/* Ensure Font Awesome icons keep their font family */
+.fab, .fas, .far, .fal, .fad, .fa,
+i.fab, i.fas, i.far, i.fal, i.fad, i.fa {
+    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free", "FontAwesome" !important;
 }
 
 /* Apply Limelight font to headings and brand */
 .navbar-brand {
-    font-family: "Limelight", sans-serif !important;
     font-weight: 400;
     font-style: normal;
     font-size: 1.25rem; /* Default size */
@@ -54,15 +90,8 @@ body {
     }
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Limelight", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 /*font class for manual application*/
 .limelight-regular {
-  font-family: "Limelight", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -76,16 +105,20 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
 }
 
-/* Headings styling */
+/* Headings styling - Limelight font applied above */
 h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add shadow for better readability */
 }
 
 /* Paragraph and text styling */
-p, li {
+p, li, .text-body, .card-body p, 
+.alert, .form-control, .btn,
+footer p, footer li, footer a {
     color: #f8f9fa; /* Light gray for better readability */
     line-height: 1.6; /* Better line spacing */
+    font-weight: 400;
+    font-size: 1.5rem !important;
 }
 
 /* Lead text styling */
