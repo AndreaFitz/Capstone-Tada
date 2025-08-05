@@ -93,7 +93,7 @@
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text bg-warning">
-                  <i class="fasearch" aria-hidden="true"></i>
+                  <i class="fas fa-search" aria-hidden="true"></i>
                 </span>
                 <input type="text" id="societySearch" class="form-control" placeholder="Search for a theatre society by name or location...">
                 <button class="btn btn-outline-warning" type="button" id="clearSearch">
@@ -120,7 +120,7 @@
               <p class="card-text">Dedicated to preserving and performing classical works including Shakespeare, Chekhov, and other theatrical masterpieces....and the odd panto.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
+                  <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
                   Heritage Theatre
                 </p>
                 <p class="text-white mb-3">
@@ -145,7 +145,7 @@
               <p class="card-text">Pushing boundaries with avant-garde performances, immersive theatre, and innovative storytelling techniques.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
+                  <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
                   Underground Studio
                 </p>
                 <p class="text-white mb-3">
@@ -170,7 +170,7 @@
               <p class="card-text">Established theatre company specializing in musicals and large-scale productions. Winner of multiple regional theatre awards.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
+                  <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
                   City Centre Arts Complex
                 </p>
                 <p class="text-white mb-3">
@@ -195,7 +195,7 @@
               <p class="card-text">Bringing theatre to schools, care homes, and community events. Focuses on educational and socially conscious productions.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
+                  <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
                   Various Locations
                 </p>
                 <p class="text-white mb-3">
@@ -220,7 +220,7 @@
               <p class="card-text">A vibrant community theatre group performing classic and contemporary works since 1985. Known for their intimate productions and welcoming atmosphere.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
+                  <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
                   Riverside Community Centre
                 </p>
                 <p class="text-white mb-3">
@@ -245,7 +245,7 @@
               <p class="card-text">Dynamic youth-focused theatre group for ages 13-25. Produces original works and provides training opportunities for young performers.</p>
               <div class="mt-auto">
                 <p class="text-white mb-2">
-                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>
+                  <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
                   Youth Arts Centre
                 </p>
                 <p class="text-white mb-3">
@@ -335,7 +335,7 @@
               </div>
               <div class="mb-3">
                 <label for="{{ society_form.location.id_for_label }}" class="form-label">
-                  <i class="famap-marker-alt me-1" aria-hidden="true"></i>Location
+                  <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>Location
                 </label>
                 {{ society_form.location }}
               </div>
@@ -351,10 +351,10 @@
               </div>
               <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
-                  <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+                  <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
                 </button>
                 <button type="submit" class="btn btn-warning">
-                  <i class="fapaper-plane me-1" aria-hidden="true"></i>Submit Society
+                  <i class="fas fa-paper-plane me-1" aria-hidden="true"></i>Submit Society
                 </button>
               </div>
             </form>
@@ -370,7 +370,7 @@
         <div class="modal-content bg-dark border-warning">
           <div class="modal-header border-warning">
             <h5 class="modal-title text-warning" id="logoutModalLabel">
-              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
+              <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -383,12 +383,12 @@
           </div>
           <div class="modal-footer border-warning">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+              <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
             </button>
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning">
-                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
+                <i class="fas fa-sign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
               </button>
             </form>
           </div>
@@ -398,8 +398,7 @@
 
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-  type="text/javascript"
-  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
   crossorigin="anonymous">
 </script>
 

@@ -3,18 +3,17 @@
 
 /* Apply Oregano font to body, but let specific elements override */
 body {
-    background-color: black;
-    font-family: "Oregano", cursive, serif !important;
-    font-size: 2.5rem !important;
-    color: white; /* Make all text white for better contrast */
+    font-family: "Oregano", cursive, serif;
+    font-size: 1rem;
+    background-color: #f8f9fa; /* Light background for better readability */
 }
 
 /* Apply Oregano font to most elements, but exclude Font Awesome icons and headings */
 p, li, .text-body, .card-body p, 
 .alert, .form-control, .btn,
 footer p, footer li, footer a {
-    font-family: "Oregano", cursive, serif !important;
-    font-size: 1.5rem !important;
+    font-family: "Oregano", cursive, serif;
+    font-size: 1rem;
 }
 
 /* Apply Limelight font to headers, navbar brand, and footer headings */
@@ -30,9 +29,9 @@ footer .h5, footer .h6 {
     font-style: normal !important;
 }
 
-/* Make navbar links smaller */
+/* Make navbar links appropriately sized */
 .navbar-nav .nav-link {
-    font-size: 1.2rem !important;
+    font-size: 1rem;
 }
 
 /* Ensure Font Awesome icons keep their font family */
