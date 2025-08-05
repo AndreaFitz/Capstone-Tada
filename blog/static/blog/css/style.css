@@ -5,7 +5,8 @@
 body {
     font-family: "Oregano", cursive, serif;
     font-size: 1rem;
-    background-color: #f8f9fa; /* Light background for better readability */
+    background-color: black; /* Dark background for theatre theme */
+    color: #ffffff; /* White text for better contrast */
 }
 
 /* Apply Oregano font to most elements, but exclude Font Awesome icons and headings */
