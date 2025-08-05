@@ -9,10 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Experimental Theatre Lab - TADA! The Amateur Dramatic Almanack</title>
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
-    type="text/css"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
     crossorigin="anonymous">
     
     <!-- Font Awesome icons -->
@@ -202,11 +200,11 @@
                 <div class="flex-grow-1">
                   <h5 class="card-title">{{ event.title }}</h5>
                   <p class="card-text">{{ event.description }}</p>
-                  <p class="text-muted mb-2">
+                  <p class="text-white mb-2">
                     <i class="fas fa-calendar me-1" aria-hidden="true"></i>{{ event.date|date:"F j, Y g:i A" }} | 
                     <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>{{ event.location }}
                   </p>
-                  <p class="text-muted small">
+                  <p class="text-white small">
                     <i class="fas fa-user me-1" aria-hidden="true"></i>Posted by {{ event.created_by.username }} on {{ event.created_at|date:"F j, Y g:i A" }}
                   </p>
                 </div>
@@ -222,7 +220,7 @@
               </div>
               
               <!-- Edit/Delete buttons for event creator -->
-              {% if user.is_authenticated and user == event.created_by %}
+              {% if user.is_authenticated %}
               <div class="mt-2">
                 <a href="{% url 'edit_event' event.id %}" class="btn btn-sm btn-outline-warning">
                   <i class="fas fa-edit" aria-hidden="true"></i> Edit
@@ -242,19 +240,24 @@
                       <div class="d-flex justify-content-between align-items-start">
                         <div>
                           <strong>{{ comment.author.username }}</strong>
-                          <small class="text-muted">{{ comment.created_at|date:"F j, Y g:i A" }}</small>
+                          <small class="text-white">{{ comment.created_at|date:"F j, Y g:i A" }}</small>
                           <p class="mb-0 mt-1">{{ comment.content }}</p>
                         </div>
-                        {% if user.is_authenticated and user == comment.author %}
-                        <a href="{% url 'delete_comment' comment.id %}" class="btn btn-sm btn-outline-danger">
-                          <i class="fas fa-trash" aria-hidden="true"></i>
-                        </a>
+                        {% if user.is_authenticated %}
+                        <div class="ms-2">
+                          <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-warning me-1">
+                            <i class="fas fa-edit" aria-hidden="true"></i>
+                          </a>
+                          <a href="{% url 'delete_comment' comment.id %}" class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-trash" aria-hidden="true"></i>
+                          </a>
+                        </div>
                         {% endif %}
                       </div>
                     </div>
                   </div>
                 {% empty %}
-                  <p class="text-muted small">No comments yet.</p>
+                  <p class="text-white small">No comments yet.</p>
                 {% endfor %}
                 
                 {% if user.is_authenticated %}
@@ -294,7 +297,7 @@
                 <div class="card-body">
                   <h5 class="card-title text-warning">Virtual Reality Dreams</h5>
                   <p class="card-text text-white">An immersive VR experience exploring the subconscious mind through interactive storytelling.</p>
-                  <p class="small text-muted">January 2025</p>
+                  <p class="small text-white">January 2025</p>
                 </div>
               </div>
             </div>
@@ -303,7 +306,7 @@
                 <div class="card-body">
                   <h5 class="card-title text-warning">Silent Conversations</h5>
                   <p class="card-text text-white">A wordless performance piece using movement, light, and sound to explore human connection.</p>
-                  <p class="small text-muted">November 2024</p>
+                  <p class="small text-white">November 2024</p>
                 </div>
               </div>
             </div>
@@ -312,7 +315,7 @@
                 <div class="card-body">
                   <h5 class="card-title text-warning">Algorithmic Emotions</h5>
                   <p class="card-text text-white">AI-generated script performed by human actors, blending technology with traditional theatre.</p>
-                  <p class="small text-muted">September 2024</p>
+                  <p class="small text-white">September 2024</p>
                 </div>
               </div>
             </div>
@@ -389,13 +392,13 @@
                 <div class="flex-grow-1">
                   <h5 class="card-title">{{ question.title }}</h5>
                   <p class="card-text">{{ question.content }}</p>
-                  <p class="text-muted small">
+                  <p class="text-white small">
                     <i class="fas fa-user me-1" aria-hidden="true"></i>Asked by {{ question.author.username }} on {{ question.created_at|date:"F j, Y g:i A" }}
                   </p>
                 </div>
                 
                 <!-- Edit/Delete buttons for question author -->
-                {% if user.is_authenticated and user == question.author %}
+                {% if user.is_authenticated %}
                 <div class="ms-3">
                   <a href="{% url 'edit_question' question.id %}" class="btn btn-sm btn-outline-warning">
                     <i class="fas fa-edit" aria-hidden="true"></i>
@@ -413,13 +416,32 @@
                 {% for answer in question.answers.all %}
                   <div class="card mt-2 border-light">
                     <div class="card-body py-2">
-                      <strong>{{ answer.author.username }}</strong>
-                      <small class="text-muted">{{ answer.created_at|date:"F j, Y g:i A" }}</small>
-                      <p class="mb-0 mt-1">{{ answer.content }}</p>
+                      <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                          <strong>{{ answer.author.username }}</strong>
+                          <small class="text-white">{{ answer.created_at|date:"F j, Y g:i A" }}</small>
+                          <p class="mb-0 mt-1">{{ answer.content }}</p>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div class="dropdown">
+                          <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-ellipsis-v"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'edit_answer' answer.id %}">
+                              <i class="fas fa-edit me-1"></i>Edit
+                            </a></li>
+                            <li><a class="dropdown-item text-danger" href="{% url 'delete_answer' answer.id %}">
+                              <i class="fas fa-trash me-1"></i>Delete
+                            </a></li>
+                          </ul>
+                        </div>
+                        {% endif %}
+                      </div>
                     </div>
                   </div>
                 {% empty %}
-                  <p class="text-muted small">No responses yet.</p>
+                  <p class="text-white small">No responses yet.</p>
                 {% endfor %}
                 
                 {% if user.is_authenticated %}
@@ -500,7 +522,7 @@
             <div class="text-center">
               <i class="fas fa-theater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
               <p class="lead">Are you sure you want to log out?</p>
-              <p class="small text-muted">You'll need to sign in again to access member features.</p>
+              <p class="small text-white">You'll need to sign in again to access member features.</p>
             </div>
           </div>
           <div class="modal-footer border-warning">
@@ -520,11 +542,8 @@
 
     <!-- Bootstrap JavaScript -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"
       defer>
-    </script>
-
-</body>
+    </script></body>
 </html>

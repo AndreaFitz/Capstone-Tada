@@ -21,8 +21,8 @@ from django.conf.urls.static import static
 from blog.views import (
     index, about, directory, riverside_players, metropolitan_drama,
     experimental_theatre_lab, cats_theatre, register_view, login_view, logout_view,
-    edit_event, delete_event, add_comment, delete_comment, add_answer,
-    edit_question, delete_question, contact
+    edit_event, delete_event, add_comment, edit_comment, delete_comment, add_answer,
+    edit_answer, delete_answer, edit_question, delete_question, contact
 )
 
 urlpatterns = [
@@ -44,10 +44,16 @@ urlpatterns = [
          name='delete_event'),  # Delete event
     path('event/<int:event_id>/comment/', add_comment,
          name='add_comment'),  # Add comment
+    path('comment/edit/<int:comment_id>/', edit_comment,
+         name='edit_comment'),  # Edit comment
     path('comment/delete/<int:comment_id>/', delete_comment,
          name='delete_comment'),  # Delete comment
     path('question/<int:question_id>/answer/', add_answer,
          name='add_answer'),  # Add answer
+    path('answer/edit/<int:answer_id>/', edit_answer,
+         name='edit_answer'),  # Edit answer
+    path('answer/delete/<int:answer_id>/', delete_answer,
+         name='delete_answer'),  # Delete answer
     path('question/edit/<int:question_id>/', edit_question,
          name='edit_question'),  # Edit question
     path('question/delete/<int:question_id>/', delete_question,

@@ -59,8 +59,8 @@ def directory(request):
 
 
 def riverside_players(request):
-    # Get events and questions from database
-    events = Event.objects.all().order_by('-created_at')
+    # Get events and questions from database filtered by society
+    events = Event.objects.filter(society='riverside_players').order_by('-created_at')
     questions = Question.objects.all().order_by('-created_at')
 
     # Handle form submissions
@@ -70,6 +70,7 @@ def riverside_players(request):
             if event_form.is_valid():
                 event = event_form.save(commit=False)
                 event.created_by = request.user
+                event.society = 'riverside_players'  # Set the society
                 event.save()
                 messages.success(request, 'Event created successfully!')
                 return redirect('riverside_players')
@@ -96,8 +97,8 @@ def riverside_players(request):
 
 
 def metropolitan_drama(request):
-    # Get events and questions from database
-    events = Event.objects.all().order_by('-created_at')
+    # Get events and questions from database filtered by society
+    events = Event.objects.filter(society='metropolitan_drama').order_by('-created_at')
     questions = Question.objects.all().order_by('-created_at')
 
     # Handle form submissions
@@ -107,6 +108,7 @@ def metropolitan_drama(request):
             if event_form.is_valid():
                 event = event_form.save(commit=False)
                 event.created_by = request.user
+                event.society = 'metropolitan_drama'  # Set the society
                 event.save()
                 messages.success(request, 'Event created successfully!')
                 return redirect('metropolitan_drama')
@@ -133,8 +135,8 @@ def metropolitan_drama(request):
 
 
 def experimental_theatre_lab(request):
-    # Get events and questions from database
-    events = Event.objects.all().order_by('-created_at')
+    # Get events and questions from database filtered by society
+    events = Event.objects.filter(society='experimental_theatre_lab').order_by('-created_at')
     questions = Question.objects.all().order_by('-created_at')
 
     # Handle form submissions
@@ -144,6 +146,7 @@ def experimental_theatre_lab(request):
             if event_form.is_valid():
                 event = event_form.save(commit=False)
                 event.created_by = request.user
+                event.society = 'experimental_theatre_lab'  # Set the society
                 event.save()
                 messages.success(request, 'Event created successfully!')
                 return redirect('experimental_theatre_lab')
@@ -170,8 +173,8 @@ def experimental_theatre_lab(request):
 
 
 def cats_theatre(request):
-    # Get events and questions from database
-    events = Event.objects.all().order_by('-created_at')
+    # Get events and questions from database filtered by society
+    events = Event.objects.filter(society='cats_theatre').order_by('-created_at')
     questions = Question.objects.all().order_by('-created_at')
 
     # Handle form submissions
@@ -181,6 +184,7 @@ def cats_theatre(request):
             if event_form.is_valid():
                 event = event_form.save(commit=False)
                 event.created_by = request.user
+                event.society = 'cats_theatre'  # Set the society
                 event.save()
                 messages.success(request, 'Event created successfully!')
                 return redirect('cats_theatre')
@@ -212,12 +216,13 @@ def cats_theatre(request):
 @login_required
 def edit_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
+    
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
             messages.success(request, 'Event updated successfully!')
-            return redirect('riverside_players')
+            return redirect(event.society)  # Redirect to correct society page
     else:
         form = EventForm(instance=event)
     return render(request, 'blog/edit_event.html', {'form': form, 'event': event})
@@ -226,10 +231,12 @@ def edit_event(request, event_id):
 @login_required
 def delete_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
+    
     if request.method == 'POST':
+        event_society = event.society  # Get the society before deleting
         event.delete()
         messages.success(request, 'Event deleted successfully!')
-        return redirect('riverside_players')
+        return redirect(event_society)  # Redirect to correct society page
     return render(request, 'blog/delete_event.html', {'event': event})
 
 
@@ -244,22 +251,41 @@ def add_comment(request, event_id):
             comment.author = request.user
             comment.save()
             messages.success(request, 'Comment added successfully!')
-    return redirect('riverside_players')
+    
+    # Redirect to the correct society page based on the event's society
+    return redirect(event.society)
+
+
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Comment updated successfully!')
+            return redirect(comment.event.society)
+    else:
+        form = CommentForm(instance=comment)
+    
+    return render(request, 'blog/edit_comment.html', {
+        'form': form, 
+        'comment': comment,
+        'event': comment.event
+    })
 
 
 @login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
-    # Check if user owns the comment or is admin
-    if request.user == comment.author or request.user.is_staff:
-        if request.method == 'POST':
-            comment.delete()
-            messages.success(request, 'Comment deleted successfully!')
-            return redirect('riverside_players')
-        return render(request, 'blog/delete_comment.html', {'comment': comment})
-    else:
-        messages.error(request, 'You can only delete your own comments.')
-        return redirect('riverside_players')
+    
+    if request.method == 'POST':
+        event_society = comment.event.society  # Get the society before deleting
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully!')
+        return redirect(event_society)
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
 
 
 # CRUD Functions for Questions
@@ -268,12 +294,22 @@ def delete_comment(request, comment_id):
 @login_required
 def edit_question(request, question_id):
     question = get_object_or_404(Question, id=question_id)
+    
     if request.method == 'POST':
         form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
             form.save()
             messages.success(request, 'Question updated successfully!')
-            return redirect('riverside_players')
+            # Redirect back to the referring page or default to riverside_players
+            referer = request.META.get('HTTP_REFERER')
+            if referer and 'experimental_theatre_lab' in referer:
+                return redirect('experimental_theatre_lab')
+            elif referer and 'metropolitan_drama' in referer:
+                return redirect('metropolitan_drama')
+            elif referer and 'cats_theatre' in referer:
+                return redirect('cats_theatre')
+            else:
+                return redirect('riverside_players')
     else:
         form = QuestionForm(instance=question)
     return render(request, 'blog/edit_question.html', {
@@ -284,10 +320,14 @@ def edit_question(request, question_id):
 @login_required
 def delete_question(request, question_id):
     question = get_object_or_404(Question, id=question_id)
+    
     if request.method == 'POST':
+        # Store the society before deleting the question
+        society = question.society
         question.delete()
         messages.success(request, 'Question deleted successfully!')
-        return redirect('riverside_players')
+        # Redirect based on the question's society
+        return redirect(society)
     return render(request, 'blog/delete_question.html', {'question': question})
 
 
@@ -302,7 +342,68 @@ def add_answer(request, question_id):
             answer.author = request.user
             answer.save()
             messages.success(request, 'Answer added successfully!')
-    return redirect('riverside_players')
+    
+    # Redirect back to the referring page or default to riverside_players
+    referer = request.META.get('HTTP_REFERER')
+    if referer and 'experimental_theatre_lab' in referer:
+        return redirect('experimental_theatre_lab')
+    elif referer and 'metropolitan_drama' in referer:
+        return redirect('metropolitan_drama')
+    elif referer and 'cats_theatre' in referer:
+        return redirect('cats_theatre')
+    else:
+        return redirect('riverside_players')
+
+
+@login_required
+def edit_answer(request, answer_id):
+    from .models import Answer
+    answer = get_object_or_404(Answer, id=answer_id)
+    
+    if request.method == 'POST':
+        form = AnswerForm(request.POST, instance=answer)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Answer updated successfully!')
+            # Redirect back to the referring page
+            referer = request.META.get('HTTP_REFERER')
+            if referer and 'experimental_theatre_lab' in referer:
+                return redirect('experimental_theatre_lab')
+            elif referer and 'metropolitan_drama' in referer:
+                return redirect('metropolitan_drama')
+            elif referer and 'cats_theatre' in referer:
+                return redirect('cats_theatre')
+            else:
+                return redirect('riverside_players')
+    else:
+        form = AnswerForm(instance=answer)
+    
+    return render(request, 'blog/edit_answer.html', {
+        'form': form, 
+        'answer': answer,
+        'question': answer.question
+    })
+
+
+@login_required
+def delete_answer(request, answer_id):
+    from .models import Answer
+    answer = get_object_or_404(Answer, id=answer_id)
+    
+    if request.method == 'POST':
+        answer.delete()
+        messages.success(request, 'Answer deleted successfully!')
+        # Redirect back to the referring page
+        referer = request.META.get('HTTP_REFERER')
+        if referer and 'experimental_theatre_lab' in referer:
+            return redirect('experimental_theatre_lab')
+        elif referer and 'metropolitan_drama' in referer:
+            return redirect('metropolitan_drama')
+        elif referer and 'cats_theatre' in referer:
+            return redirect('cats_theatre')
+        else:
+            return redirect('riverside_players')
+    return render(request, 'blog/delete_answer.html', {'answer': answer})
 
 
 # Authentication views

@@ -6,10 +6,18 @@ from django.utils import timezone
 
 
 class Event(models.Model):
+    SOCIETY_CHOICES = [
+        ('experimental_theatre_lab', 'Experimental Theatre Lab'),
+        ('metropolitan_drama', 'Metropolitan Drama Society'),
+        ('riverside_players', 'Riverside Players'),
+        ('cats_theatre', 'C.A.T.S. Theatre'),
+    ]
+    
     title = models.CharField(max_length=200)
     description = models.TextField()
     date = models.DateTimeField()
     location = models.CharField(max_length=200)
+    society = models.CharField(max_length=50, choices=SOCIETY_CHOICES, default='experimental_theatre_lab')
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='created_events'
     )
@@ -41,9 +49,17 @@ class Comment(models.Model):
 
 
 class Question(models.Model):
+    SOCIETY_CHOICES = [
+        ('experimental_theatre_lab', 'Experimental Theatre Lab'),
+        ('metropolitan_drama', 'Metropolitan Drama Society'),
+        ('riverside_players', 'Riverside Players'),
+        ('cats_theatre', 'C.A.T.S. Theatre'),
+    ]
+    
     title = models.CharField(max_length=200)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    society = models.CharField(max_length=50, choices=SOCIETY_CHOICES, default='experimental_theatre_lab')
     created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:

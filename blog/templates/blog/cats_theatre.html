@@ -9,14 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>C.A.T.S. - Clitheroe Amateur Theatrical Society - TADA!</title>
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
-    type="text/css"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
     crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
@@ -255,7 +253,7 @@
                 </div>
                 {% if user.is_authenticated %}
                 <div class="dropdown">
-                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
                   </button>
                   <ul class="dropdown-menu">
@@ -279,12 +277,13 @@
                     <small class="text-white">{{ comment.created_at|date:"M j, Y g:i A" }}</small>
                     <p class="mb-0 small">{{ comment.content }}</p>
                   </div>
-                  {% if user.is_authenticated and comment.author == user %}
+                  {% if user.is_authenticated %}
                   <div class="dropdown">
                     <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="dropdown">
                       <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
                     </button>
                     <ul class="dropdown-menu">
+                      <li><a class="dropdown-item text-warning" href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit me-1" aria-hidden="true"></i>Edit</a></li>
                       <li><a class="dropdown-item text-danger" href="{% url 'delete_comment' comment.id %}"><i class="fas fa-trash me-1" aria-hidden="true"></i>Delete</a></li>
                     </ul>
                   </div>
@@ -456,11 +455,11 @@
                 </div>
                 {% if user.is_authenticated %}
                 <div class="dropdown">
-                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                  <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="dropdown">
                     <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'edit_question' question.id %}"><i class="fas fa-edit me-1" aria-hidden="true"></i>Edit</a></li>
+                    <li><a class="dropdown-item text-warning" href="{% url 'edit_question' question.id %}"><i class="fas fa-edit me-1" aria-hidden="true"></i>Edit</a></li>
                     <li><a class="dropdown-item text-danger" href="{% url 'delete_question' question.id %}"><i class="fas fa-trash me-1" aria-hidden="true"></i>Delete</a></li>
                   </ul>
                 </div>
@@ -474,9 +473,28 @@
               <!-- Display Answers -->
               {% for answer in question.answers.all %}
               <div class="border-start border-danger ps-3 mb-2">
-                <small class="text-danger fw-bold">{{ answer.author.username }}</small>
-                <small class="text-white">{{ answer.created_at|date:"M j, Y g:i A" }}</small>
-                <p class="mb-0">{{ answer.content }}</p>
+                <div class="d-flex justify-content-between align-items-start">
+                  <div class="flex-grow-1">
+                    <small class="text-danger fw-bold">{{ answer.author.username }}</small>
+                    <small class="text-white">{{ answer.created_at|date:"M j, Y g:i A" }}</small>
+                    <p class="mb-0">{{ answer.content }}</p>
+                  </div>
+                  {% if user.is_authenticated %}
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="dropdown">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'edit_answer' answer.id %}">
+                        <i class="fas fa-edit me-1"></i>Edit
+                      </a></li>
+                      <li><a class="dropdown-item text-danger" href="{% url 'delete_answer' answer.id %}">
+                        <i class="fas fa-trash me-1"></i>Delete
+                      </a></li>
+                    </ul>
+                  </div>
+                  {% endif %}
+                </div>
               </div>
               {% empty %}
               <p class="small text-white">No answers yet.</p>
@@ -749,8 +767,7 @@
 
     <!-- Bootstrap JavaScript -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"
       defer>
     </script>
