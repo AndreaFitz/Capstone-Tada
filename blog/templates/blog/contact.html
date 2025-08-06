@@ -4,24 +4,31 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact TADA! - Get in touch with The Amateur Dramatic Almanack team.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Contact - TADA! The Amateur Dramatic Almanack</title>
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    type="text/css"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-    crossorigin="anonymous">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Oregano:wght@400&display=swap" rel="stylesheet">    
+    
+    <!-- Local stylesheet -->
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Oregano:wght@400&display=swap" rel="stylesheet" type="text/css">    
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" type="text/css">
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -270,103 +277,7 @@
     </div>
 
 <!-- Bootstrap JavaScript -->
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-  crossorigin="anonymous">
-</script>
-
-<!-- Debug script to test navbar functionality -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Test if Bootstrap is loaded
-    if (typeof bootstrap !== 'undefined') {
-        console.log('Bootstrap loaded successfully');
-    } else {
-        console.error('Bootstrap not loaded');
-    }
-    
-    // Handle alert dismissal manually if Bootstrap fails
-    const alertCloseButtons = document.querySelectorAll('[data-bs-dismiss="alert"]');
-    alertCloseButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const alert = this.closest('.alert');
-            if (alert) {
-                // Try Bootstrap first
-                if (typeof bootstrap !== 'undefined' && bootstrap.Alert) {
-                    const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
-                    bsAlert.close();
-                } else {
-                    // Manual fallback
-                    alert.classList.remove('show');
-                    alert.classList.add('fade');
-                    setTimeout(() => {
-                        alert.remove();
-                    }, 150);
-                }
-            }
-        });
-    });
-    
-    // Test logout modal functionality
-    const logoutTrigger = document.querySelector('[data-bs-target="#logoutModal"]');
-    const logoutModal = document.getElementById('logoutModal');
-    
-    if (logoutTrigger && logoutModal) {
-        logoutTrigger.addEventListener('click', function(e) {
-            console.log('Logout link clicked');
-            
-            // If Bootstrap is not working, show modal manually
-            if (typeof bootstrap === 'undefined') {
-                e.preventDefault();
-                logoutModal.style.display = 'block';
-                logoutModal.classList.add('show');
-                document.body.classList.add('modal-open');
-                
-                // Add backdrop
-                const backdrop = document.createElement('div');
-                backdrop.className = 'modal-backdrop fade show';
-                document.body.appendChild(backdrop);
-                
-                // Handle close buttons
-                const closeButtons = logoutModal.querySelectorAll('[data-bs-dismiss="modal"]');
-                closeButtons.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        logoutModal.style.display = 'none';
-                        logoutModal.classList.remove('show');
-                        document.body.classList.remove('modal-open');
-                        if (document.body.contains(backdrop)) {
-                            document.body.removeChild(backdrop);
-                        }
-                    });
-                });
-            }
-        });
-    }
-    
-    // Manual navbar toggle fallback - only if Bootstrap toggle fails
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('#navbarNav');
-    
-    if (navbarToggler && navbarCollapse) {
-        navbarToggler.addEventListener('click', function(e) {
-            console.log('Navbar toggler clicked');
-            
-            // Check if Bootstrap collapse is working
-            if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
-                // Let Bootstrap handle it, but also log
-                console.log('Bootstrap handling navbar toggle');
-                return;
-            }
-            
-            // Fallback manual toggle
-            console.log('Using manual navbar toggle fallback');
-            e.preventDefault();
-            navbarCollapse.classList.toggle('show');
-        });
-    }
-});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous" defer></script>
 
 </body>
 </html>
