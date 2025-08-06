@@ -4,41 +4,31 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Directory of Amateur Theatre Societies - TADA! The Amateur Dramatic Almanack">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Directory - TADA! The Amateur Dramatic Almanack</title>
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    type="text/css"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-    crossorigin="anonymous">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Oregano:wght@400&display=swap" rel="stylesheet">  
+    
+    <!-- Local stylesheet -->
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Oregano:wght@400&display=swap" rel="stylesheet" type="text/css">  
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" type="text/css">
-    <style>
-      .btn-dark-gold {
-        background-color: #B8860B;
-        border-color: #B8860B;
-        color: white;
-      }
-      .btn-dark-gold:hover {
-        background-color: #996F00;
-        border-color: #996F00;
-        color: white;
-      }
-      .btn-dark-gold:focus, .btn-dark-gold:active {
-        background-color: #996F00;
-        border-color: #996F00;
-        color: white;
-        box-shadow: 0 0 0 0.2rem rgba(184, 134, 11, 0.25);
-      }
-    </style>
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -415,94 +405,7 @@
       </div>
     </div>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-  crossorigin="anonymous">
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Manual navbar toggle fallback
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('#navbarNav');
-    
-    if (navbarToggler && navbarCollapse) {
-        navbarToggler.addEventListener('click', function() {
-            navbarCollapse.classList.toggle('show');
-        });
-    }
-
-    // Society search functionality
-    const searchInput = document.getElementById('societySearch');
-    const clearButton = document.getElementById('clearSearch');
-    const societyCards = document.querySelectorAll('.col-lg-4.col-md-6.mb-4');
-    
-    // Search function
-    function filterSocieties() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        let visibleCount = 0;
-        
-        societyCards.forEach(card => {
-            const societyName = card.querySelector('.card-title').textContent.toLowerCase();
-            const societyDescription = card.querySelector('.card-text').textContent.toLowerCase();
-            
-            if (societyName.includes(searchTerm) || societyDescription.includes(searchTerm)) {
-                card.style.display = 'block';
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        
-        // Show/hide "no results" message
-        showNoResultsMessage(visibleCount === 0 && searchTerm !== '');
-    }
-    
-    // Show/hide no results message
-    function showNoResultsMessage(show) {
-        let noResultsDiv = document.getElementById('noResults');
-        
-        if (show && !noResultsDiv) {
-            const societyRow = document.querySelector('.row:has(.col-lg-4)');
-            noResultsDiv = document.createElement('div');
-            noResultsDiv.id = 'noResults';
-            noResultsDiv.className = 'col-12 text-center py-5';
-            noResultsDiv.innerHTML = `
-                <div class="card bg-dark border-warning">
-                    <div class="card-body">
-                        <i class="fas fa-search fa-3x text-warning mb-3" aria-hidden="true"></i>
-                        <h4 class="text-white">No societies found</h4>
-                        <p class="text-white">Try adjusting your search terms or browse all societies below.</p>
-                    </div>
-                </div>
-            `;
-            societyRow.appendChild(noResultsDiv);
-        } else if (!show && noResultsDiv) {
-            noResultsDiv.remove();
-        }
-    }
-    
-    // Clear search function
-    function clearSearch() {
-        searchInput.value = '';
-        filterSocieties();
-        searchInput.focus();
-    }
-    
-    // Event listeners
-    searchInput.addEventListener('input', filterSocieties);
-    clearButton.addEventListener('click', clearSearch);
-    
-    // Handle Enter key
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            filterSocieties();
-        }
-    });
-});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

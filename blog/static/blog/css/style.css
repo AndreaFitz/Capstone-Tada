@@ -62,3 +62,24 @@ i.fab, i.fas, i.far, i.fal, i.fad, i.fa {
     border-radius: 0 0 12px 12px;
     padding: 2rem;
 }
+
+/* Dark gold button styles */
+.btn-dark-gold {
+    background-color: #B8860B !important;
+    border-color: #B8860B !important;
+    color: white !important;
+}
+
+.btn-dark-gold:hover {
+    background-color: #996F00 !important;
+    border-color: #996F00 !important;
+    color: white !important;
+}
+
+.btn-dark-gold:focus, 
+.btn-dark-gold:active {
+    background-color: #996F00 !important;
+    border-color: #996F00 !important;
+    color: white !important;
+    box-shadow: 0 0 0 0.2rem rgba(184, 134, 11, 0.25) !important;
+}
