@@ -21,6 +21,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Oregano:wght@400&display=swap" rel="stylesheet" type="text/css">  
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" type="text/css">
+    <style>
+      .btn-dark-gold {
+        background-color: #B8860B;
+        border-color: #B8860B;
+        color: white;
+      }
+      .btn-dark-gold:hover {
+        background-color: #996F00;
+        border-color: #996F00;
+        color: white;
+      }
+      .btn-dark-gold:focus, .btn-dark-gold:active {
+        background-color: #996F00;
+        border-color: #996F00;
+        color: white;
+        box-shadow: 0 0 0 0.2rem rgba(184, 134, 11, 0.25);
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -127,7 +145,7 @@
                   <i class="fas fa-users me-1" aria-hidden="true"></i>
                   35 Active Members
                 </p>
-                <a href="{% url 'cats_theatre' %}" class="btn btn-primary">Learn More</a>
+                <a href="{% url 'cats_theatre' %}" class="btn btn-dark-gold">Learn More</a>
               </div>
             </div>
           </div>
@@ -152,7 +170,7 @@
                   <i class="fas fa-users me-1" aria-hidden="true"></i>
                   25 Active Members
                 </p>
-                <a href="{% url 'experimental_theatre_lab' %}" class="btn btn-primary">Learn More</a>
+                <a href="{% url 'experimental_theatre_lab' %}" class="btn btn-dark-gold">Learn More</a>
               </div>
             </div>
           </div>
@@ -177,7 +195,7 @@
                   <i class="fas fa-users me-1" aria-hidden="true"></i>
                   78 Active Members
                 </p>
-                <a href="{% url 'metropolitan_drama' %}" class="btn btn-primary">Learn More</a>
+                <a href="{% url 'metropolitan_drama' %}" class="btn btn-dark-gold">Learn More</a>
               </div>
             </div>
           </div>
@@ -202,7 +220,7 @@
                   <i class="fas fa-users me-1" aria-hidden="true"></i>
                   30 Active Members
                 </p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <a href="#" class="btn btn-dark-gold">Learn More</a>
               </div>
             </div>
           </div>
@@ -227,7 +245,7 @@
                   <i class="fas fa-users me-1" aria-hidden="true"></i>
                   45 Active Members
                 </p>
-                <a href="{% url 'riverside_players' %}" class="btn btn-primary">Learn More</a>
+                <a href="{% url 'riverside_players' %}" class="btn btn-dark-gold">Learn More</a>
               </div>
             </div>
           </div>
@@ -252,7 +270,7 @@
                   <i class="fas fa-users me-1" aria-hidden="true"></i>
                   60 Active Members
                 </p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <a href="#" class="btn btn-dark-gold">Learn More</a>
               </div>
             </div>
           </div>
