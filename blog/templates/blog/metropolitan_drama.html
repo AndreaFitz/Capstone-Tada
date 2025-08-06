@@ -244,7 +244,7 @@
               
               <!-- Comments Section -->
               <hr>
-              <h6><i class="facomments me-1" aria-hidden="true"></i>Comments ({{ event.comments.count }})</h6>
+              <h6><i class="fas fa-comments me-1" aria-hidden="true"></i>Comments ({{ event.comments.count }})</h6>
               
               <!-- Display Comments -->
               {% for comment in event.comments.all %}
@@ -258,7 +258,7 @@
                   {% if user.is_authenticated %}
                   <div class="dropdown">
                     <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="dropdown">
-                      <i class="faellipsis-v" aria-hidden="true"></i>
+                      <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
                     </button>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item text-warning" href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit me-1" aria-hidden="true"></i>Edit</a></li>

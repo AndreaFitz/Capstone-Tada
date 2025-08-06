@@ -61,7 +61,7 @@ def directory(request):
 def riverside_players(request):
     # Get events and questions from database filtered by society
     events = Event.objects.filter(society='riverside_players').order_by('-created_at')
-    questions = Question.objects.all().order_by('-created_at')
+    questions = Question.objects.filter(society='riverside_players').order_by('-created_at')
 
     # Handle form submissions
     if request.method == 'POST':
@@ -79,6 +79,7 @@ def riverside_players(request):
             if question_form.is_valid():
                 question = question_form.save(commit=False)
                 question.author = request.user
+                question.society = 'riverside_players'  # Set the society
                 question.save()
                 messages.success(request, 'Question posted successfully!')
                 return redirect('riverside_players')
@@ -99,7 +100,7 @@ def riverside_players(request):
 def metropolitan_drama(request):
     # Get events and questions from database filtered by society
     events = Event.objects.filter(society='metropolitan_drama').order_by('-created_at')
-    questions = Question.objects.all().order_by('-created_at')
+    questions = Question.objects.filter(society='metropolitan_drama').order_by('-created_at')
 
     # Handle form submissions
     if request.method == 'POST':
@@ -117,6 +118,7 @@ def metropolitan_drama(request):
             if question_form.is_valid():
                 question = question_form.save(commit=False)
                 question.author = request.user
+                question.society = 'metropolitan_drama'  # Set the society
                 question.save()
                 messages.success(request, 'Question posted successfully!')
                 return redirect('metropolitan_drama')
@@ -137,7 +139,7 @@ def metropolitan_drama(request):
 def experimental_theatre_lab(request):
     # Get events and questions from database filtered by society
     events = Event.objects.filter(society='experimental_theatre_lab').order_by('-created_at')
-    questions = Question.objects.all().order_by('-created_at')
+    questions = Question.objects.filter(society='experimental_theatre_lab').order_by('-created_at')
 
     # Handle form submissions
     if request.method == 'POST':
@@ -155,6 +157,7 @@ def experimental_theatre_lab(request):
             if question_form.is_valid():
                 question = question_form.save(commit=False)
                 question.author = request.user
+                question.society = 'experimental_theatre_lab'  # Set the society
                 question.save()
                 messages.success(request, 'Question posted successfully!')
                 return redirect('experimental_theatre_lab')
@@ -175,7 +178,7 @@ def experimental_theatre_lab(request):
 def cats_theatre(request):
     # Get events and questions from database filtered by society
     events = Event.objects.filter(society='cats_theatre').order_by('-created_at')
-    questions = Question.objects.all().order_by('-created_at')
+    questions = Question.objects.filter(society='cats_theatre').order_by('-created_at')
 
     # Handle form submissions
     if request.method == 'POST':
@@ -193,6 +196,7 @@ def cats_theatre(request):
             if question_form.is_valid():
                 question = question_form.save(commit=False)
                 question.author = request.user
+                question.society = 'cats_theatre'  # Set the society
                 question.save()
                 messages.success(request, 'Question posted successfully!')
                 return redirect('cats_theatre')
@@ -300,16 +304,8 @@ def edit_question(request, question_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Question updated successfully!')
-            # Redirect back to the referring page or default to riverside_players
-            referer = request.META.get('HTTP_REFERER')
-            if referer and 'experimental_theatre_lab' in referer:
-                return redirect('experimental_theatre_lab')
-            elif referer and 'metropolitan_drama' in referer:
-                return redirect('metropolitan_drama')
-            elif referer and 'cats_theatre' in referer:
-                return redirect('cats_theatre')
-            else:
-                return redirect('riverside_players')
+            # Redirect based on the question's society
+            return redirect(question.society)
     else:
         form = QuestionForm(instance=question)
     return render(request, 'blog/edit_question.html', {
@@ -343,16 +339,8 @@ def add_answer(request, question_id):
             answer.save()
             messages.success(request, 'Answer added successfully!')
     
-    # Redirect back to the referring page or default to riverside_players
-    referer = request.META.get('HTTP_REFERER')
-    if referer and 'experimental_theatre_lab' in referer:
-        return redirect('experimental_theatre_lab')
-    elif referer and 'metropolitan_drama' in referer:
-        return redirect('metropolitan_drama')
-    elif referer and 'cats_theatre' in referer:
-        return redirect('cats_theatre')
-    else:
-        return redirect('riverside_players')
+    # Redirect based on the question's society
+    return redirect(question.society)
 
 
 @login_required
@@ -365,16 +353,8 @@ def edit_answer(request, answer_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Answer updated successfully!')
-            # Redirect back to the referring page
-            referer = request.META.get('HTTP_REFERER')
-            if referer and 'experimental_theatre_lab' in referer:
-                return redirect('experimental_theatre_lab')
-            elif referer and 'metropolitan_drama' in referer:
-                return redirect('metropolitan_drama')
-            elif referer and 'cats_theatre' in referer:
-                return redirect('cats_theatre')
-            else:
-                return redirect('riverside_players')
+            # Redirect based on the question's society
+            return redirect(answer.question.society)
     else:
         form = AnswerForm(instance=answer)
     
@@ -391,18 +371,11 @@ def delete_answer(request, answer_id):
     answer = get_object_or_404(Answer, id=answer_id)
     
     if request.method == 'POST':
+        question_society = answer.question.society  # Get the society before deleting
         answer.delete()
         messages.success(request, 'Answer deleted successfully!')
-        # Redirect back to the referring page
-        referer = request.META.get('HTTP_REFERER')
-        if referer and 'experimental_theatre_lab' in referer:
-            return redirect('experimental_theatre_lab')
-        elif referer and 'metropolitan_drama' in referer:
-            return redirect('metropolitan_drama')
-        elif referer and 'cats_theatre' in referer:
-            return redirect('cats_theatre')
-        else:
-            return redirect('riverside_players')
+        # Redirect based on the question's society
+        return redirect(question_society)
     return render(request, 'blog/delete_answer.html', {'answer': answer})
 
 

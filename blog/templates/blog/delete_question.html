@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Question - TADA! The Amateur Dramatic Almanack</title>
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
     type="text/css"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
     crossorigin="anonymous">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'blog/images/favicon.png' %}">
@@ -43,14 +42,14 @@
               <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'directory' %}">Directory</a>
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="#">Welcome, {{ user.username }}!</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
               </li>
             {% else %}
               <li class="nav-item">
@@ -71,7 +70,7 @@
         <div class="col-md-6">
           <div class="card border-danger">
             <div class="card-header bg-danger text-white">
-              <h2><i class="faexclamation-triangle me-2" aria-hidden="true"></i>Delete Question</h2>
+              <h2><i class="fas fa-exclamation-triangle me-2" aria-hidden="true"></i>Delete Question</h2>
             </div>
             <div class="card-body">
               <p>Are you sure you want to delete the following question?</p>
@@ -86,11 +85,11 @@
               <form method="post" class="d-inline">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">
-                  <i class="fatrash me-1" aria-hidden="true"></i>Yes, Delete Question
+                  <i class="fas fa-trash me-1" aria-hidden="true"></i>Yes, Delete Question
                 </button>
               </form>
-              <a href="{% url 'riverside_players' %}" class="btn btn-secondary ms-2">
-                <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+              <a href="{% url question.society %}" class="btn btn-secondary ms-2">
+                <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
               </a>
             </div>
           </div>
@@ -98,12 +97,42 @@
       </div>
     </div>
 
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-warning">
+          <div class="modal-header border-warning">
+            <h5 class="modal-title text-warning" id="logoutModalLabel">
+              <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-white">
+            <div class="text-center">
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
+              <p class="lead">Are you sure you want to log out?</p>
+              <p class="small text-muted">You'll need to sign in again to access member features.</p>
+            </div>
+          </div>
+          <div class="modal-footer border-warning">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
+            </button>
+            <form method="post" action="{% url 'logout' %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-warning">
+                <i class="fas fa-sign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
 <!-- Bootstrap JavaScript -->
 <script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-  crossorigin="anonymous"
-  defer>
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  crossorigin="anonymous">
 </script>
 
 </body>
