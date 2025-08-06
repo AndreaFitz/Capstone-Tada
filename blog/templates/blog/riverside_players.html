@@ -95,6 +95,19 @@
 
     <!-- Main Content -->
     <div class="container mt-5" style="padding-top: 80px;">
+      <!-- Messages -->
+      {% if messages %}
+        <div class="row">
+          <div class="col-12">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2" aria-hidden="true"></i>{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
 
       <!-- Society Header -->
       <div class="row mb-5">
@@ -266,7 +279,7 @@
                 <div class="input-group input-group-sm">
                   <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
                   <button type="submit" class="btn btn-outline-warning">
-                    <i class="fapaper-plane" aria-hidden="true"></i>
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
                   </button>
                 </div>
               </form>
