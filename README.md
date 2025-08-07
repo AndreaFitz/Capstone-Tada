@@ -334,6 +334,15 @@ python manage.py runserver
 - **Secure file upload** handling
 - **Session management** with automatic logout
 
+## 🎭 Future Features
+
+- **Newsletter** sign up for monthly newsletter
+- **Gallery** for each society to upload photos of productions and rehearsals to increase engagement
+- **Community Corner** partnerships with local schools, venues or charities
+- **Countdown timer** for each society - countdown to opening night
+- **Ticket links** for each society
+
+
 ## 🎭 Contributing
 
 TADA! welcomes contributions from the amateur theatre community. Whether you're a developer, theatre enthusiast, or have ideas for improvement, we'd love to hear from you!
