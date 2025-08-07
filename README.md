@@ -16,13 +16,13 @@ A comprehensive web platform for amateur theatre societies to connect, share eve
 - **Responsive Design**: Mobile-first design optimized for all devices
 - **Performance Optimized**: Lighthouse-compliant with excellent performance scores
 
-## Wireframes
+## 🏗️ Wireframes
 
 <img width="894" height="638" alt="laptop wireframe" src="https://github.com/user-attachments/assets/7747451f-52d3-4972-b007-9f2a6a229fa7" />
 <img width="216" height="356" alt="tablet-wireframe" src="https://github.com/user-attachments/assets/bb776e41-4de4-42ce-a334-bdc226e2d254" />
 <img width="409" height="627" alt="mobile wire frame" src="https://github.com/user-attachments/assets/bfa6a167-6b1a-492b-9ee0-7cfcf529572e" />
 
-##  Responsive Design
+## 📱Responsive Design
 
 <img width="1108" height="884" alt="laptop" src="https://github.com/user-attachments/assets/691163d8-e729-411e-b436-e6935336f394" />
 <img width="860" height="915" alt="tablet" src="https://github.com/user-attachments/assets/2bae0178-66f6-44fa-be05-278d1b61e451" />
