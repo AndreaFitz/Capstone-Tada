@@ -716,13 +716,50 @@ python -m cProfile manage.py test > test_profile.txt
 
 ### **Frontend Testing**
 
-TADA! uses a **server-side rendered architecture** with minimal client-side JavaScript requirements:
+TADA! primarily uses a **server-side rendered architecture**, but now includes **custom JavaScript** for enhanced user experience:
 
-#### **✅ JavaScript Testing Status: Not Required**
-- **No Custom JavaScript**: Application uses only Bootstrap's pre-tested JavaScript
-- **Server-Side Logic**: All functionality handled by Django backend
+#### **🔄 JavaScript Testing Status: Limited Custom Code**
+- **Custom JavaScript**: Search functionality on Directory page (society filtering)
+- **Bootstrap JavaScript**: Pre-tested components (modals, navigation, forms)
+- **Server-Side Logic**: Core functionality still handled by Django backend
 - **Form Interactions**: Standard HTML forms with Django validation
-- **UI Components**: Bootstrap 5.3.0 components (externally tested)
+
+#### **📝 Custom JavaScript Components Requiring Testing**
+- **Society Search Filter**: Real-time filtering of society cards by name/location
+- **Search Clear Function**: Reset functionality for search input
+- **Keyboard Shortcuts**: Escape to clear, Ctrl/Cmd+F to focus search
+- **No Results Display**: Dynamic message when no societies match search
+
+#### **🧪 JavaScript Testing Approach**
+```javascript
+// Example test structure for search functionality
+describe('Directory Search', function() {
+    beforeEach(function() {
+        // Load directory page DOM
+        document.body.innerHTML = `
+            <input id="societySearch" type="text">
+            <button id="clearSearch"></button>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <h5 class="card-title">Riverside Players</h5>
+                </div>
+            </div>
+        `;
+        // Initialize search functionality
+    });
+
+    it('should filter societies based on search input', function() {
+        const searchInput = document.getElementById('societySearch');
+        searchInput.value = 'riverside';
+        searchInput.dispatchEvent(new Event('input'));
+        // Assert filtering works correctly
+    });
+
+    it('should clear search when clear button clicked', function() {
+        // Test clear functionality
+    });
+});
+```
 
 #### **🔧 Frontend Functionality Covered by Django Tests**
 - **Form Submissions**: Tested in view tests (`test_event_creation_authenticated`)
@@ -730,21 +767,30 @@ TADA! uses a **server-side rendered architecture** with minimal client-side Java
 - **Template Rendering**: Verified through Django's template system tests
 - **Response Validation**: HTTP status codes and content validation in view tests
 
-#### **📱 UI Testing Approach**
-```python
-# Django tests cover frontend functionality
-def test_society_page_loads(self):
-    """Test that society pages load correctly with proper content"""
-    response = self.client.get(reverse('riverside_players'))
-    self.assertEqual(response.status_code, 200)
-    self.assertContains(response, 'Riverside Players')
-    self.assertContains(response, 'Add New Event')  # Form present
+#### **📱 Manual Testing for JavaScript Features**
+```bash
+# Manual test cases for search functionality:
+1. Type in search box → societies should filter in real-time
+2. Click clear button → search should reset, all societies visible
+3. Press Escape key → search should clear
+4. Search for non-existent society → "no results" message should appear
+5. Test on mobile devices → touch interactions should work properly
 ```
 
-**For future JavaScript-heavy features**, consider:
-- **Jest** for JavaScript unit testing
-- **Selenium** for browser automation testing
-- **Cypress** for end-to-end testing
+#### **⚡ JavaScript Testing Tools (Recommended for Future)**
+For comprehensive JavaScript testing, consider implementing:
+- **Jest**: JavaScript unit testing framework
+- **Testing Library**: DOM testing utilities
+- **Cypress**: End-to-end testing for complete user workflows
+- **Selenium**: Cross-browser testing automation
+
+#### **🎯 Current Testing Status**
+- **Server-Side**: ✅ Comprehensive Django test coverage (90%+)
+- **Custom JavaScript**: ⚠️ Manual testing recommended for search functionality
+- **Bootstrap Components**: ✅ Pre-tested by Bootstrap framework
+- **Integration**: ✅ Full user workflows tested via Django tests
+
+**Note**: The custom JavaScript added is **enhancement-focused** rather than **critical functionality**. The application remains fully functional without JavaScript (progressive enhancement), so Django tests continue to provide comprehensive coverage of core features.
 
 ## �️ Database Management
 
