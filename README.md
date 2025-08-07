@@ -196,13 +196,6 @@ TADA! Site Map
 - **Minimal CSS**: Custom styles complement rather than override Bootstrap
 - **Font Optimization**: Google Fonts with display=swap for performance
 
-## 📱Responsive Design
-
-<img width="1108" height="884" alt="laptop" src="https://github.com/user-attachments/assets/691163d8-e729-411e-b436-e6935336f394" />
-<img width="860" height="915" alt="tablet" src="https://github.com/user-attachments/assets/2bae0178-66f6-44fa-be05-278d1b61e451" />
-<img width="507" height="886" alt="larger mobile" src="https://github.com/user-attachments/assets/47361eee-020a-47ea-ae5c-6fd93b10d07f" />
-<img width="607" height="907" alt="small mobile" src="https://github.com/user-attachments/assets/8a33bde5-772c-4867-a1b0-9cf65a32a970" />
-
 
 ## 🏗️ Project Structure
 
