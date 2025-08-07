@@ -222,7 +222,7 @@
                   </div>
                   {% endif %}
                   
-                  {% if user.is_authenticated %}
+                  {% if user.is_authenticated and user == event.created_by %}
                   <div class="dropdown">
                     <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
@@ -248,7 +248,7 @@
                           <small class="text-white">{{ comment.created_at|date:"F j, Y g:i A" }}</small>
                           <p class="mb-0 mt-1">{{ comment.content }}</p>
                         </div>
-                        {% if user.is_authenticated %}
+                        {% if user.is_authenticated and user == comment.author %}
                         <div class="dropdown">
                           <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
@@ -404,7 +404,7 @@
                 </div>
                 
                 <!-- Edit/Delete buttons for question author -->
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user == question.author %}
                 <div class="dropdown">
                   <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
@@ -429,7 +429,7 @@
                           <small class="text-white">{{ answer.created_at|date:"F j, Y g:i A" }}</small>
                           <p class="mb-0 mt-1">{{ answer.content }}</p>
                         </div>
-                        {% if user.is_authenticated %}
+                        {% if user.is_authenticated and user == answer.author %}
                         <div class="dropdown">
                           <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-ellipsis-v"></i>
