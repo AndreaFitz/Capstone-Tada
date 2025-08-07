@@ -317,7 +317,155 @@ python manage.py runserver
 - **Fonts**: Google Fonts (Limelight, Oregano)
 - **Performance**: Lighthouse optimized (90+ scores)
 
-## 📱 Responsive Design
+## �️ Database Management
+
+TADA! includes a comprehensive Django admin interface for managing all application data. The admin panel provides enhanced functionality for administrators and content managers.
+
+### **Accessing Django Admin**
+1. Create a superuser account:
+```bash
+python manage.py createsuperuser
+```
+2. Access admin panel: `http://127.0.0.1:8000/admin/`
+3. Login with superuser credentials
+4. user name: user
+5. pasword: theatreblog
+
+### **Admin Interface Features**
+
+#### **Event Management**
+- **List View**: Title, society, date, location, creator, creation time
+- **Filtering**: Filter by society, event date, creation date
+- **Search**: Search by title, description, location
+- **Ordering**: Chronological by creation date (newest first)
+- **Read-only Fields**: Created at, updated at timestamps
+
+#### **Comment Administration**
+- **List View**: Associated event, author, content preview (first 50 characters), creation time
+- **Filtering**: Filter by creation date
+- **Search**: Search by content, author username, event title
+- **Custom Preview**: Content preview method for quick review
+- **Ordering**: Chronological by creation date (newest first)
+
+#### **Question Management**
+- **List View**: Title, society, author, creation time
+- **Filtering**: Filter by society, creation date
+- **Search**: Search by title, content, author username
+- **Ordering**: Chronological by creation date (newest first)
+
+#### **Answer Administration**
+- **List View**: Associated question, author, content preview, creation time
+- **Filtering**: Filter by creation date
+- **Search**: Search by content, author username, question title
+- **Custom Preview**: Content preview for efficient moderation
+- **Ordering**: Chronological by creation date (newest first)
+
+#### **Society Submission Management**
+- **List View**: Name, location, email, submitted by, approval status, submission time
+- **Filtering**: Filter by approval status, submission date
+- **Search**: Search by society name, location, email, submitter username
+- **Bulk Actions**: 
+  - Approve multiple submissions simultaneously
+  - Reject multiple submissions simultaneously
+- **Custom Actions**: Enhanced messaging for bulk operations
+- **Read-only Fields**: Submission timestamp
+
+### **Database Models Structure**
+
+#### **Event Model Fields**
+```python
+title           # CharField: Event name (max 200 characters)
+description     # TextField: Detailed event information
+date            # DateTimeField: Event date and time
+location        # CharField: Event venue (max 200 characters)
+society         # CharField: Associated theatre society
+created_by      # ForeignKey: User who created the event
+photo           # ImageField: Event poster/image upload
+poster          # ImageField: Additional event poster
+created_at      # DateTimeField: Auto timestamp on creation
+updated_at      # DateTimeField: Auto timestamp on update
+```
+
+#### **Comment Model Fields**
+```python
+event           # ForeignKey: Associated event (CASCADE delete)
+author          # ForeignKey: Comment author user
+content         # TextField: Comment text content
+created_at      # DateTimeField: Auto timestamp on creation
+```
+
+#### **Question Model Fields**
+```python
+title           # CharField: Question title (max 200 characters)
+content         # TextField: Question details
+society         # CharField: Associated theatre society
+author          # ForeignKey: User who posted question
+created_at      # DateTimeField: Auto timestamp on creation
+```
+
+#### **Answer Model Fields**
+```python
+question        # ForeignKey: Associated question (CASCADE delete)
+author          # ForeignKey: User who provided answer
+content         # TextField: Answer content
+created_at      # DateTimeField: Auto timestamp on creation
+```
+
+#### **Society Submission Model Fields**
+```python
+name            # CharField: Society name (max 200 characters)
+location        # CharField: Society location (max 200 characters)
+email           # EmailField: Contact email
+description     # TextField: Society description
+submitted_by    # ForeignKey: User who submitted society
+is_approved     # BooleanField: Admin approval status
+submitted_at    # DateTimeField: Auto timestamp on submission
+```
+
+### **Database Maintenance**
+
+#### **Migrations**
+```bash
+# Create new migrations after model changes
+python manage.py makemigrations
+
+# Apply migrations to database
+python manage.py migrate
+
+# View migration status
+python manage.py showmigrations
+```
+
+#### **Data Management**
+```bash
+# Create database backup
+python manage.py dumpdata > backup.json
+
+# Load data from backup
+python manage.py loaddata backup.json
+
+# Clear specific app data
+python manage.py flush
+```
+
+#### **Database Shell Access**
+```bash
+# Access Django shell for direct database queries
+python manage.py shell
+
+# Example: Query all events
+>>> from blog.models import Event
+>>> Event.objects.all()
+```
+
+### **Admin Security Features**
+- **Authentication Required**: Admin access restricted to superusers
+- **Permission System**: Django's built-in permission framework
+- **Audit Trail**: Creation and modification timestamps on all records
+- **Content Preview**: Safe content preview without exposing full data
+- **Bulk Operations**: Secure bulk approval/rejection with confirmation messages
+
+## �📱 Responsive Design
 
 - **Mobile-first approach** with Bootstrap grid system
 - **Responsive navigation** with collapsible menu
