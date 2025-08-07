@@ -407,5 +407,86 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous" defer></script>
 
+<script>
+// Society Search Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('societySearch');
+    const clearButton = document.getElementById('clearSearch');
+    const societyCards = document.querySelectorAll('.col-lg-4.col-md-6.mb-4');
+
+    // Search function
+    function filterSocieties() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        societyCards.forEach(function(card) {
+            const societyName = card.querySelector('.card-title')?.textContent?.toLowerCase() || '';
+            const locationElement = card.querySelector('.fas.fa-map-marker-alt')?.parentElement?.textContent?.toLowerCase() || '';
+            const societyContent = societyName + ' ' + locationElement;
+            
+            if (searchTerm === '' || societyContent.includes(searchTerm)) {
+                card.style.display = 'block';
+                card.classList.remove('d-none');
+            } else {
+                card.style.display = 'none';
+                card.classList.add('d-none');
+            }
+        });
+
+        // Show/hide "no results" message
+        const visibleCards = document.querySelectorAll('.col-lg-4.col-md-6.mb-4:not(.d-none)');
+        let noResultsMessage = document.getElementById('noResultsMessage');
+        
+        if (visibleCards.length === 0 && searchTerm !== '') {
+            if (!noResultsMessage) {
+                noResultsMessage = document.createElement('div');
+                noResultsMessage.id = 'noResultsMessage';
+                noResultsMessage.className = 'col-12 text-center py-5';
+                noResultsMessage.innerHTML = `
+                    <div class="text-white">
+                        <i class="fas fa-search fa-3x mb-3 text-warning"></i>
+                        <h4>No societies found</h4>
+                        <p class="text-muted">Try adjusting your search terms or <button type="button" class="btn btn-link text-warning p-0" onclick="document.getElementById('clearSearch').click()">clear the search</button> to see all societies.</p>
+                    </div>
+                `;
+                // Find the society cards container and append the message
+                const cardsContainer = document.querySelector('.row').children[1]; // The row containing society cards
+                if (cardsContainer) {
+                    cardsContainer.appendChild(noResultsMessage);
+                }
+            }
+            noResultsMessage.style.display = 'block';
+        } else if (noResultsMessage) {
+            noResultsMessage.style.display = 'none';
+        }
+    }
+
+    // Clear search function
+    function clearSearch() {
+        searchInput.value = '';
+        filterSocieties();
+        searchInput.focus();
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', filterSocieties);
+    searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Escape') {
+            clearSearch();
+        }
+    });
+    
+    clearButton.addEventListener('click', clearSearch);
+
+    // Focus search on Ctrl+F or Cmd+F (for better UX)
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+            e.preventDefault();
+            searchInput.focus();
+            searchInput.select();
+        }
+    });
+});
+</script>
+
 </body>
 </html>
