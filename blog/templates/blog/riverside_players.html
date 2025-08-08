@@ -117,7 +117,7 @@
           <div class="card mb-4">
             <div class="card-header text-center">
               <h1 class="mb-0">
-                <i class="fatheater-masks me-3 text-warning" aria-hidden="true"></i>
+                <i class="fas fa-theater-masks me-3 text-warning" aria-hidden="true"></i>
                 Riverside Players
               </h1>
               <p class="mb-0 mt-2">Est. 1985 • Riverside Community Centre</p>
@@ -126,8 +126,8 @@
               <div class="row">
                 <div class="col-md-8">
                   <p class="lead">A vibrant community theatre group performing classic and contemporary works since 1985. Known for their intimate productions and welcoming atmosphere.</p>
-                  
-                  <h3><i class="fastar me-2 text-warning" aria-hidden="true"></i>About Our Society</h3>
+
+                  <h3><i class="fas fa-star me-2 text-warning" aria-hidden="true"></i>About Our Society</h3>
                   <p>The Riverside Players have been a cornerstone of local amateur theatre for nearly four decades. Our society was founded by a group of passionate theatre enthusiasts who wanted to bring quality dramatic productions to the community while providing a supportive environment for performers of all experience levels.</p>
                   
                   <p>We pride ourselves on our inclusive approach to theatre, welcoming members from all walks of life. Whether you're interested in acting, directing, stage management, set design, or any other aspect of theatre production, you'll find a home with us.</p>
@@ -137,11 +137,11 @@
                   <div class="card bg-dark border-warning">
                     <div class="card-body">
                       <h5 class="card-title text-warning">Quick Info</h5>
-                      <p class="mb-2"><i class="fausers me-2" aria-hidden="true"></i>45 Active Members</p>
-                      <p class="mb-2"><i class="famap-marker-alt me-2" aria-hidden="true"></i>Riverside Community Centre</p>
-                      <p class="mb-2"><i class="facalendar me-2" aria-hidden="true"></i>Founded 1985</p>
-                      <p class="mb-2"><i class="fadrama me-2" aria-hidden="true"></i>3-4 Productions/Year</p>
-                      <p class="mb-0"><i class="faclock me-2" aria-hidden="true"></i>Rehearsals: Tue & Thu 7:30pm</p>
+                      <p class="mb-2"><i class="fas fa-users me-2" aria-hidden="true"></i>45 Active Members</p>
+                      <p class="mb-2"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Riverside Community Centre</p>
+                      <p class="mb-2"><i class="fas fa-calendar me-2" aria-hidden="true"></i>Founded 1985</p>
+                      <p class="mb-2"><i class="fas fa-drama me-2" aria-hidden="true"></i>3-4 Productions/Year</p>
+                      <p class="mb-0"><i class="fas fa-clock me-2" aria-hidden="true"></i>Rehearsals: Tue & Thu 7:30pm</p>
                     </div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@
           {% if user.is_authenticated %}
           <div class="card mb-3">
             <div class="card-body">
-              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Add New Event</h6>
+              <h6 class="card-title"><i class="fas fa-plus me-1" aria-hidden="true"></i>Add New Event</h6>
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="event_form" value="1">
@@ -181,19 +181,19 @@
                 <div class="row mb-2">
                   <div class="col-6">
                     <label for="{{ event_form.photo.id_for_label }}" class="form-label">
-                      <i class="facamera me-1" aria-hidden="true"></i>Event Photo
+                      <i class="fas fa-camera me-1" aria-hidden="true"></i>Event Photo
                     </label>
                     {{ event_form.photo }}
                   </div>
                   <div class="col-6">
                     <label for="{{ event_form.poster.id_for_label }}" class="form-label">
-                      <i class="faimage me-1" aria-hidden="true"></i>Event Poster
+                      <i class="fas fa-image me-1" aria-hidden="true"></i>Event Poster
                     </label>
                     {{ event_form.poster }}
                   </div>
                 </div>
                 <button type="submit" class="btn btn-warning btn-sm">
-                  <i class="faplus me-1" aria-hidden="true"></i>Add Event
+                  <i class="fas fa-plus me-1" aria-hidden="true"></i>Add Event
                 </button>
               </form>
             </div>
@@ -207,8 +207,8 @@
               <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
                   <h5 class="card-title text-warning">{{ event.title }}</h5>
-                  <p class="card-text"><i class="facalendar me-1" aria-hidden="true"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
-                  <p class="card-text"><i class="famap-marker-alt me-1" aria-hidden="true"></i> {{ event.location }}</p>
+                  <p class="card-text"><i class="fas fa-calendar me-1" aria-hidden="true"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
+                  <p class="card-text"><i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i> {{ event.location }}</p>
                   <p class="card-text">{{ event.description }}</p>
                   
                   <!-- Display uploaded images -->
@@ -216,13 +216,13 @@
                   <div class="row mt-3">
                     {% if event.photo %}
                     <div class="col-md-6 mb-2">
-                      <p class="small text-warning mb-1"><i class="facamera me-1" aria-hidden="true"></i>Event Photo:</p>
+                      <p class="small text-warning mb-1"><i class="fas fa-camera me-1" aria-hidden="true"></i>Event Photo:</p>
                       <img src="{{ event.photo.url }}" class="img-fluid rounded shadow-sm" alt="Event Photo" style="max-height: 200px;">
                     </div>
                     {% endif %}
                     {% if event.poster %}
                     <div class="col-md-6 mb-2">
-                      <p class="small text-warning mb-1"><i class="faimage me-1" aria-hidden="true"></i>Event Poster:</p>
+                      <p class="small text-warning mb-1"><i class="fas fa-image me-1" aria-hidden="true"></i>Event Poster:</p>
                       <img src="{{ event.poster.url }}" class="img-fluid rounded shadow-sm" alt="Event Poster" style="max-height: 200px;">
                     </div>
                     {% endif %}
@@ -340,18 +340,18 @@
       <!-- What We Offer Section -->
       <div class="row mb-5">
         <div class="col-md-6">
-          <h2><i class="faheart me-2 text-warning" aria-hidden="true"></i>What We Offer</h2>
+          <h2><i class="fas fa-heart me-2 text-warning" aria-hidden="true"></i>What We Offer</h2>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Welcoming environment for all skill levels</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Regular workshops and training sessions</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Opportunities in acting, directing, and technical roles</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Social events and cast parties</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Mentorship from experienced members</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Access to costume and prop resources</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Welcoming environment for all skill levels</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Regular workshops and training sessions</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Opportunities in acting, directing, and technical roles</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Social events and cast parties</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Mentorship from experienced members</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Access to costume and prop resources</li>
           </ul>
         </div>
         <div class="col-md-6">
-          <h2><i class="fausers me-2 text-warning" aria-hidden="true"></i>Join Our Community</h2>
+          <h2><i class="fas fa-users me-2 text-warning" aria-hidden="true"></i>Join Our Community</h2>
           <div class="card bg-dark border-warning">
             <div class="card-body">
               <h5 class="card-title text-warning">Ready to Take the Stage?</h5>
@@ -359,16 +359,16 @@
               
               <h6 class="text-warning mt-3">Getting Started:</h6>
               <ul class="list-unstyled">
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Attend one of our monthly open meetings</li>
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Come to a rehearsal and see us in action</li>
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Get in touch via our contact form</li>
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Follow us on social media</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Attend one of our monthly open meetings</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Come to a rehearsal and see us in action</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Get in touch via our contact form</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Follow us on social media</li>
               </ul>
               
               <h6 class="text-warning mt-3">Contact Info:</h6>
-              <p class="mb-1"><i class="faenvelope me-2" aria-hidden="true"></i>contact@riversideplayers.co.uk</p>
-              <p class="mb-1"><i class="faphone me-2" aria-hidden="true"></i>01234 567890</p>
-              <p class="mb-0"><i class="faglobe me-2" aria-hidden="true"></i>www.riversideplayers.co.uk</p>
+              <p class="mb-1"><i class="fas fa-envelope me-2" aria-hidden="true"></i>contact@riversideplayers.co.uk</p>
+              <p class="mb-1"><i class="fas fa-phone me-2" aria-hidden="true"></i>01234 567890</p>
+              <p class="mb-0"><i class="fas fa-globe me-2" aria-hidden="true"></i>www.riversideplayers.co.uk</p>
             </div>
           </div>
         </div>
@@ -378,12 +378,12 @@
       <div class="row mb-5">
         <div class="col-12">
           <h2><i class="fas fa-question-circle me-2 text-danger" aria-hidden="true"></i>Questions & Answers</h2>
-          
+          <h3>Please sign up/sign in to ask a question.</h3>
           <!-- Add New Question Form (Only for logged in users) -->
           {% if user.is_authenticated %}
           <div class="card mb-4">
             <div class="card-body">
-              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Ask a Question</h6>
+              <h6 class="card-title"><i class="fas fa-plus me-1" aria-hidden="true"></i>Ask a Question</h6>
               <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="question_form" value="1">
@@ -394,7 +394,7 @@
                   {{ question_form.content }}
                 </div>
                 <button type="submit" class="btn btn-warning">
-                  <i class="faquestion me-1" aria-hidden="true"></i>Post Question
+                  <i class="fas fa-question me-1" aria-hidden="true"></i>Post Question
                 </button>
               </form>
             </div>
@@ -490,20 +490,20 @@
         <div class="col-12">
           <div class="card bg-gradient" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(26, 15, 10, 0.2));">
             <div class="card-body text-center">
-              <h2><i class="fahandshake me-2 text-warning" aria-hidden="true"></i>Join the Riverside Players</h2>
+              <h2><i class="fas fa-handshake me-2 text-warning" aria-hidden="true"></i>Join the Riverside Players</h2>
               <p class="lead">Ready to take the stage or work behind the scenes? We'd love to have you!</p>
               
               <div class="row mt-4">
                 <div class="col-md-4">
-                  <h5><i class="faenvelope me-2 text-warning" aria-hidden="true"></i>Email</h5>
+                  <h5><i class="fas fa-envelope me-2 text-warning" aria-hidden="true"></i>Email</h5>
                   <p>info@riversideplayers.org</p>
                 </div>
                 <div class="col-md-4">
-                  <h5><i class="faphone me-2 text-warning" aria-hidden="true"></i>Phone</h5>
+                  <h5><i class="fas fa-phone me-2 text-warning" aria-hidden="true"></i>Phone</h5>
                   <p>(555) 123-4567</p>
                 </div>
                 <div class="col-md-4">
-                  <h5><i class="famap-marker-alt me-2 text-warning" aria-hidden="true"></i>Address</h5>
+                  <h5><i class="fas fa-map-marker-alt me-2 text-warning" aria-hidden="true"></i>Address</h5>
                   <p>123 Riverside Drive<br>Community Centre<br>Riverside, RC 12345</p>
                 </div>
               </div>
@@ -555,25 +555,25 @@
         <div class="modal-content bg-dark border-warning">
           <div class="modal-header border-warning">
             <h5 class="modal-title text-warning" id="logoutModalLabel">
-              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
+              <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-white">
             <div class="text-center">
-              <i class="fatheater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
               <p class="lead">Are you sure you want to log out?</p>
-              <p class="small text-muted">You'll need to sign in again to access member features.</p>
+              <p class="small text-white">You'll need to sign in again to access member features.</p>
             </div>
           </div>
           <div class="modal-footer border-warning">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+              <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
             </button>
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning">
-                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
+                <i class="fas fa-sign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
               </button>
             </form>
           </div>
