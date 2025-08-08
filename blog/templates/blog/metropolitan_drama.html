@@ -117,7 +117,7 @@
           <div class="card mb-4">
             <div class="card-header text-center">
               <h1 class="mb-0">
-                <i class="fatheater-masks me-3 text-warning" aria-hidden="true"></i>
+                <i class="fas fa-theater-masks me-3 text-warning" aria-hidden="true"></i>
                 Metropolitan Drama Society
               </h1>
               <p class="mb-0 mt-2">Est. 1978 • City Centre Arts Complex</p>
@@ -127,7 +127,7 @@
                 <div class="col-md-8">
                   <p class="lead">A prestigious urban theatre collective known for ambitious productions and cutting-edge contemporary works since 1978. Dedicated to pushing theatrical boundaries while maintaining classical excellence.</p>
                   
-                  <h3><i class="fastar me-2 text-warning" aria-hidden="true"></i>About Our Society</h3>
+                  <h3><i class="fas fa-star me-2 text-warning" aria-hidden="true"></i>About Our Society</h3>
                   <p>The Metropolitan Drama Society has been at the forefront of innovative amateur theatre for over four decades. Founded in the heart of the city by visionary artists seeking to create thought-provoking and commercially successful productions, we've established ourselves as one of the region's premier dramatic societies.</p>
                   
                   <p>We pride ourselves on our commitment to artistic excellence and professional-quality productions. Whether you're drawn to classical Shakespeare, modern drama, or experimental theatre, you'll find opportunities to challenge yourself and grow as a performer or creative professional.</p>
@@ -137,11 +137,11 @@
                   <div class="card bg-dark border-warning">
                     <div class="card-body">
                       <h5 class="card-title text-warning">Quick Info</h5>
-                      <p class="mb-2"><i class="fausers me-2" aria-hidden="true"></i>78 Active Members</p>
-                      <p class="mb-2"><i class="famap-marker-alt me-2" aria-hidden="true"></i>City Centre Arts Complex</p>
-                      <p class="mb-2"><i class="facalendar me-2" aria-hidden="true"></i>Founded 1978</p>
-                      <p class="mb-2"><i class="fadrama me-2" aria-hidden="true"></i>4-5 Productions/Year</p>
-                      <p class="mb-0"><i class="faclock me-2" aria-hidden="true"></i>Rehearsals: Mon, Wed & Fri 7:00pm</p>
+                      <p class="mb-2"><i class="fas fa-users me-2" aria-hidden="true"></i>78 Active Members</p>
+                      <p class="mb-2"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>City Centre Arts Complex</p>
+                      <p class="mb-2"><i class="fas fa-calendar me-2" aria-hidden="true"></i>Founded 1978</p>
+                      <p class="mb-2"><i class="fas fa-theater-masks me-2" aria-hidden="true"></i>4-5 Productions/Year</p>
+                      <p class="mb-0"><i class="fas fa-clock me-2" aria-hidden="true"></i>Rehearsals: Mon, Wed & Fri 7:00pm</p>
                     </div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@
           {% if user.is_authenticated %}
           <div class="card mb-3">
             <div class="card-body">
-              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Add New Event</h6>
+              <h6 class="card-title"><i class="fas fa-plus me-1" aria-hidden="true"></i>Add New Event</h6>
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="event_form" value="1">
@@ -181,19 +181,19 @@
                 <div class="row mb-2">
                   <div class="col-6">
                     <label for="{{ event_form.photo.id_for_label }}" class="form-label">
-                      <i class="facamera me-1" aria-hidden="true"></i>Event Photo
+                      <i class="fas fa-camera me-1" aria-hidden="true"></i>Event Photo
                     </label>
                     {{ event_form.photo }}
                   </div>
                   <div class="col-6">
                     <label for="{{ event_form.poster.id_for_label }}" class="form-label">
-                      <i class="faimage me-1" aria-hidden="true"></i>Event Poster
+                      <i class="fas fa-image me-1" aria-hidden="true"></i>Event Poster
                     </label>
                     {{ event_form.poster }}
                   </div>
                 </div>
                 <button type="submit" class="btn btn-warning btn-sm">
-                  <i class="faplus me-1" aria-hidden="true"></i>Add Event
+                  <i class="fas fa-plus me-1" aria-hidden="true"></i>Add Event
                 </button>
               </form>
             </div>
@@ -207,8 +207,8 @@
               <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
                   <h5 class="card-title text-warning">{{ event.title }}</h5>
-                  <p class="card-text"><i class="facalendar me-1" aria-hidden="true"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
-                  <p class="card-text"><i class="famap-marker-alt me-1" aria-hidden="true"></i> {{ event.location }}</p>
+                  <p class="card-text"><i class="fas fa-calendar me-1" aria-hidden="true"></i> {{ event.date|date:"F j, Y g:i A" }}</p>
+                  <p class="card-text"><i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i> {{ event.location }}</p>
                   <p class="card-text">{{ event.description }}</p>
                   
                   <!-- Display uploaded images -->
@@ -216,13 +216,13 @@
                   <div class="row mt-3">
                     {% if event.photo %}
                     <div class="col-md-6 mb-2">
-                      <p class="small text-warning mb-1"><i class="facamera me-1" aria-hidden="true"></i>Event Photo:</p>
+                      <p class="small text-warning mb-1"><i class="fas fa-camera me-1" aria-hidden="true"></i>Event Photo:</p>
                       <img src="{{ event.photo.url }}" class="img-fluid rounded shadow-sm" alt="Event Photo" style="max-height: 200px;">
                     </div>
                     {% endif %}
                     {% if event.poster %}
                     <div class="col-md-6 mb-2">
-                      <p class="small text-warning mb-1"><i class="faimage me-1" aria-hidden="true"></i>Event Poster:</p>
+                      <p class="small text-warning mb-1"><i class="fas fa-image me-1" aria-hidden="true"></i>Event Poster:</p>
                       <img src="{{ event.poster.url }}" class="img-fluid rounded shadow-sm" alt="Event Poster" style="max-height: 200px;">
                     </div>
                     {% endif %}
@@ -340,18 +340,18 @@
       <!-- What We Offer Section -->
       <div class="row mb-5">
         <div class="col-md-6">
-          <h2><i class="faheart me-2 text-warning" aria-hidden="true"></i>What We Offer</h2>
+          <h2><i class="fas fa-heart me-2 text-warning" aria-hidden="true"></i>What We Offer</h2>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Professional-standard production values</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Masterclasses with industry professionals</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Challenging and diverse repertoire</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Networking opportunities with theatre professionals</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>State-of-the-art theatre facilities</li>
-            <li class="mb-2"><i class="facheck text-success me-2" aria-hidden="true"></i>Opportunities for creative leadership roles</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Professional-standard production values</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Masterclasses with industry professionals</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Challenging and diverse repertoire</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Networking opportunities with theatre professionals</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>State-of-the-art theatre facilities</li>
+            <li class="mb-2"><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Opportunities for creative leadership roles</li>
           </ul>
         </div>
         <div class="col-md-6">
-          <h2><i class="fausers me-2 text-warning" aria-hidden="true"></i>Join Our Company</h2>
+          <h2><i class="fas fa-users me-2 text-warning" aria-hidden="true"></i>Join Our Company</h2>
           <div class="card bg-dark border-warning">
             <div class="card-body">
               <h5 class="card-title text-warning">Ready for the Spotlight?</h5>
@@ -359,16 +359,16 @@
               
               <h6 class="text-warning mt-3">Getting Started:</h6>
               <ul class="list-unstyled">
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Attend our monthly audition workshops</li>
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Join our production team as a volunteer</li>
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Contact our artistic director directly</li>
-                <li class="mb-2"><i class="faarrow-right text-warning me-2" aria-hidden="true"></i>Follow us for upcoming opportunity announcements</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Attend our monthly audition workshops</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Join our production team as a volunteer</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Contact our artistic director directly</li>
+                <li class="mb-2"><i class="fas fa-arrow-right text-warning me-2" aria-hidden="true"></i>Follow us for upcoming opportunity announcements</li>
               </ul>
               
               <h6 class="text-warning mt-3">Contact Info:</h6>
-              <p class="mb-1"><i class="faenvelope me-2" aria-hidden="true"></i>info@metropolitandrama.org</p>
-              <p class="mb-1"><i class="faphone me-2" aria-hidden="true"></i>020 7946 0123</p>
-              <p class="mb-0"><i class="faglobe me-2" aria-hidden="true"></i>www.metropolitandrama.org</p>
+              <p class="mb-1"><i class="fas fa-envelope me-2" aria-hidden="true"></i>info@metropolitandrama.org</p>
+              <p class="mb-1"><i class="fas fa-phone me-2" aria-hidden="true"></i>020 7946 0123</p>
+              <p class="mb-0"><i class="fas fa-globe me-2" aria-hidden="true"></i>www.metropolitandrama.org</p>
             </div>
           </div>
         </div>
@@ -383,7 +383,7 @@
           {% if user.is_authenticated %}
           <div class="card mb-4">
             <div class="card-body">
-              <h6 class="card-title"><i class="faplus me-1" aria-hidden="true"></i>Ask a Question</h6>
+              <h6 class="card-title"><i class="fas fa-plus me-1" aria-hidden="true"></i>Ask a Question</h6>
               <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="question_form" value="1">
@@ -394,7 +394,7 @@
                   {{ question_form.content }}
                 </div>
                 <button type="submit" class="btn btn-warning">
-                  <i class="faquestion me-1" aria-hidden="true"></i>Post Question
+                  <i class="fas fa-question me-1" aria-hidden="true"></i>Post Question
                 </button>
               </form>
             </div>
@@ -490,20 +490,20 @@
         <div class="col-12">
           <div class="card bg-gradient" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(26, 15, 10, 0.2));">
             <div class="card-body text-center">
-              <h2><i class="fahandshake me-2 text-warning" aria-hidden="true"></i>Join the Metropolitan Drama Society</h2>
+              <h2><i class="fas fa-handshake me-2 text-warning" aria-hidden="true"></i>Join the Metropolitan Drama Society</h2>
               <p class="lead">Ready to take your theatrical passion to the next level? We're looking for dedicated artists!</p>
               
               <div class="row mt-4">
                 <div class="col-md-4">
-                  <h5><i class="faenvelope me-2 text-warning" aria-hidden="true"></i>Email</h5>
+                  <h5><i class="fas fa-envelope me-2 text-warning" aria-hidden="true"></i>Email</h5>
                   <p>casting@metropolitandrama.org</p>
                 </div>
                 <div class="col-md-4">
-                  <h5><i class="faphone me-2 text-warning" aria-hidden="true"></i>Phone</h5>
+                  <h5><i class="fas fa-phone me-2 text-warning" aria-hidden="true"></i>Phone</h5>
                   <p>(555) 987-6543</p>
                 </div>
                 <div class="col-md-4">
-                  <h5><i class="famap-marker-alt me-2 text-warning" aria-hidden="true"></i>Address</h5>
+                  <h5><i class="fas fa-map-marker-alt me-2 text-warning" aria-hidden="true"></i>Address</h5>
                   <p>456 Metropolitan Ave<br>City Centre Arts Complex<br>Downtown, DC 67890</p>
                 </div>
               </div>
@@ -555,25 +555,25 @@
         <div class="modal-content bg-dark border-warning">
           <div class="modal-header border-warning">
             <h5 class="modal-title text-warning" id="logoutModalLabel">
-              <i class="fasign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
+              <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Confirm Logout
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-white">
             <div class="text-center">
-              <i class="fatheater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
+              <i class="fas fa-theater-masks fa-3x text-warning mb-3" aria-hidden="true"></i>
               <p class="lead">Are you sure you want to log out?</p>
-              <p class="small text-muted">You'll need to sign in again to access member features.</p>
+              <p class="small text-white">You'll need to sign in again to access member features.</p>
             </div>
           </div>
           <div class="modal-footer border-warning">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fatimes me-1" aria-hidden="true"></i>Cancel
+              <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
             </button>
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning">
-                <i class="fasign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
+                <i class="fas fa-sign-out-alt me-1" aria-hidden="true"></i>Yes, Logout
               </button>
             </form>
           </div>
