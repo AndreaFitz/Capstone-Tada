@@ -187,31 +187,31 @@
                 {% csrf_token %}
                 <input type="hidden" name="event_form" value="1">
                 <div class="mb-2">
-                  {{ event_form.title }}
+                  <input type="text" name="title" class="form-control" placeholder="Event title" maxlength="200" required id="event_title">
                 </div>
                 <div class="mb-2">
-                  {{ event_form.description }}
+                  <textarea name="description" class="form-control" placeholder="Event description" rows="3" required id="event_description"></textarea>
                 </div>
                 <div class="row mb-2">
                   <div class="col-6">
-                    {{ event_form.date }}
+                    <input type="datetime-local" name="date" class="form-control" required id="event_date">
                   </div>
                   <div class="col-6">
-                    {{ event_form.location }}
+                    <input type="text" name="location" class="form-control" placeholder="Event location" maxlength="200" required id="event_location">
                   </div>
                 </div>
                 <div class="row mb-2">
                   <div class="col-6">
-                    <label for="{{ event_form.photo.id_for_label }}" class="form-label">
+                    <label for="event_photo" class="form-label">
                       Event Photo
                     </label>
-                    {{ event_form.photo }}
+                    <input type="file" name="photo" class="form-control" accept="image/*" id="event_photo">
                   </div>
                   <div class="col-6">
-                    <label for="{{ event_form.poster.id_for_label }}" class="form-label">
+                    <label for="event_poster" class="form-label">
                       Event Poster
                     </label>
-                    {{ event_form.poster }}
+                    <input type="file" name="poster" class="form-control" accept="image/*" id="event_poster">
                   </div>
                 </div>
                 <button type="submit" class="btn btn-danger btn-sm">
@@ -432,10 +432,10 @@
                 {% csrf_token %}
                 <input type="hidden" name="question_form" value="1">
                 <div class="mb-2">
-                  {{ question_form.title }}
+                  <input type="text" name="title" class="form-control" placeholder="Question title" maxlength="200" required id="question_title">
                 </div>
                 <div class="mb-2">
-                  {{ question_form.content }}
+                  <textarea name="content" class="form-control" placeholder="Question content" rows="4" required id="question_content"></textarea>
                 </div>
                 <button type="submit" class="btn btn-danger">
                   <i class="fas fa-question me-1" aria-hidden="true"></i>Post Question
@@ -608,132 +608,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- Event Modal -->
-    {% if user.is_authenticated %}
-    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark border-danger">
-          <div class="modal-header border-danger">
-            <h5 class="modal-title text-danger" id="eventModalLabel">
-              <i class="fas fa-calendar-plus me-2" aria-hidden="true"></i>Add New Event
-            </h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-white">
-            <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <input type="hidden" name="event_form" value="1">
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="{{ event_form.title.id_for_label }}" class="form-label">
-                    <i class="fas fa-heading me-1" aria-hidden="true"></i>Event Title
-                  </label>
-                  {{ event_form.title }}
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="{{ event_form.date.id_for_label }}" class="form-label">
-                    <i class="fas fa-calendar me-1" aria-hidden="true"></i>Date
-                  </label>
-                  {{ event_form.date }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="{{ event_form.time.id_for_label }}" class="form-label">
-                    <i class="fas fa-clock me-1" aria-hidden="true"></i>Time
-                  </label>
-                  {{ event_form.time }}
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="{{ event_form.location.id_for_label }}" class="form-label">
-                    <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>Location
-                  </label>
-                  {{ event_form.location }}
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="{{ event_form.description.id_for_label }}" class="form-label">
-                  <i class="fas fa-align-left me-1" aria-hidden="true"></i>Description
-                </label>
-                {{ event_form.description }}
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="{{ event_form.ticket_price.id_for_label }}" class="form-label">
-                    <i class="fas fa-ticket-alt me-1" aria-hidden="true"></i>Ticket Price (£)
-                  </label>
-                  {{ event_form.ticket_price }}
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="{{ event_form.image.id_for_label }}" class="form-label">
-                    <i class="fas fa-image me-1" aria-hidden="true"></i>Event Image
-                  </label>
-                  {{ event_form.image }}
-                </div>
-              </div>
-              <div class="text-white small mb-3">
-                <i class="fas fa-info-circle me-1" aria-hidden="true"></i>
-                Share upcoming classical productions, workshops, and society events with our community.
-              </div>
-              <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
-                  <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
-                </button>
-                <button type="submit" class="btn btn-danger">
-                  <i class="fas fa-plus me-1" aria-hidden="true"></i>Create Event
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Question Modal -->
-    <div class="modal fade" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark border-danger">
-          <div class="modal-header border-danger">
-            <h5 class="modal-title text-danger" id="questionModalLabel">
-              <i class="fas fa-question-circle me-2" aria-hidden="true"></i>Ask a Question
-            </h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-white">
-            <form method="post">
-              {% csrf_token %}
-              <input type="hidden" name="question_form" value="1">
-              <div class="mb-3">
-                <label for="{{ question_form.title.id_for_label }}" class="form-label">
-                  <i class="fas fa-heading me-1" aria-hidden="true"></i>Question Title
-                </label>
-                {{ question_form.title }}
-              </div>
-              <div class="mb-3">
-                <label for="{{ question_form.content.id_for_label }}" class="form-label">
-                  <i class="fas fa-info-circle me-1" aria-hidden="true"></i>Your Question
-                </label>
-                {{ question_form.content }}
-              </div>
-              <div class="text-white small mb-3">
-                <i class="fas fa-info-circle me-1" aria-hidden="true"></i>
-                Ask about our classical productions, rehearsal process, or how to get involved with C.A.T.S.
-              </div>
-              <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
-                  <i class="fas fa-times me-1" aria-hidden="true"></i>Cancel
-                </button>
-                <button type="submit" class="btn btn-danger">
-                  <i class="fas fa-question me-1" aria-hidden="true"></i>Post Question
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endif %}
 
     <!-- Logout Confirmation Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
