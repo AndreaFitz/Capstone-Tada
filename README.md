@@ -12,6 +12,26 @@ A comprehensive web platform for amateur theatre societies to connect, share eve
 - **Touch-friendly interfaces** for mobile devices
 - **Cross-browser compatibility** (Chrome, Firefox, Safari, Edge)
 
+**Access the application**
+- Homepage: `http://127.0.0.1:8000/`
+- Admin: `http://127.0.0.1:8000/admin/`
+
+**Table of Contents**
+- 🏆 Design & Accessibility Standards
+- 🎭 Features Overview
+- 🏗️ Wireframes & ERD
+- 🎨 UX Design Process
+- 🏗️ Project Structure
+- 🔧 CRUD Functionality
+- 🗄️ Database Models
+- 🚀 Installation & Setup
+- 🧪 Testing
+- 📱 Responsive Design
+- 🔒 Security Features
+- 🤖 AI Development Reflection
+- 🎭 Future Features
+
+
 ## 🏆 Design & Accessibility Standards
 
 TADA! meets and exceeds modern web development standards:
@@ -50,6 +70,10 @@ TADA! meets and exceeds modern web development standards:
 <img width="894" height="638" alt="laptop wireframe" src="https://github.com/user-attachments/assets/7747451f-52d3-4972-b007-9f2a6a229fa7" />
 <img width="216" height="356" alt="tablet-wireframe" src="https://github.com/user-attachments/assets/bb776e41-4de4-42ce-a334-bdc226e2d254" />
 <img width="409" height="627" alt="mobile wire frame" src="https://github.com/user-attachments/assets/bfa6a167-6b1a-492b-9ee0-7cfcf529572e" />
+
+## 🏗️ ERD
+<img width="857" height="288" alt="Screenshot 2025-08-11 133345" src="https://github.com/user-attachments/assets/e428d8cc-51fe-47d6-97a7-25e7f5a25db4" />
+
 
 ## 🎨 UX Design Process
 
